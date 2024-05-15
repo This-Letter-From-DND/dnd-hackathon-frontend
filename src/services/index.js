@@ -1,3 +1,3 @@
 export const getExampleApi = async () => {
-  return 'getExampleApi';
+  return 'get ExampleApi';
 };
