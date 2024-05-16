@@ -1,10 +1,10 @@
-import { InputTemplateStyle, Name } from './styles';
+import { InputTemplateStyle, Name, Content } from './styles';
 
 export default function InputTemplate({ name, children }) {
   return (
     <InputTemplateStyle>
       <Name>{name}</Name>
-      {children}
+      <Content>{children}</Content>
     </InputTemplateStyle>
   );
 }
