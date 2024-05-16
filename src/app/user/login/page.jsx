@@ -33,6 +33,7 @@ export default function Login() {
           <Form onSubmit={handleSubmit}>
             <InputTemplate name='이메일'>
               <Input
+                width='full'
                 type='text'
                 placeholder='hello@example.com'
                 value={email.value}
@@ -41,6 +42,7 @@ export default function Login() {
             </InputTemplate>
             <InputTemplate name='비밀번호'>
               <Input
+                width='full'
                 type='password'
                 placeholder='password'
                 value={password.value}
