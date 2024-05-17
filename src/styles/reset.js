@@ -44,7 +44,7 @@ export const theme = {
   },
   layout: {
     minWidth: {
-      mobile: '400px',
+      mobile: '428px',
     },
   },
 };
