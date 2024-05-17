@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 import { useRef, useState } from 'react';
 import { TinderLikeCard } from 'react-stack-cards';
