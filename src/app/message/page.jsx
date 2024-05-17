@@ -1,12 +1,33 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StackedCarousel } from 'react-card-stack-carousel';
 
 import 'react-card-stack-carousel/styles/styles.css';
 import { Container, Wrapper } from './styles';
 
+import { getTestApi, postTestApi } from '@/services';
+
 export default function Test() {
+  useEffect(() => {
+    const test = async () => {
+      const data = await getTestApi();
+      console.log('get으로 받아온 데이터', data);
+    };
+
+    test();
+  }, []);
+
+  useEffect(() => {
+    const test = async () => {
+      const data = await postTestApi({
+        name: '테스트입니다',
+      });
+      console.log('post로 받아온 데이터', data);
+    };
+    test();
+  }, []);
+
   return (
     <Wrapper>
       <StackedCarousel height='400 md:500 lg:750'>
