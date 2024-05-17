@@ -2,8 +2,10 @@ import { getFetch, postFetch } from './common';
 
 import { API_URLS } from '@/constants/config';
 
-export const getAllQuestionApi = async (id) => {
-  return getFetch(`${API_URLS.question}/list?userId=${id}`);
+export const getAllQuestionApi = async (id, sorter, isMine) => {
+  return getFetch(
+    `${API_URLS.question}/list?userId=${id}&sorter=${sorter}&isMine=${isMine}`,
+  );
 };
 
 export const getQuestionApi = async (id) => {
