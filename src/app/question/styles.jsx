@@ -3,6 +3,18 @@ import styled from 'styled-components';
 export const Wrapper = styled.form`
   width: 100%;
   min-height: 100%;
+  background-color: #ffffff;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    margin-right: 5rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+  }
 `;
 
 export const Point = styled.div`

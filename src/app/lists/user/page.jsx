@@ -1,97 +1,45 @@
 'use client';
 
-import { RemoteRunnable } from '@langchain/core/runnables/remote';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 
 import ai from '@/assets/aiai.svg';
-import allow from '@/assets/allow.svg';
 import user from '@/assets/user.svg';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import { getAllQuestionApi } from '@/services/question';
-
-export const chain = new RemoteRunnable({
-  url: `https://becoming-dodo-roughly.ngrok-free.app/answer-ai/`,
-  headers: {
-    'ngrok-skip-browser-warning': 'skip', //ngrok오류로 인해 넣어준 헤더
-  },
-});
-
-export default function Lists() {
+export default function ListsUser() {
   const [list, setList] = useState([]);
-  const [sort, setSort] = useState('recent');
-  const [agree, setAgree] = useState(false);
-  const [response, setResponse] = useState('');
 
   useEffect(() => {
     const getData = async () => {
-      const data = await getAllQuestionApi(1, sort, agree);
+      const data = await getAllQuestionApi(1, 'recent', true);
       setList(data);
     };
     getData();
-  }, [sort, agree]);
+  }, []);
 
   // const AIDUMMY = {
   //   choice: 'A',
   //   reason: '맛있으니까',
   // };
 
-  //ai에 api 요청
-  const handleClickButton = async () => {
-    console.log(list[0].content);
-    console.log(list[0].choices[0].content);
-    console.log(list[0].choices[1].content);
-
-    const res = await chain.invoke({
-      topic: list[0].content,
-      choiceA: list[0].choices[0].content,
-      choiceB: list[0].choices[1].content,
-    });
-
-    const response = await res.content.replace('\n', '');
-    const answer = await JSON.parse(response);
-    await setResponse(answer);
-  };
+  const handleClickButton = () => {};
 
   return (
     <Wrapper>
       <Header
-        title={<TitleStyled>{'질문하기'}</TitleStyled>}
+        title={<TitleStyled>{'내가 쓴 질문'}</TitleStyled>}
         canGoBack={true}
       />
-      <SortContainer>
-        <AllowContainer
-          onClick={() => {
-            setSort(sort === 'recent' ? 'popular' : 'recent');
-          }}
-        >
-          <Image
-            src={allow}
-            alt='allow'
-          />
-          {sort === 'recent' ? '최신순' : '인기순'}
-        </AllowContainer>
-        <CheckContainer>
-          <label htmlFor='agree'>
-            <Input
-              type='checkbox'
-              id='agree'
-              name='agree'
-              value={agree}
-              onChange={() => {
-                setAgree(!agree);
-              }}
-            />
-            내가 답한 것만 보기
-          </label>
-        </CheckContainer>
-      </SortContainer>
       <ListContainer>
         {list?.map((item, index) => (
           <QuestionCardContainer key={index}>
             <QuestionCard>
+              <TimeContainer>
+                <Time>2024.01.01</Time> <Button>후기작성</Button>
+              </TimeContainer>
               <CardTop>
                 <CardTitle>{item.title}</CardTitle>
                 <CardProfileBox>
@@ -171,19 +119,14 @@ export default function Lists() {
                   alt='ai'
                 />
               </AiIcon>
-              {response ? (
-                <>
-                  <AIRight>
-                    <AITop>AI도 {response.choice}를 선택했어요</AITop>
-                    <AIBottom>왜냐면 {response.reason}</AIBottom>
-                  </AIRight>
-                </>
-              ) : (
-                <AIButtonContainer>
-                  <AIMiddle>AI 답변도 궁금한가요?</AIMiddle>
-                  <AIButton onClick={handleClickButton}>AI답변보기</AIButton>
-                </AIButtonContainer>
-              )}
+              <AIRight>
+                {/* <AITop>AI도 {AIDUMMY.choice}를 선택했어요</AITop>
+                <AIBottom>왜냐면 {AIDUMMY.reason}는 맛있으니까!</AIBottom> */}
+              </AIRight>
+              <AIButtonContainer>
+                <AIMiddle>AI 답변도 궁금한가요?</AIMiddle>
+                <AIButton onClick={handleClickButton}>AI답변보기</AIButton>
+              </AIButtonContainer>
             </AICard>
           </QuestionCardContainer>
         ))}
@@ -215,17 +158,17 @@ const AIRight = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const AITop = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: left;
-`;
+// const AITop = styled.div`
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: left;
+// `;
 
-const AIBottom = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: left;
-`;
+// const AIBottom = styled.div`
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: left;
+// `;
 
 const ProgressBarContainer = styled.div`
   width: 100%; /* 전체 너비 */
@@ -357,9 +300,9 @@ const Circle = styled.div`
 export const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
-  background-color: #ffffff;
 `;
 
 const AiIcon = styled.div`
@@ -440,4 +383,29 @@ export const CheckContainer = styled.div`
 export const Input = styled.input`
   margin-right: 4px;
   cursor: pointer;
+`;
+
+export const TimeContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+`;
+
+export const Time = styled.div`
+  color: #495057;
+`;
+export const Button = styled.div`
+  background-color: #2f80ed;
+  color: #ffffff;
+  font-size: 14px;
+  width: 89px;
+  height: 38px;
+  border: none;
+  border-radius: 8px;
+  padding: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
