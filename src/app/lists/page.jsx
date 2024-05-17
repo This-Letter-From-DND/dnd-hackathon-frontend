@@ -9,6 +9,11 @@ export default function page() {
     B: 70,
   };
 
+  const AIDUMMY = {
+    choice: 'A',
+    reason: '맛있으니까',
+  };
+
   return (
     <Wrapper>
       <QuestionCard>
@@ -77,9 +82,43 @@ export default function page() {
           )}
         </ProgressBarContainer>
       </QuestionCard>
+      <AICard>
+        <ProfileIcon />
+        <AIRight>
+          <AITop>AI도 {AIDUMMY.choice}를 선택했어요</AITop>
+          <AIBottom>왜냐면 {AIDUMMY.reason}는 맛있으니까!</AIBottom>
+        </AIRight>
+      </AICard>
     </Wrapper>
   );
 }
+const AICard = styled.div`
+  width: 100%;
+  height: 68px;
+  padding: 14px 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  gap: 8px;
+  background-color: ${(props) => props.theme.colors.neutral[300]};
+  border-radius: 0 0 20px 20px;
+
+`;
+const AIRight = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+const AITop = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+`;
+
+const AIBottom = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+`;
 
 const ProgressBarContainer = styled.div`
   width: 100%; /* 전체 너비 */
@@ -215,5 +254,6 @@ export const Wrapper = styled.div`
   height: 100vh;
   padding: 25px 25px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
 `;
