@@ -58,10 +58,10 @@ export const postFetch = (url, param, options) => {
  * @param {RequestInit} options
  * @returns {Promise<Response>}
  */
-export const patchFetch = (url, param, options) => {
+export const putFetch = (url, param, options) => {
   return commonFetch(url, {
     ...options,
-    method: 'PATCH',
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
       ...options?.headers,
