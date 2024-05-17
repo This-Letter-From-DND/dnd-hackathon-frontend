@@ -20,7 +20,7 @@ export default function Footer() {
     HOME: pathname === '/',
     ALLQUESTION: pathname === '/lists',
     REVIEW: pathname === '/review',
-    MYQUESTION: pathname === '/my',
+    MYQUESTION: pathname === '/lists/user',
   };
 
   const handleClickFooter = (url) => {
@@ -75,7 +75,7 @@ export default function Footer() {
           {'전체후기'}
         </span>
       </div>
-      <div onClick={() => handleClickFooter('my')}>
+      <div onClick={() => handleClickFooter('/lists/user')}>
         <Image
           src={
             PATHNAME_IS_ACTIVE.MYQUESTION
