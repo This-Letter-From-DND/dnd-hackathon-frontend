@@ -6,6 +6,7 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  color: ${(props) => props.theme.font.colors.black};
 `;
 
 export const Global = styled.div`
