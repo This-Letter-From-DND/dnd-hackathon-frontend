@@ -15,3 +15,7 @@ export const getQuestionApi = async (id) => {
 export const postQuestionApi = async (data) => {
   return postFetch(API_URLS.question, data);
 };
+
+export const getQuestionListReceiveApi = async (userId) => {
+  return getFetch(`${API_URLS.question}/list/receive?userId=${userId}`);
+};
