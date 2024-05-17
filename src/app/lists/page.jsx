@@ -1,9 +1,9 @@
 'use client';
 
-import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
-import { styled } from 'styled-components';
 import { RemoteRunnable } from '@langchain/core/runnables/remote';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { styled } from 'styled-components';
 
 import ai from '@/assets/aiai.svg';
 import allow from '@/assets/allow.svg';
