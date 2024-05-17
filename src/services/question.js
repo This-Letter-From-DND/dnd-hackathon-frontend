@@ -4,7 +4,7 @@ import { API_URLS } from '@/constants/config';
 
 export const getAllQuestionApi = async (id, sorter, isMine) => {
   return getFetch(
-    `${API_URLS.question}/list?userId=${id}&sorter=${sorter}&isMine=${isMine}`,
+    `${API_URLS.question}/list/send?userId=${id}&sorter=${sorter}&isMine=${isMine}`,
   );
 };
 
