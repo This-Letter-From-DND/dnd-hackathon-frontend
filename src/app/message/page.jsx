@@ -6,24 +6,82 @@ import { StackedCarousel } from 'react-card-stack-carousel';
 import 'react-card-stack-carousel/styles/styles.css';
 import { Container, Wrapper } from './styles';
 
-import { getTestApi, postTestApi } from '@/services';
+import { postAnswerApi } from '@/services/answer';
+import { getQuestionApi, postQuestionApi } from '@/services/question';
+import { getUserApi, postUserApi, putUserApi } from '@/services/user';
 
 export default function Test() {
   useEffect(() => {
     const test = async () => {
-      const data = await getTestApi();
-      console.log('get으로 받아온 데이터', data);
+      const data = await getUserApi(1);
+      console.log('get으로 받아온 user 데이터', data);
     };
-
     test();
   }, []);
 
   useEffect(() => {
     const test = async () => {
-      const data = await postTestApi({
-        name: '테스트입니다',
+      const data = await postUserApi({
+        email: 'a@gmail.com',
+        password: '12345678',
+        nickname: 'b',
+        categoryId: '1,6,9',
       });
-      console.log('post로 받아온 데이터', data);
+      console.log('post로 받아온 user 데이터', data);
+    };
+    test();
+  }, []);
+
+  useEffect(() => {
+    const test = async () => {
+      const data = await getQuestionApi('1');
+      console.log('get으로 받아온 question 데이터', data);
+    };
+    test();
+  }, []);
+
+  useEffect(() => {
+    const test = async () => {
+      const data = await putUserApi({
+        email: 'effirin8@gmail.com',
+        password: 12345678,
+      });
+      console.log('put으로 받아온 question 데이터', data);
+    };
+    test();
+  }, []);
+
+  useEffect(() => {
+    const test = async () => {
+      const data = await postQuestionApi({
+        userId: 1,
+        categoryId: '3',
+        title: '잠을 잔다? 안 잔다?',
+        content: '슬슬 많이 졸린데... 잘까 말까...............',
+        choices: [
+          {
+            content: '잔다',
+          },
+          {
+            content: '안 잔다',
+          },
+        ],
+        closedAt: 1716197246000,
+      });
+      console.log('post로 받아온 question 데이터', data);
+    };
+    test();
+  }, []);
+
+  useEffect(() => {
+    const test = async () => {
+      const data = await postAnswerApi({
+        userId: 1,
+        questionId: 2,
+        choiceId: 2,
+        reason: '',
+      });
+      console.log('answer 받아온 question 데이터', data);
     };
     test();
   }, []);

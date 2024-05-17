@@ -3,9 +3,6 @@
 import React from 'react';
 import { styled } from 'styled-components';
 
-const Poll = () => {
-  return;
-};
 export default function page() {
   const DUMMY = {
     A: 30,
@@ -114,7 +111,7 @@ const Hr = styled.hr`
 const Span = styled.span`
   font-weight: ${(props) => props.theme.font.fontStyle.medium};
 `;
-const LabelBox = styled.div``;
+
 const ChoiceBox = styled.div`
   border-left: 3px solid;
   border-color: ${(props) => props.theme.colors.neutral[300]};
