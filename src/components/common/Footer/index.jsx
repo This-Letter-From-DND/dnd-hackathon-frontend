@@ -60,7 +60,7 @@ export default function Footer() {
           {'전체질문'}
         </span>
       </div>
-      <div onClick={() => handleClickFooter('review')}>
+      <div onClick={() => handleClickFooter('/review')}>
         <Image
           src={
             PATHNAME_IS_ACTIVE.REVIEW ? FooterReviewActive : FooterAllQuestion
