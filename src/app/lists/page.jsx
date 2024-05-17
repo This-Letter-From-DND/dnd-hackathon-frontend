@@ -1,13 +1,24 @@
 'use client';
 
-import React from 'react';
+import Image from 'next/image';
+import React, { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 
-export default function page() {
-  const DUMMY = {
-    A: 30,
-    B: 70,
-  };
+import ai from '@/assets/aiai.svg';
+import user from '@/assets/user.svg';
+import Header from '@/components/common/Header';
+import { getAllQuestionApi } from '@/services/question';
+export default function Lists() {
+  const [list, setList] = useState([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      const data = await getAllQuestionApi(1);
+      console.log('get으로 받아온 question 데이터', data);
+      setList(data);
+    };
+    getData();
+  }, []);
 
   const AIDUMMY = {
     choice: 'A',
@@ -16,79 +27,101 @@ export default function page() {
 
   return (
     <Wrapper>
-      <QuestionCard>
-        <CardTop>
-          <CardTitle>바나나 맛있냐고 바나나 먹어말아?</CardTitle>
-          <CardProfileBox>
-            <ProfileBox>
-              <ProfileIcon />
-              <ProfileText>닉네임</ProfileText>
-            </ProfileBox>
-            <Circle />
-            <ProfileBox>
-              <ProfileText>답변수 {98}</ProfileText>
-            </ProfileBox>
-          </CardProfileBox>
-        </CardTop>
-        <Hr></Hr>
-        <Content>
-          <Description>
-            바나나먹고싶은데 어떻게하냐 나 진짜 미치겠다
-          </Description>
-          <ChoiceBox>
-            <Choice>
-              <AB>A</AB>
-              <div>: 먹어라</div>
-            </Choice>
-            <Choice>
-              <AB>B</AB>
-              <div>: 참아라!</div>
-            </Choice>
-          </ChoiceBox>
-        </Content>
-        <ProgressBarContainer>
-          {DUMMY.A >= DUMMY.B ? (
-            <>
-              <ProgressBar
-                ratio={`${DUMMY.A}%`}
-                direction='left'
-              >
-                <LeftLabel>
-                  <LabelWrap direction='left'>
-                    <div>
-                      A <Span>{DUMMY.A}%</Span>
-                    </div>
-                  </LabelWrap>
-                </LeftLabel>
-              </ProgressBar>
-              <RightLabel small={true}>B</RightLabel>
-            </>
-          ) : (
-            <>
-              <LeftLabel small={true}>A</LeftLabel>
-              <ProgressBar
-                ratio={`${DUMMY.B}%`}
-                direction='right'
-              >
-                <RightLabel>
-                  <LabelWrap direction='right'>
-                    <div>
-                      <Span>{DUMMY.B}%</Span> B
-                    </div>
-                  </LabelWrap>
-                </RightLabel>
-              </ProgressBar>
-            </>
-          )}
-        </ProgressBarContainer>
-      </QuestionCard>
-      <AICard>
-        <ProfileIcon />
-        <AIRight>
-          <AITop>AI도 {AIDUMMY.choice}를 선택했어요</AITop>
-          <AIBottom>왜냐면 {AIDUMMY.reason}는 맛있으니까!</AIBottom>
-        </AIRight>
-      </AICard>
+      <Header
+        title={<TitleStyled>{'질문하기'}</TitleStyled>}
+        canGoBack={true}
+      />
+      <ListContainer>
+        {list.map((item, index) => (
+          <QuestionCardContainer key={index}>
+            <QuestionCard>
+              <CardTop>
+                <CardTitle>{item.title}</CardTitle>
+                <CardProfileBox>
+                  <ProfileBox>
+                    <ProfileIcon>
+                      <Image
+                        src={user}
+                        alt='user'
+                      />
+                    </ProfileIcon>
+                    <ProfileText>{item.userNickname}</ProfileText>
+                  </ProfileBox>
+                  <Circle />
+                  <ProfileBox>
+                    <ProfileText>{`답변수 ${item.answerCount}`}</ProfileText>
+                  </ProfileBox>
+                </CardProfileBox>
+              </CardTop>
+              <Hr></Hr>
+              <Content>
+                <Description>{item.content}</Description>
+                <ChoiceBox>
+                  <Choice>
+                    <AB>A</AB>
+                    <div>{`: ${item.choices[0].content}`}</div>
+                  </Choice>
+                  <Choice>
+                    <AB>B</AB>
+                    <div>{`: ${item.choices[1].content}`}</div>
+                  </Choice>
+                </ChoiceBox>
+              </Content>
+              <ProgressBarContainer>
+                {item.choices[0].percent >= item.choices[1].percent ? (
+                  <Div>
+                    <ProgressBar
+                      ratio={`${item.choices[0].percent}%`}
+                      direction='left'
+                    >
+                      <LeftLabel>
+                        <LabelWrap direction='left'>
+                          <div>
+                            A <Span>{`${item.choices[0].percent}%`}</Span>
+                          </div>
+                        </LabelWrap>
+                      </LeftLabel>
+                    </ProgressBar>
+                    <RightLabel small={true}>
+                      {item.choices[1].percent === 0 ? '' : 'B'}
+                    </RightLabel>
+                  </Div>
+                ) : (
+                  <Div>
+                    <LeftLabel small={true}>
+                      {item.choices[1].percent === 0 ? '' : 'A'}
+                    </LeftLabel>
+                    <ProgressBar
+                      ratio={`${item.choices[1].percent}%`}
+                      direction='right'
+                    >
+                      <RightLabel>
+                        <LabelWrap direction='right'>
+                          <div>
+                            <Span>{`${item.choices[1].percent}%`}</Span>B
+                          </div>
+                        </LabelWrap>
+                      </RightLabel>
+                    </ProgressBar>
+                  </Div>
+                )}
+              </ProgressBarContainer>
+            </QuestionCard>
+            <AICard>
+              <AiIcon>
+                <Image
+                  src={ai}
+                  alt='ai'
+                />
+              </AiIcon>
+              <AIRight>
+                <AITop>AI도 {AIDUMMY.choice}를 선택했어요</AITop>
+                <AIBottom>왜냐면 {AIDUMMY.reason}는 맛있으니까!</AIBottom>
+              </AIRight>
+            </AICard>
+          </QuestionCardContainer>
+        ))}
+      </ListContainer>
     </Wrapper>
   );
 }
@@ -102,7 +135,6 @@ const AICard = styled.div`
   gap: 8px;
   background-color: ${(props) => props.theme.colors.neutral[300]};
   border-radius: 0 0 20px 20px;
-
 `;
 const AIRight = styled.div`
   display: flex;
@@ -236,7 +268,6 @@ const CardTop = styled.div`
 const ProfileIcon = styled.div`
   width: 32px;
   height: 32px;
-  background-color: hotpink;
   border-radius: 999px;
 `;
 const ProfileText = styled.div`
@@ -252,8 +283,35 @@ const Circle = styled.div`
 export const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
-  padding: 25px 25px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+`;
+
+const AiIcon = styled.div`
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  margin-right: 0.5rem;
+`;
+
+const Div = styled.div`
+  width: 100%;
+  height: 40px;
+`;
+
+export const TitleStyled = styled.span`
+  color: ${(props) => props.theme.colors.neutral[900]};
+  font-weight: ${(props) => props.theme.font.fontStyle.bold};
+`;
+
+export const ListContainer = styled.div`
+  width: 100%;
+  height: 100vh;
+  padding: 0 25px;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const QuestionCardContainer = styled.div`
+  margin-bottom: 20px;
 `;
