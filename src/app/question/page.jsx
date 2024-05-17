@@ -11,7 +11,6 @@ import {
   InputTitle,
   Point,
   PointTitle,
-  SelectContainer,
   Textarea,
   TitleStyled,
   Wrapper,
@@ -80,9 +79,12 @@ export default function Question() {
 
   return (
     <Wrapper onSubmit={handleSubmit}>
-      <Header title={<TitleStyled>{'질문하기'}</TitleStyled>} />
+      <Header
+        title={<TitleStyled>{'질문하기'}</TitleStyled>}
+        canGoBack={true}
+      />
       <Point>
-        <PointTitle>보유바나나</PointTitle>
+        <PointTitle>보유 중인 바나나</PointTitle>
         <CountContainer>
           <Image
             src={point}
@@ -92,7 +94,7 @@ export default function Question() {
         </CountContainer>
       </Point>
       <ContentContainer>
-        <SelectContainer>
+        <SelectTemplate name='주제를 선택해주세요*'>
           <Select
             defaultValue='주제 선택'
             selectList={list.map((el) => el.title)}
@@ -107,28 +109,32 @@ export default function Question() {
               })
             }
           />
-        </SelectContainer>
-        <SelectTemplate name='제목'>
+        </SelectTemplate>
+        <SelectTemplate name='제목을 적어주세요*'>
           <InputTitle
-            placeholder='텍스트홀더'
+            placeholder='30자 이내'
             name='title'
             value={formData.title}
             onChange={onChange}
           ></InputTitle>
         </SelectTemplate>
-        <Textarea
-          name='content'
-          value={formData.content}
-          onChange={onChange}
-          placeholder={
-            formData.categoryId
-              ? list.filter((el) => el.id === formData.categoryId)[0].content
-              : ''
-          }
-        ></Textarea>
-        <SelectTemplate name='A 선택지'>
+        <SelectTemplate name='내용을 적어주세요(5자 이상~80자 이하)*'>
+          <Textarea
+            name='content'
+            value={formData.content}
+            onChange={onChange}
+            placeholder={
+              formData.categoryId
+                ? list.filter((el) => el.id === formData.categoryId)[0].content
+                : `어떤 음식을 먹고 싶어?
+음식 종류를 적어주면 결정에 도움이 됩니다.
+                `
+            }
+          ></Textarea>
+        </SelectTemplate>
+        <SelectTemplate name='A 선택지*'>
           <InputTitle
-            placeholder='텍스트홀더'
+            placeholder='1자이상 ~ 20자이하'
             name='choiceA'
             value={formData.aChoice}
             onChange={onChange}
@@ -136,7 +142,7 @@ export default function Question() {
         </SelectTemplate>
         <SelectTemplate name='B 선택지'>
           <InputTitle
-            placeholder='텍스트홀더'
+            placeholder='1자이상 ~ 20자이하'
             name='choiceB'
             value={formData.bChoice}
             onChange={onChange}
@@ -144,7 +150,7 @@ export default function Question() {
         </SelectTemplate>
         <SelectTemplate name='마감기간'>
           <Select
-            defaultValue='1일/2일/3일'
+            defaultValue='기간 선택'
             selectList={['1일', '2일', '3일']}
             label='closedAt'
             selectedItem={formData.closedAt}

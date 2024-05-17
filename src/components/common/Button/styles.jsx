@@ -12,6 +12,7 @@ export const ButtonStyle = styled.button`
         return '';
     }
   }};
+  height: 4rem;
   padding: ${({ $size }) => {
     switch ($size) {
       case 'small':
@@ -32,17 +33,17 @@ export const ButtonStyle = styled.button`
         return '1rem';
     }
   }};
-  font-weight: bold;
-  color: ${({ $color }) => $color || 'white'};
-  background-color: ${({ $bgColor }) => $bgColor || '#0070f3'};
+  color: ${(props) => props.theme.colors.neutral[900]};
+  background-color: ${({ $bgColor }) => $bgColor || '#FFCA0C'};
   border: none;
   border-radius: ${({ $borderRadius }) => $borderRadius || '5px'};
   cursor: pointer;
   text-align: center;
   transition: background-color 0.3s;
+  font-weight: ${(props) => props.theme.font.fontStyle.bold};
 
   &:hover {
-    background-color: ${({ $hoverBgColor }) => $hoverBgColor || '#005bb5'};
+    opacity: 0.8;
   }
 
   &:disabled {

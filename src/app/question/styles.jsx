@@ -10,12 +10,12 @@ export const Point = styled.div`
   padding: 0.75rem 1.5rem;
   display: flex;
   justify-content: space-between;
-  background-color: ${(props) => props.theme.colors.neutral[800]};
+  background-color: rgba(255, 202, 12, 0.12);
   margin-bottom: 1.5rem;
 `;
 
 export const PointTitle = styled.span`
-  color: ${(props) => props.theme.font.colors.white};
+  color: #db9900;
 `;
 
 export const ContentContainer = styled.div`
@@ -30,13 +30,10 @@ export const CountContainer = styled.div`
 
 export const Count = styled.span`
   margin-left: 0.5rem;
-  color: ${(props) => props.theme.colors.main.primary};
+  color: #db9900;
   font-weight: ${(props) => props.theme.font.fontStyle.bold};
 `;
 
-export const SelectContainer = styled.div`
-  margin-bottom: 3rem;
-`;
 export const InputTitle = styled.input`
   width: 100%;
   height: 3.25rem;
