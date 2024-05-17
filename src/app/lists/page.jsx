@@ -14,7 +14,6 @@ export default function Lists() {
   useEffect(() => {
     const getData = async () => {
       const data = await getAllQuestionApi(1);
-      console.log('get으로 받아온 question 데이터', data);
       setList(data);
     };
     getData();
@@ -82,13 +81,13 @@ export default function Lists() {
                         </LabelWrap>
                       </LeftLabel>
                     </ProgressBar>
-                    <RightLabel small={true}>
+                    <RightLabel $small={true}>
                       {item.choices[1].percent === 0 ? '' : 'B'}
                     </RightLabel>
                   </Div>
                 ) : (
                   <Div>
-                    <LeftLabel small={true}>
+                    <LeftLabel $small={true}>
                       {item.choices[1].percent === 0 ? '' : 'A'}
                     </LeftLabel>
                     <ProgressBar
