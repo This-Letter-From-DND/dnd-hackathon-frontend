@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import {
@@ -26,6 +27,7 @@ import { getCategoryApi } from '@/services/category';
 import { postQuestionApi } from '@/services/question';
 
 export default function Question() {
+  const router = useRouter();
   const [list, setList] = useState([]);
   const { formData, onChange } = useForm({
     userId: 1,
@@ -71,6 +73,7 @@ export default function Question() {
       });
     };
     postData();
+    router.push('/');
   };
 
   useEffect(() => {
