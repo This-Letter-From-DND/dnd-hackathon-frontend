@@ -15,7 +15,12 @@ export default function Select({
       onChange={selectHandler}
       defaultValue={selectedItem || 'default'}
     >
-      <option value='default'>{defaultValue}</option>
+      <option
+        value='default'
+        disabled
+      >
+        {defaultValue}
+      </option>
       {selectList.map((item) => (
         <option
           key={item}

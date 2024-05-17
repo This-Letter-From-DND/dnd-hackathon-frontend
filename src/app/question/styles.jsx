@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.form`
   width: 100%;
   height: 100%;
 `;
@@ -59,6 +59,10 @@ export const Textarea = styled.textarea`
 `;
 
 export const TitleStyled = styled.span`
-  color: ${(props) => props.theme.colors.main.primary};
+  color: ${(props) => props.theme.colors.neutral[900]};
   font-weight: ${(props) => props.theme.font.fontStyle.bold};
+`;
+
+export const ButtonContainer = styled.div`
+  margin-top: 1rem;
 `;
