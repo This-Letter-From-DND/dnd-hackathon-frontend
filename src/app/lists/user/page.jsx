@@ -240,6 +240,10 @@ const LabelWrap = styled.div`
   display: flex;
   font-weight: ${(props) => props.theme.font.fontStyle.bold};
   justify-content: ${(props) => props.direction};
+  > div {
+    display: flex;
+    gap: 4px;
+  }
 `;
 const AB = styled.div`
   width: 16px;
