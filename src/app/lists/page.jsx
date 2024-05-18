@@ -10,8 +10,8 @@ import allow from '@/assets/allow.svg';
 import user from '@/assets/user.svg';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
-import { getAllQuestionApi } from '@/services/question';
 import { postAIAnswer } from '@/services/ai';
+import { getAllQuestionApi } from '@/services/question';
 
 export const chain = new RemoteRunnable({
   url: `https://becoming-dodo-roughly.ngrok-free.app/answer-ai/`,
@@ -24,29 +24,27 @@ export default function Lists() {
   const [list, setList] = useState([]);
   const [sort, setSort] = useState('recent');
   const [agree, setAgree] = useState(false);
-  const [response, setResponse] = useState([]);
 
-  const listWithResponse = list.map(element => {
+  const listWithResponse = list.map((element) => {
     if (element.reason) {
       return {
-        ...element
-      }
+        ...element,
+      };
     }
     return {
       ...element,
       choice: null,
       reason: null,
-    }
-  })
+    };
+  });
 
-  useEffect(()=>{
-
-    console.log(listWithResponse)
-  },[listWithResponse])
+  useEffect(() => {
+    console.log(listWithResponse);
+  }, [listWithResponse]);
   useEffect(() => {
     const getData = async () => {
       const data = await getAllQuestionApi(1, sort, agree);
-      console.log(data)
+      console.log(data);
       setList(data);
     };
     getData();
@@ -57,45 +55,45 @@ export default function Lists() {
   //   reason: '맛있으니까',
   // };
 
-  
   //ai에 api 요청
   const handleClickButton = async (item) => {
-
     const res = await chain.invoke({
       question: item.content,
       choiceA: item.choices[0].content,
       choiceB: item.choices[1].content,
     });
-    console.log(await res)
+    console.log(await res);
     const answer = await JSON.parse(res.content.replace('\n', ''));
-    
-    console.log(answer)
+
+    console.log(answer);
 
     //const answer = await JSON.parse(response);
-    setList(prevList => prevList.map(prevItem => {
-      console.log(prevItem)
-      console.log(item)
-      if(prevItem.questionId === item.questionId && answer.response.reason) {
+    setList((prevList) =>
+      prevList.map((prevItem) => {
+        console.log(prevItem);
+        console.log(item);
+        if (prevItem.questionId === item.questionId && answer.response.reason) {
+          return {
+            ...prevItem,
+            choice: answer.response.choice,
+            reason: answer.response.reason,
+          };
+        }
         return {
           ...prevItem,
-          choice: answer.response.choice,
-          reason: answer.response.reason,
-        }
-      }
-      return {
-        ...prevItem,
-      }
-    }))
+        };
+      }),
+    );
 
     const req = await {
-      userId : 0,
+      userId: 0,
       questionId: item.questionId,
-      choiceId : answer === "A" ? 1 : 2,
-      reason :answer?.response?.reason
-    }
-    const res2 = await postAIAnswer(req)
+      choiceId: answer === 'A' ? 1 : 2,
+      reason: answer?.response?.reason,
+    };
+    const res2 = await postAIAnswer(req);
 
-    console.log("final",res2)
+    console.log('final', res2);
   };
 
   return (
@@ -224,7 +222,9 @@ export default function Lists() {
               ) : (
                 <AIButtonContainer>
                   <AIMiddle>AI 답변도 궁금한가요?</AIMiddle>
-                  <AIButton onClick={()=>handleClickButton(item)}>{"AI답변보기"}</AIButton>
+                  <AIButton onClick={() => handleClickButton(item)}>
+                    {'AI답변보기'}
+                  </AIButton>
                 </AIButtonContainer>
               )}
             </AICard>
