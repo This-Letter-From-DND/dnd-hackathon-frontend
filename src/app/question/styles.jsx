@@ -52,8 +52,8 @@ export const InputTitle = styled.input`
   border: none;
   padding: 0.5rem 0.5rem;
   border-radius: 0.5rem;
-  background-color: ${(props) => props.theme.colors.neutral[800]};
-  color: ${(props) => props.theme.font.colors.white};
+  background-color: #f1f3f5;
+  color: #212529;
 `;
 
 export const Textarea = styled.textarea`
@@ -63,8 +63,8 @@ export const Textarea = styled.textarea`
   border: none;
   padding: 0.5rem 0.5rem;
   border-radius: 0.5rem;
-  background-color: ${(props) => props.theme.colors.neutral[800]};
-  color: ${(props) => props.theme.font.colors.white};
+  background-color: #f1f3f5;
+  color: #212529;
 `;
 
 export const TitleStyled = styled.span`
