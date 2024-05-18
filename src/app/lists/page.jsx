@@ -203,7 +203,7 @@ export const FooterContainer = styled.div`
 
 const AICard = styled.div`
   width: 100%;
-  height: 68px;
+  min-height: 68px;
   padding: 14px 20px;
   display: flex;
   flex-direction: row;

@@ -15,6 +15,7 @@ export default function ListsUser() {
   useEffect(() => {
     const getData = async () => {
       const data = await getQuestionApi(1);
+      console.log(data);
       setList(data);
     };
     getData();
@@ -129,14 +130,21 @@ export default function ListsUser() {
                   alt='ai'
                 />
               </AiIcon>
-              <AIRight>
-                {/* <AITop>AI도 {AIDUMMY.choice}를 선택했어요</AITop>
-                <AIBottom>왜냐면 {AIDUMMY.reason}는 맛있으니까!</AIBottom> */}
-              </AIRight>
-              <AIButtonContainer>
-                <AIMiddle>AI 답변도 궁금한가요?</AIMiddle>
-                <AIButton onClick={handleClickButton}>AI답변보기</AIButton>
-              </AIButtonContainer>
+              {item.aiAnswer === null ? (
+                <AIButtonContainer>
+                  <AIMiddle>AI 답변도 궁금한가요?</AIMiddle>
+                  <AIButton onClick={handleClickButton}>AI답변보기</AIButton>
+                </AIButtonContainer>
+              ) : (
+                <AIRight>
+                  <AITop>
+                    AI도 {item.aiAnswer.choiceId === 1 ? 'A' : 'B'}를 선택했어요
+                  </AITop>
+                  <AIBottom>
+                    왜냐면 {item.aiAnswer.reason}는 맛있으니까!
+                  </AIBottom>
+                </AIRight>
+              )}
             </AICard>
           </QuestionCardContainer>
         ))}
@@ -148,7 +156,7 @@ export default function ListsUser() {
 
 const AICard = styled.div`
   width: 100%;
-  height: 68px;
+  min-height: 68px;
   padding: 14px 20px;
   display: flex;
   flex-direction: row;
@@ -160,17 +168,17 @@ const AIRight = styled.div`
   display: flex;
   flex-direction: column;
 `;
-// const AITop = styled.div`
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: left;
-// `;
+const AITop = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+`;
 
-// const AIBottom = styled.div`
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: left;
-// `;
+const AIBottom = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+`;
 
 const ProgressBarContainer = styled.div`
   width: 100%; /* 전체 너비 */
