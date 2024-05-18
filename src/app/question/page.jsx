@@ -57,7 +57,7 @@ export default function Question() {
       await postQuestionApi({
         userId: 1,
         categoryId: formData.categoryId || 1,
-        title: formData.titl || '',
+        title: formData.title || '',
         content: formData.content || '',
         choices: [
           {
