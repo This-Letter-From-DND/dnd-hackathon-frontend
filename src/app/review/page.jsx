@@ -47,4 +47,20 @@ export const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-export const ImageContainer = styled.div``;
+export const ImageContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    margin-right: 5rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+  }
+`;
