@@ -21,7 +21,9 @@ import {
 import AddQuestionIcon from '@/assets/AddQuestionIcon.svg';
 import BananaIcon from '@/assets/BananaIcon.svg';
 import CardCharacter from '@/assets/CardCharacter.svg';
-import CardProfile from '@/assets/CardProfile.svg';
+import CardProfile1 from '@/assets/CardProfile1.svg';
+import CardProfile2 from '@/assets/CardProfile2.svg';
+import CardProfile3 from '@/assets/CardProfile3.svg';
 import EmptyCard from '@/assets/EmptyCard.svg';
 import HomeLogo from '@/assets/HomeLogo.svg';
 import SkipXIcon from '@/assets/SkipXIcon.svg';
@@ -92,6 +94,11 @@ export default function Home() {
   const handleClickSwapRight = () => handleClickButton(DIRECTION.RIGHT, 2);
   const handleClickSwapDown = () => handleClickButton(DIRECTION.DOWN, 0);
 
+  const getCardProfile = () => {
+    const RANDOM = Math.random() * 10;
+    return RANDOM > 6 ? CardProfile1 : RANDOM > 3 ? CardProfile2 : CardProfile3;
+  };
+
   const CardContainer = (
     <>
       <ContainerStyled marginTop={`90px`}>
@@ -156,7 +163,7 @@ export default function Home() {
             <Card key={questionId}>
               <QuestionContainer>
                 <Image
-                  src={CardProfile}
+                  src={getCardProfile()}
                   alt='profile'
                 />
                 <div className='card-title'>{title}</div>
