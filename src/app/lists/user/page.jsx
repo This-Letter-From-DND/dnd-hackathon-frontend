@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 
 import ai from '@/assets/aiai.svg';
@@ -49,7 +49,11 @@ export default function ListsUser() {
             <QuestionCard>
               <TimeContainer>
                 <Time>{formatDate(item.createdAt || '')}</Time>{' '}
-                <Button>후기작성</Button>
+                <Button
+                  onClick={() => window.alert('현재 개발중인 기능입니다.')}
+                >
+                  후기작성
+                </Button>
               </TimeContainer>
               <CardTop>
                 <CardTitle>{item.title}</CardTitle>
