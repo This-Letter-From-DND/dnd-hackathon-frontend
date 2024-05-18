@@ -104,7 +104,7 @@ export default function ListsUser() {
                 ) : (
                   <Div>
                     <LeftLabel $small={true}>
-                      {item.choices[1].percent === 0 ? '' : 'A'}
+                      {item.choices[0].percent === 0 ? '' : 'A'}
                     </LeftLabel>
                     <ProgressBar
                       ratio={`${item.choices[1].percent}%`}
@@ -313,6 +313,18 @@ export const Wrapper = styled.div`
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
+
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    margin-right: 5rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+  }
 `;
 
 const AiIcon = styled.div`
