@@ -1,7 +1,9 @@
 'use client';
 
+import Image from 'next/image';
 import styled from 'styled-components';
 
+import empty from '@/assets/empty.svg';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 
@@ -12,6 +14,12 @@ export default function Page() {
         title={<TitleStyled>{'전체후기'}</TitleStyled>}
         canGoBack={true}
       />
+      <ImageContainer>
+        <Image
+          src={empty}
+          alt='empty'
+        />
+      </ImageContainer>
       <FooterContainer>
         <Footer />
       </FooterContainer>
@@ -38,3 +46,5 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
+export const ImageContainer = styled.div``;
