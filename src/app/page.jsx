@@ -111,7 +111,7 @@ export default function Home() {
           style={{
             position: 'absolute',
             zIndex: 1,
-            top: '-52px',
+            top: '-61px',
             left: '64px',
           }}
         />
