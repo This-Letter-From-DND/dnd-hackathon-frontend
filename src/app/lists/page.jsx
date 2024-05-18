@@ -360,17 +360,6 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #ffffff;
-  overflow-y: scroll;
-
-  &::-webkit-scrollbar {
-    width: 6px;
-    margin-right: 5rem;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.4);
-    border-radius: 10px;
-  }
 `;
 
 const AiIcon = styled.div`
@@ -396,6 +385,17 @@ export const ListContainer = styled.div`
   padding: 0 25px;
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    margin-right: 5rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+  }
 `;
 
 export const QuestionCardContainer = styled.div`
