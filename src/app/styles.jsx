@@ -38,7 +38,7 @@ export const SkipStyled = styled.div`
 
 export const Card = styled.div`
   width: 380px;
-  min-height: 361px;
+  min-height: 315px;
   border-radius: 24px;
   border: 1px solid #dee2e6;
   background-color: #ffffff;
@@ -55,7 +55,7 @@ export const QuestionContainer = styled.div`
   align-items: center;
   gap: 8px;
   width: 100%;
-  height: 246px;
+  height: 200px;
   border-bottom: 1px solid #dee2e6;
   background-color: #ffffff;
   border-top-left-radius: 24px;
@@ -88,6 +88,7 @@ export const AnswerContainer = styled.div`
     border: none;
     .card-title {
       color: #212529;
+      font-size: 24px;
       font-weight: ${(props) => props.theme.font.fontStyle.bold};
     }
     .card-description {
