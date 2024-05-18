@@ -17,7 +17,6 @@ import {
   Wrapper,
 } from './styles';
 
-import point from '../../assets/point.svg';
 import Button from '@/components/common/Button';
 import Header from '@/components/common/Header';
 import Select from '@/components/common/Select';
@@ -26,6 +25,8 @@ import useForm from '@/hooks/useForm';
 import { getCategoryApi } from '@/services/category';
 import { postQuestionApi } from '@/services/question';
 import { getUserApi } from '@/services/user';
+// eslint-disable-next-line import/order
+import point from '../../assets/point.svg';
 
 export default function Question() {
   const router = useRouter();
@@ -149,7 +150,7 @@ export default function Question() {
             onChange={onChange}
           ></InputTitle>
         </SelectTemplate>
-        <SelectTemplate name='B 선택지'>
+        <SelectTemplate name='B 선택지*'>
           <InputTitle
             placeholder='1자이상 ~ 20자이하'
             name='choiceB'
@@ -168,10 +169,10 @@ export default function Question() {
             }
           />
         </SelectTemplate>
-        <ButtonContainer>
-          <Button width='full'>작성완료</Button>
-        </ButtonContainer>
       </ContentContainer>
+      <ButtonContainer>
+        <Button width='full'>작성완료</Button>
+      </ButtonContainer>
     </Wrapper>
   );
 }

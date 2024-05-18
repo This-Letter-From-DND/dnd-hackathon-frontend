@@ -2,9 +2,10 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.form`
   width: 100%;
-  min-height: 100%;
+  height: 100vh;
   background-color: #ffffff;
-  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
 
   &::-webkit-scrollbar {
     width: 6px;
@@ -32,6 +33,8 @@ export const PointTitle = styled.span`
 
 export const ContentContainer = styled.div`
   margin: 0rem 1.5rem;
+  flex-grow: 1;
+  overflow-y: scroll;
 `;
 
 export const CountContainer = styled.div`
@@ -73,5 +76,6 @@ export const TitleStyled = styled.span`
 `;
 
 export const ButtonContainer = styled.div`
-  margin: 1rem 0;
+  margin: 1rem 0 0;
+  flex-shrink: 0;
 `;
