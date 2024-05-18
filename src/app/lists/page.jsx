@@ -11,6 +11,7 @@ import user from '@/assets/user.svg';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import { getAllQuestionApi } from '@/services/question';
+import { postAIAnswer } from '@/services/ai';
 
 export const chain = new RemoteRunnable({
   url: `https://becoming-dodo-roughly.ngrok-free.app/answer-ai/`,
@@ -23,11 +24,30 @@ export default function Lists() {
   const [list, setList] = useState([]);
   const [sort, setSort] = useState('recent');
   const [agree, setAgree] = useState(false);
-  const [response, setResponse] = useState('');
+  const [response, setResponse] = useState([]);
 
+  const listWithResponse = list.map(element => {
+    if (element.isLoading) {
+      return {
+        ...element
+      }
+    }
+    return {
+      ...element,
+      isAiOk: false,
+      choice: null,
+      reason: null,
+    }
+  })
+
+  useEffect(()=>{
+
+    console.log(listWithResponse)
+  },[listWithResponse])
   useEffect(() => {
     const getData = async () => {
       const data = await getAllQuestionApi(1, sort, agree);
+      console.log(data)
       setList(data);
     };
     getData();
@@ -38,21 +58,46 @@ export default function Lists() {
   //   reason: '맛있으니까',
   // };
 
+  
   //ai에 api 요청
-  const handleClickButton = async () => {
-    console.log(list[0].content);
-    console.log(list[0].choices[0].content);
-    console.log(list[0].choices[1].content);
+  const handleClickButton = async (item) => {
 
     const res = await chain.invoke({
-      topic: list[0].content,
-      choiceA: list[0].choices[0].content,
-      choiceB: list[0].choices[1].content,
+      question: item.content,
+      choiceA: item.choices[0].content,
+      choiceB: item.choices[1].content,
     });
+    console.log(await res)
+    const answer = await JSON.parse(res.content.replace('\n', ''));
+    
+    console.log(answer)
 
-    const response = await res.content.replace('\n', '');
-    const answer = await JSON.parse(response);
-    await setResponse(answer);
+    //const answer = await JSON.parse(response);
+    setList(prevList => prevList.map(prevItem => {
+      console.log(prevItem)
+      console.log(item)
+      if(prevItem.questionId === item.questionId && answer?.response?.reason) {
+        return {
+          ...prevItem,
+          isAiOk: true,
+          choice: answer.response.choice,
+          reason: answer.response.reason,
+        }
+      }
+      return {
+        ...prevItem,
+      }
+    }))
+
+    const req = await {
+      userId : 0,
+      questionId: item.questionId,
+      choiceId : answer === "A" ? 1 : 2,
+      reason :answer?.response?.reason
+    }
+    const res2 = await postAIAnswer(req)
+
+    console.log("final",res2)
   };
 
   return (
@@ -89,7 +134,7 @@ export default function Lists() {
         </CheckContainer>
       </SortContainer>
       <ListContainer>
-        {list?.map((item, index) => (
+        {listWithResponse?.map((item, index) => (
           <QuestionCardContainer key={index}>
             <QuestionCard>
               <CardTop>
@@ -171,17 +216,17 @@ export default function Lists() {
                   alt='ai'
                 />
               </AiIcon>
-              {response ? (
+              {item.reason ? (
                 <>
                   <AIRight>
-                    <AITop>AI도 {response.choice}를 선택했어요</AITop>
-                    <AIBottom>왜냐면 {response.reason}</AIBottom>
+                    <AITop>AI도 {item.choice}를 선택했어요</AITop>
+                    <AIBottom>왜냐면 {item.reason}</AIBottom>
                   </AIRight>
                 </>
               ) : (
                 <AIButtonContainer>
                   <AIMiddle>AI 답변도 궁금한가요?</AIMiddle>
-                  <AIButton onClick={handleClickButton}>AI답변보기</AIButton>
+                  <AIButton onClick={()=>handleClickButton(item)}>{"AI답변보기"}</AIButton>
                 </AIButtonContainer>
               )}
             </AICard>
@@ -203,7 +248,10 @@ export const FooterContainer = styled.div`
 
 const AICard = styled.div`
   width: 100%;
+<<<<<<< Updated upstream
   min-height: 68px;
+=======
+>>>>>>> Stashed changes
   padding: 14px 20px;
   display: flex;
   flex-direction: row;
