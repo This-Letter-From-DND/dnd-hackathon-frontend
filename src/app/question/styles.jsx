@@ -73,5 +73,5 @@ export const TitleStyled = styled.span`
 `;
 
 export const ButtonContainer = styled.div`
-  margin-top: 1rem;
+  margin: 1rem 0;
 `;

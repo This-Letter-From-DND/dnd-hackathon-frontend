@@ -25,10 +25,12 @@ import SelectTemplate from '@/components/question/SelectTemplate';
 import useForm from '@/hooks/useForm';
 import { getCategoryApi } from '@/services/category';
 import { postQuestionApi } from '@/services/question';
+import { getUserApi } from '@/services/user';
 
 export default function Question() {
   const router = useRouter();
   const [list, setList] = useState([]);
+  const [reward, setReward] = useState(0);
   const { formData, onChange } = useForm({
     userId: 1,
     categoryId: '',
@@ -40,8 +42,12 @@ export default function Question() {
   });
 
   useEffect(() => {
-    console.log(formData);
-  }, [formData]);
+    const test = async () => {
+      const data = await getUserApi(1);
+      setReward(data?.rewardCount);
+    };
+    test();
+  }, []);
 
   useEffect(() => {
     const postData = async () => {
@@ -93,7 +99,7 @@ export default function Question() {
             src={point}
             alt='point'
           />
-          <Count>100</Count>
+          <Count>{reward}</Count>
         </CountContainer>
       </Point>
       <ContentContainer>
