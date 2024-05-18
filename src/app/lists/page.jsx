@@ -88,10 +88,10 @@ export default function Lists() {
     const req = await {
       userId: 0,
       questionId: item.questionId,
-      choiceId: answer === 'A' ? 1 : 2,
-      reason: answer?.response?.reason,
-    };
-    const res2 = await postAIAnswer(req);
+      choiceId : answer.response.choice === "A" ? 1 : 2,
+      reason :answer?.response?.reason
+    }
+    const res2 = await postAIAnswer(req)
 
     console.log('final', res2);
   };
@@ -181,7 +181,7 @@ export default function Lists() {
                       </LeftLabel>
                     </ProgressBar>
                     <RightLabel $small={true}>
-                      {item.choices[1].percent === 0 ? '' : 'B'}
+                      {item.choices[1].percent === 0 ? '' : ''}
                     </RightLabel>
                   </Div>
                 ) : (
