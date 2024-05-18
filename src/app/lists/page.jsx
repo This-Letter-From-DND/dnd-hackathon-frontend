@@ -27,14 +27,13 @@ export default function Lists() {
   const [response, setResponse] = useState([]);
 
   const listWithResponse = list.map(element => {
-    if (element.isLoading) {
+    if (element.reason) {
       return {
         ...element
       }
     }
     return {
       ...element,
-      isAiOk: false,
       choice: null,
       reason: null,
     }
@@ -76,10 +75,9 @@ export default function Lists() {
     setList(prevList => prevList.map(prevItem => {
       console.log(prevItem)
       console.log(item)
-      if(prevItem.questionId === item.questionId && answer?.response?.reason) {
+      if(prevItem.questionId === item.questionId && answer.response.reason) {
         return {
           ...prevItem,
-          isAiOk: true,
           choice: answer.response.choice,
           reason: answer.response.reason,
         }
@@ -248,10 +246,6 @@ export const FooterContainer = styled.div`
 
 const AICard = styled.div`
   width: 100%;
-<<<<<<< Updated upstream
-  min-height: 68px;
-=======
->>>>>>> Stashed changes
   padding: 14px 20px;
   display: flex;
   flex-direction: row;
