@@ -30,6 +30,7 @@ import {
   SkipStyled,
   TransparentButtonContainer,
 } from './styles';
+
 interface Question {
   questionId: number;
   title: string;
@@ -118,6 +119,14 @@ export default function Home() {
     return RANDOM > 6 ? CardProfile1 : RANDOM > 3 ? CardProfile2 : CardProfile3;
   };
 
+  const convertQuestionsToStrings = (questions: Question[]): string[] => {
+    return questions.map((question) => JSON.stringify(question));
+  };
+
+  const parseQuestionsFromImages = (images: string[]): Question[] => {
+    return images.map((image) => JSON.parse(image));
+  };
+
   const CardContainer = (
     <>
       <ContainerStyled $marginTop={`90px`}>
@@ -153,7 +162,7 @@ export default function Home() {
         }}
       >
         <TinderLikeCard
-          images={questionList}
+          images={convertQuestionsToStrings(questionList)}
           width='380'
           height='200'
           direction={direction}
@@ -172,13 +181,17 @@ export default function Home() {
               const foundQuestion = node.state.list.find(
                 (element: any) => element.out !== 'out',
               );
-              CurrentQuestion.current = foundQuestion?.val || null;
+              CurrentQuestion.current = foundQuestion?.val
+                ? JSON.parse(foundQuestion.val)
+                : null;
             }
             CurrentCard.current = node;
           }}
           className='tinder'
         >
-          {questionList.map(({ questionId, title, content, choices }) => (
+          {parseQuestionsFromImages(
+            convertQuestionsToStrings(questionList),
+          ).map(({ questionId, title, content, choices }) => (
             <Card key={questionId}>
               <QuestionContainer>
                 <Image
