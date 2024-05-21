@@ -436,12 +436,12 @@ const Div = styled.div`
   height: 40px;
 `;
 
-export const TitleStyled = styled.span`
+const TitleStyled = styled.span`
   color: ${(props) => props.theme.colors.neutral[900]};
   font-weight: ${(props) => props.theme.font.fontStyle.bold};
 `;
 
-export const ListContainer = styled.div`
+const ListContainer = styled.div`
   width: 100%;
   height: 100vh;
   padding: 0 25px;
@@ -460,18 +460,18 @@ export const ListContainer = styled.div`
   }
 `;
 
-export const QuestionCardContainer = styled.div`
+const QuestionCardContainer = styled.div`
   margin-bottom: 20px;
 `;
 
-export const AIMiddle = styled.div`
+const AIMiddle = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: left;
   align-items: center;
 `;
 
-export const AIButton = styled.button`
+const AIButton = styled.button`
   background-color: #868e96;
   color: #ffffff;
   border: none;
@@ -482,13 +482,13 @@ export const AIButton = styled.button`
   align-items: center;
 `;
 
-export const AIButtonContainer = styled.div`
+const AIButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
   flex-grow: 1;
 `;
 
-export const SortContainer = styled.div`
+const SortContainer = styled.div`
   width: 100%;
   height: 56px;
   display: flex;
@@ -497,20 +497,20 @@ export const SortContainer = styled.div`
   padding: 16px 24px;
 `;
 
-export const AllowContainer = styled.div`
+const AllowContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
 `;
 
-export const CheckContainer = styled.div`
+const CheckContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-export const Input = styled.input`
+const Input = styled.input`
   margin-right: 4px;
   cursor: pointer;
 `;
