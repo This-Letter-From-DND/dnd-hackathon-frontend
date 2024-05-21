@@ -13,7 +13,7 @@ import Header from '@/components/common/Header';
 import { postAIAnswer } from '@/services/ai';
 import { getAllQuestionApi } from '@/services/question';
 
-export const chain = new RemoteRunnable({
+const chain = new RemoteRunnable({
   url: `https://becoming-dodo-roughly.ngrok-free.app/answer-ai/`,
   // headers: {
   //   'ngrok-skip-browser-warning': 'skip', //ngrok오류로 인해 넣어준 헤더
