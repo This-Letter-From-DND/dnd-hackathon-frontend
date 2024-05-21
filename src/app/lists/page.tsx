@@ -254,18 +254,10 @@ export default function Lists() {
           </QuestionCardContainer>
         ))}
       </ListContainer>
-      <FooterContainer>
-        <Footer />
-      </FooterContainer>
+      <Footer />
     </Wrapper>
   );
 }
-export const FooterContainer = styled.div`
-  flex-grow: 1;
-  width: 100%;
-  display: flex;
-  flex-direction: column-reverse;
-`;
 
 const AICard = styled.div`
   width: 100%;
