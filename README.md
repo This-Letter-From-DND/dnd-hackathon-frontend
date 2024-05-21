@@ -68,6 +68,9 @@
 <img src="https://github.com/This-Letter-From-DND/dnd-hackathon-frontend/assets/96197310/688635c7-5730-4564-b1c7-79fb858a02d7"/>
 </div>
 
+<br/>
+<br/>
+
 ## Tech Stack
 
 |   Area    |                                                                                                                                                                                                                                                                              Tech Stack                                                                                                                                                                                                                                                                               |
