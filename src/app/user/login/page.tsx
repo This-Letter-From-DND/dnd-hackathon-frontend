@@ -3,13 +3,13 @@
 import { useRouter } from 'next/navigation';
 import { FormEvent } from 'react';
 
-import { Container, Form, LoginContainer, Wrapper } from './styles';
-
 import Button from '@/components/common/Button';
 import Input from '@/components/common/Input';
 import InputTemplate from '@/components/user/InputTemplate';
 import { ROUTE_PATHS } from '@/constants/config';
 import useInput from '@/hooks/useInput';
+
+import { Container, Form, LoginContainer, Wrapper } from './styles';
 
 export default function Login() {
   const router = useRouter();

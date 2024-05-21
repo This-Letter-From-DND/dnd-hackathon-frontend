@@ -37,14 +37,6 @@ interface Question {
   reason?: string | null;
 }
 
-interface AiAnswer {
-  response: {
-    choice: string;
-    reason: string;
-  };
-  content: string;
-}
-
 interface AiAnswerResponse {
   response: {
     choice: string;

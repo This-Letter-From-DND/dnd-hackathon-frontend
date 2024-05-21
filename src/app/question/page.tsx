@@ -4,6 +4,15 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState, ChangeEvent, FormEvent } from 'react';
 
+import Button from '@/components/common/Button';
+import Header from '@/components/common/Header';
+import Select from '@/components/common/Select';
+import SelectTemplate from '@/components/question/SelectTemplate';
+import useForm from '@/hooks/useForm';
+import { getCategoryApi } from '@/services/category';
+import { postQuestionApi } from '@/services/question';
+import { getUserApi } from '@/services/user';
+
 import {
   ButtonContainer,
   ContentContainer,
@@ -17,15 +26,6 @@ import {
   Wrapper,
 } from './styles';
 
-import Button from '@/components/common/Button';
-import Header from '@/components/common/Header';
-import Select from '@/components/common/Select';
-import SelectTemplate from '@/components/question/SelectTemplate';
-import useForm from '@/hooks/useForm';
-import { getCategoryApi } from '@/services/category';
-import { postQuestionApi } from '@/services/question';
-import { getUserApi } from '@/services/user';
-// eslint-disable-next-line import/order
 import point from '../../assets/point.svg';
 
 interface Category {
@@ -134,7 +134,6 @@ export default function Question() {
           <Select
             defaultValue='주제 선택'
             selectList={list.map((el) => el.title)}
-            label='categoryId'
             selectedItem={formData.categoryId.toString()}
             setSelectedItem={(value) => {
               const selectedCategory = list.find((el) => value === el.title);
@@ -189,7 +188,6 @@ export default function Question() {
           <Select
             defaultValue='기간 선택'
             selectList={['1일', '2일', '3일']}
-            label='closedAt'
             selectedItem={formData.closedAt}
             setSelectedItem={(value) => handleSelectChange(value, 'closedAt')}
           />

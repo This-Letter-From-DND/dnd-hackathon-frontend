@@ -1,8 +1,8 @@
 import React from 'react';
+
 import { SelectStyle } from './styles';
 
 interface SelectProps {
-  label: string;
   defaultValue: string;
   selectList: string[];
   selectedItem: string | number;
@@ -10,7 +10,6 @@ interface SelectProps {
 }
 
 export default function Select({
-  label,
   defaultValue,
   selectList,
   selectedItem,

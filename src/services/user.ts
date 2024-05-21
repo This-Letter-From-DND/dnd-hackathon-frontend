@@ -1,6 +1,6 @@
-import { getFetch, postFetch, putFetch } from './common';
-
 import { API_URLS } from '@/constants/config';
+
+import { getFetch } from './common';
 
 export const getUserApi = async (userId: number) => {
   return getFetch(`${API_URLS.user}?userId=${userId}`);

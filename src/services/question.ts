@@ -1,6 +1,6 @@
-import { getFetch, postFetch } from './common';
-
 import { API_URLS } from '@/constants/config';
+
+import { getFetch, postFetch } from './common';
 
 interface Choice {
   content: string;

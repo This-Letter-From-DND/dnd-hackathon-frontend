@@ -1,5 +1,6 @@
-import { postFetch } from './common';
 import { API_URLS } from '@/constants/config';
+
+import { postFetch } from './common';
 
 interface Data {
   userId: number;

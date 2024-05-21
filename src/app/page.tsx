@@ -5,19 +5,6 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { TinderLikeCard } from 'react-stack-cards';
 
-import {
-  AddQuestion,
-  AnswerContainer,
-  BananaCountStyled,
-  Card,
-  ContainerStyled,
-  FooterContainer,
-  MainStyled,
-  QuestionContainer,
-  SkipStyled,
-  TransparentButtonContainer,
-} from './styles';
-
 import AddQuestionIcon from '@/assets/AddQuestionIcon.svg';
 import BananaIcon from '@/assets/BananaIcon.svg';
 import CardCharacter from '@/assets/CardCharacter.svg';
@@ -31,6 +18,18 @@ import Footer from '@/components/common/Footer';
 import { postAnswerApi } from '@/services/answer';
 import { getQuestionListReceiveApi } from '@/services/question';
 
+import {
+  AddQuestion,
+  AnswerContainer,
+  BananaCountStyled,
+  Card,
+  ContainerStyled,
+  FooterContainer,
+  MainStyled,
+  QuestionContainer,
+  SkipStyled,
+  TransparentButtonContainer,
+} from './styles';
 interface Question {
   questionId: number;
   title: string;

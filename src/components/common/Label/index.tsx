@@ -1,5 +1,6 @@
-import { LabelStyle } from './styles';
 import React from 'react';
+
+import { LabelStyle } from './styles';
 
 interface LabelProps {
   width?: string;

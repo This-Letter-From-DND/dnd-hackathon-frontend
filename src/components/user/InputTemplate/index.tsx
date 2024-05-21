@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+
 import { InputTemplateStyle, Name, Content } from './styles';
 
 interface InputTemplateProps {

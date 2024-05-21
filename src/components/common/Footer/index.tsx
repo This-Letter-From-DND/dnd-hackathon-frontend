@@ -1,8 +1,6 @@
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 
-import { FooterStyled } from './styles';
-
 import FooterAllQuestion from '@/assets/FooterAllQuestion.svg';
 import FooterAllQuestionActive from '@/assets/FooterAllQuestionActive.svg';
 import FooterHome from '@/assets/FooterHome.svg';
@@ -11,6 +9,8 @@ import FooterMyQuestion from '@/assets/FooterMyQuestion.svg';
 import FooterMyQuestionActive from '@/assets/FooterMyQuestionActive.svg';
 import FooterReview from '@/assets/FooterReview.svg';
 import FooterReviewActive from '@/assets/FooterReviewActive.svg';
+
+import { FooterStyled } from './styles';
 
 export default function Footer() {
   const pathname = usePathname();

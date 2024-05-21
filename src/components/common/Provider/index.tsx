@@ -3,8 +3,9 @@
 import React, { ReactNode } from 'react';
 import { ThemeProvider } from 'styled-components';
 
-import { Global, Wrapper } from './styles';
 import { theme } from '@/styles/reset';
+
+import { Global, Wrapper } from './styles';
 
 interface ProviderProps {
   children: ReactNode;

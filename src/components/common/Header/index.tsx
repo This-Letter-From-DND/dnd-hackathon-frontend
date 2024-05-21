@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-
-import { HeaderDoneStyled, HeaderStyled, HeaderTitleStyled } from './styles';
+import { ReactNode } from 'react';
 
 import back from '@/assets/back.svg';
-import { ReactNode } from 'react';
+
+import { HeaderDoneStyled, HeaderStyled, HeaderTitleStyled } from './styles';
 
 interface HeaderProps {
   title: ReactNode;

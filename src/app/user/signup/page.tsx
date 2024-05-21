@@ -1,13 +1,14 @@
 'use client';
 
 import { FormEvent } from 'react';
-import { Container, Form, LoginContainer, Wrapper } from './styles';
 
 import Button from '@/components/common/Button';
 import Input from '@/components/common/Input';
 import InputTemplate from '@/components/user/InputTemplate';
 import useGeolocation from '@/hooks/useGeolocation';
 import useInput from '@/hooks/useInput';
+
+import { Container, Form, LoginContainer, Wrapper } from './styles';
 
 const SignUp: React.FC = () => {
   const email = useInput('');
