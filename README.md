@@ -2,8 +2,9 @@
 
  <h2> 2024 DND 해커톤</h2>
 
-  <br/>
-  <br/>
+<image src="https://github.com/This-Letter-From-DND/dnd-hackathon-frontend/assets/96197310/2060fd03-24c1-4c8c-9d61-4c2149dc787c" width="200px" >
+
+<br>
 
 <image src="https://github.com/This-Letter-From-DND/dnd-hackathon-frontend/assets/96197310/aed117e5-ffa1-42c0-b6f1-845e47a79c1c" width="200px" >
 
@@ -14,11 +15,21 @@
 
 - 서비스 명 : **골라골라 고릴라** <br/>
 
-- 서비스 소개 : **의존적 성향의 사람들을 위한 결정 대행 플랫폼**
+- 서비스 소개 : **삶의 다양한 선택 앞에서 망설이는 당신을 위해, 투표와 AI가 결단을 도와주는 서비스**
 
-스스로의 결정에 대해 신뢰하지 못 하거나,
-망설이기만 하고 결단을 내리지 못 하거나.<br/>
-그런 당신에게 필요한 결정 대행 플랫폼.
+- 서비스 기능 :
+
+  - **투표를 통한 단발성 상호소통** <br>
+    선택이 고민되는 순간, 투표를 통해 방향을 제시하여 문제를 해결. 다수의 의견을 통해 더 나은 선택을 할 수 있도록 도움.
+
+  - **득표수에 따른 인기 질문 확인**<br>
+    가장 많이 득표한 인기 질문들을 확인하고, 재치있는 아이디어를 통해 영감을 받음. 유저들이 활발한 상호소통을 하며 새로운 인사이트를 얻게 됨.
+
+  - **투표를 통해 선정된 답변의 후기 감상**<br>
+    유저들이 투표한 결과를 실제로 선택한 후기를 통해 확인. 다양한 경험담을 통해 더 나은 선택을 할 수 있는 기회를 제공.
+
+  - **나만을 위한 AI 답변 결과**<br>
+    내가 관심있는 카테고리와 질문을 분석하여, AI의 맞춤형 답변도 확인 가능. 개인의 취향과 필요에 맞춘 조언을 통해 보다 정확한 선택을 할 수 있게 도움.
 
 - 배포 링크 : https://dnd-hackathon-frontend.vercel.app
 
@@ -54,7 +65,7 @@
 ## Page
 
 <div align="center">
-<img src="https://github.com/This-Letter-From-DND/dnd-hackathon-frontend/assets/96197310/688635c7-5730-4564-b1c7-79fb858a02d7" width="500px"/>
+<img src="https://github.com/This-Letter-From-DND/dnd-hackathon-frontend/assets/96197310/688635c7-5730-4564-b1c7-79fb858a02d7"/>
 </div>
 
 ## Tech Stack
@@ -73,7 +84,7 @@
 
 <div align="center">
 
-<img src="https://github.com/This-Letter-From-DND/dnd-hackathon-frontend/assets/96197310/5dbe5c35-92c1-4a94-9dac-cfc50fc6bfbe" width="500px"/>
+<img src="https://github.com/This-Letter-From-DND/dnd-hackathon-frontend/assets/96197310/5dbe5c35-92c1-4a94-9dac-cfc50fc6bfbe"/>
 </div>
 <br/>
 <br/>
