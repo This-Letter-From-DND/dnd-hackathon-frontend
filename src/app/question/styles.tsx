@@ -6,16 +6,6 @@ export const Wrapper = styled.form`
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
-
-  &::-webkit-scrollbar {
-    width: 6px;
-    margin-right: 5rem;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.4);
-    border-radius: 10px;
-  }
 `;
 
 export const Point = styled.div`
@@ -24,7 +14,6 @@ export const Point = styled.div`
   display: flex;
   justify-content: space-between;
   background-color: rgba(255, 202, 12, 0.12);
-  margin-bottom: 1.5rem;
 `;
 
 export const PointTitle = styled.span`
@@ -35,6 +24,16 @@ export const ContentContainer = styled.div`
   margin: 0rem 1.5rem;
   flex-grow: 1;
   overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    margin-right: 5rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+  }
 `;
 
 export const CountContainer = styled.div`
@@ -76,6 +75,6 @@ export const TitleStyled = styled.span`
 `;
 
 export const ButtonContainer = styled.div`
-  margin: 1rem 0 0;
+  margin: 1.5rem;
   flex-shrink: 0;
 `;

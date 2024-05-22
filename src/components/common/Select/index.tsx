@@ -4,6 +4,7 @@ import { SelectStyle } from './styles';
 
 interface SelectProps {
   defaultValue: string;
+  disabled?: boolean;
   selectList: string[];
   selectedItem: string | number;
   setSelectedItem: (value: string) => void;
@@ -11,6 +12,7 @@ interface SelectProps {
 
 export default function Select({
   defaultValue,
+  disabled,
   selectList,
   selectedItem,
   setSelectedItem,
@@ -24,12 +26,14 @@ export default function Select({
       onChange={selectHandler}
       defaultValue={selectedItem || 'default'}
     >
-      <option
-        value='default'
-        disabled
-      >
-        {defaultValue}
-      </option>
+      {defaultValue && (
+        <option
+          value='default'
+          disabled={disabled}
+        >
+          {defaultValue}
+        </option>
+      )}
       {selectList.map((item) => (
         <option
           key={item}

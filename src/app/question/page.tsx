@@ -7,7 +7,7 @@ import { useEffect, useState, ChangeEvent, FormEvent } from 'react';
 import Button from '@/components/common/Button';
 import Header from '@/components/common/Header';
 import Select from '@/components/common/Select';
-import SelectTemplate from '@/components/question/SelectTemplate';
+import FormInputTemplate from '@/components/question/FormInputTemplate';
 import useForm from '@/hooks/useForm';
 import { getCategoryApi } from '@/services/category';
 import { postQuestionApi } from '@/services/question';
@@ -44,19 +44,43 @@ interface FormData {
   closedAt: string;
 }
 
+const validationRules = {
+  title: (value: string) =>
+    value.length < 1 || value.length > 30
+      ? '제목은 1자 이상 30자 이내여야 합니다.'
+      : null,
+  categoryId: (value: number) =>
+    value === 0 ? '주제 선택은 필수 항목입니다.' : null,
+  content: (value: string) =>
+    value.length < 5 || value.length > 80
+      ? '내용은 5자 이상 80자 이내여야 합니다.'
+      : null,
+  choiceA: (value: string) =>
+    value.length < 1 || value.length > 20
+      ? 'A 선택지는 1자 이상 20자 이내여야 합니다.'
+      : null,
+  choiceB: (value: string) =>
+    value.length < 1 || value.length > 20
+      ? 'B 선택지는 1자 이상 20자 이내여야 합니다.'
+      : null,
+};
+
 export default function Question() {
   const router = useRouter();
-  const [list, setList] = useState<Category[]>([]);
+  const [categoryList, setCategoryList] = useState<Category[]>([]);
   const [reward, setReward] = useState<number>(0);
-  const { formData, onChange } = useForm<FormData>({
-    userId: 1,
-    categoryId: 0,
-    title: '',
-    content: '',
-    choiceA: '',
-    choiceB: '',
-    closedAt: '',
-  });
+  const { formData, errors, onChange, validateForm } = useForm<FormData>(
+    {
+      userId: 1,
+      categoryId: 0,
+      title: '',
+      content: '',
+      choiceA: '',
+      choiceB: '',
+      closedAt: '',
+    },
+    validationRules,
+  );
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -69,39 +93,37 @@ export default function Question() {
   useEffect(() => {
     const fetchCategories = async () => {
       const data = await getCategoryApi();
-      setList(data);
+      setCategoryList(data);
     };
     fetchCategories();
   }, []);
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    const postData = async () => {
-      await postQuestionApi({
-        userId: 1,
-        categoryId: formData.categoryId || 1,
-        title: formData.title || '',
-        content: formData.content || '',
-        choices: [
-          {
-            content: formData.choiceA || '',
-          },
-          {
-            content: formData.choiceB || '',
-          },
-        ],
-        closedAt: (parseInt(formData.closedAt) || 1) * 24 * 60 * 60 * 1000,
-      });
-    };
-    postData();
-    router.push('/');
+    if (validateForm()) {
+      const postData = async () => {
+        await postQuestionApi({
+          userId: formData.userId,
+          categoryId: formData.categoryId,
+          title: formData.title,
+          content: formData.content,
+          choices: [
+            {
+              content: formData.choiceA,
+            },
+            {
+              content: formData.choiceB,
+            },
+          ],
+          closedAt: (parseInt(formData.closedAt) || 1) * 24 * 60 * 60 * 1000,
+        });
+      };
+      postData();
+      router.push('/');
+    }
   };
 
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
-
-  const handleSelectChange = (value: string, name: string) => {
+  const handleSelectChange = (value: string | number, name: string) => {
     const event = {
       target: {
         name,
@@ -130,68 +152,87 @@ export default function Question() {
         </CountContainer>
       </Point>
       <ContentContainer>
-        <SelectTemplate name='주제를 선택해주세요*'>
+        <FormInputTemplate
+          name='주제를 선택해주세요*'
+          error={errors.categoryId}
+        >
           <Select
             defaultValue='주제 선택'
-            selectList={list.map((el) => el.title)}
-            selectedItem={formData.categoryId.toString()}
+            disabled={true}
+            selectList={categoryList.map((category) => category.title)}
+            selectedItem={formData.categoryId}
             setSelectedItem={(value) => {
-              const selectedCategory = list.find((el) => value === el.title);
+              const selectedCategory = categoryList.find(
+                (category) => value === category.title,
+              );
               if (selectedCategory) {
-                handleSelectChange(
-                  selectedCategory.id.toString(),
-                  'categoryId',
-                );
+                handleSelectChange(selectedCategory.id, 'categoryId');
               }
             }}
           />
-        </SelectTemplate>
-        <SelectTemplate name='제목을 적어주세요*'>
+        </FormInputTemplate>
+        <FormInputTemplate
+          name='제목을 적어주세요*'
+          error={errors.title}
+        >
           <InputTitle
             placeholder='30자 이내'
             name='title'
             value={formData.title}
             onChange={onChange}
           />
-        </SelectTemplate>
-        <SelectTemplate name='내용을 적어주세요(5자 이상~80자 이하)*'>
+        </FormInputTemplate>
+        <FormInputTemplate
+          name='내용을 적어주세요(5자 이상~80자 이하)*'
+          error={errors.content}
+        >
           <Textarea
             name='content'
             value={formData.content}
             onChange={onChange}
             placeholder={
               formData.categoryId
-                ? list.find((el) => el.id === formData.categoryId)?.content ||
-                  ''
+                ? categoryList.find(
+                    (category) => category.id === formData.categoryId,
+                  )?.content || ''
                 : `어떤 음식을 먹고 싶어?
 음식 종류를 적어주면 결정에 도움이 됩니다.`
             }
           />
-        </SelectTemplate>
-        <SelectTemplate name='A 선택지*'>
+        </FormInputTemplate>
+        <FormInputTemplate
+          name='A 선택지*'
+          error={errors.choiceA}
+        >
           <InputTitle
             placeholder='1자이상 ~ 20자이하'
             name='choiceA'
             value={formData.choiceA}
             onChange={onChange}
           />
-        </SelectTemplate>
-        <SelectTemplate name='B 선택지*'>
+        </FormInputTemplate>
+        <FormInputTemplate
+          name='B 선택지*'
+          error={errors.choiceB}
+        >
           <InputTitle
             placeholder='1자이상 ~ 20자이하'
             name='choiceB'
             value={formData.choiceB}
             onChange={onChange}
           />
-        </SelectTemplate>
-        <SelectTemplate name='마감기간'>
+        </FormInputTemplate>
+        <FormInputTemplate
+          name='마감기간'
+          error={errors.closedAt}
+        >
           <Select
-            defaultValue='기간 선택'
-            selectList={['1일', '2일', '3일']}
+            defaultValue='1일'
+            selectList={['2일', '3일']}
             selectedItem={formData.closedAt}
             setSelectedItem={(value) => handleSelectChange(value, 'closedAt')}
           />
-        </SelectTemplate>
+        </FormInputTemplate>
       </ContentContainer>
       <ButtonContainer>
         <Button width='full'>작성완료</Button>
