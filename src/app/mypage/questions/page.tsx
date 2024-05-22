@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 
@@ -8,6 +9,7 @@ import ai from '@/assets/aiai.svg';
 import user from '@/assets/user.svg';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
+import { ROUTE_PATHS } from '@/constants/config';
 import { getQuestionApi } from '@/services/question';
 
 interface Choice {
@@ -21,6 +23,7 @@ interface AiAnswer {
 }
 
 interface Question {
+  questionId: number;
   createdAt: string;
   title: string;
   userNickname: string;
@@ -31,12 +34,13 @@ interface Question {
 }
 
 export default function MyQuestions() {
-  const [list, setList] = useState<Question[]>([]);
+  const router = useRouter();
+  const [questionList, setQuestionList] = useState<Question[]>([]);
 
   useEffect(() => {
     const getData = async () => {
       const data: Question[] = await getQuestionApi(1);
-      setList(data);
+      setQuestionList(data);
     };
     getData();
   }, []);
@@ -59,19 +63,23 @@ export default function MyQuestions() {
         canDone={false}
       />
       <ListContainer>
-        {list?.map((item, index) => (
+        {questionList?.map((question, index) => (
           <QuestionCardContainer key={index}>
             <QuestionCard>
               <TimeContainer>
-                <Time>{formatDate(item.createdAt || '')}</Time>{' '}
+                <Time>{formatDate(question.createdAt || '')}</Time>
                 <Button
-                  onClick={() => window.alert('현재 개발중인 기능입니다.')}
+                  onClick={() =>
+                    router.push(
+                      `${ROUTE_PATHS.newReview}/${question.questionId}`,
+                    )
+                  }
                 >
                   후기작성
                 </Button>
               </TimeContainer>
               <CardTop>
-                <CardTitle>{item.title}</CardTitle>
+                <CardTitle>{question.title}</CardTitle>
                 <CardProfileBox>
                   <ProfileBox>
                     <ProfileIcon>
@@ -80,60 +88,60 @@ export default function MyQuestions() {
                         alt='user'
                       />
                     </ProfileIcon>
-                    <ProfileText>{item.userNickname}</ProfileText>
+                    <ProfileText>{question.userNickname}</ProfileText>
                   </ProfileBox>
                   <Circle />
                   <ProfileBox>
-                    <ProfileText>{`답변수 ${item.answerCount}`}</ProfileText>
+                    <ProfileText>{`답변수 ${question.answerCount}`}</ProfileText>
                   </ProfileBox>
                 </CardProfileBox>
               </CardTop>
               <Hr></Hr>
               <Content>
-                <Description>{item.content}</Description>
+                <Description>{question.content}</Description>
                 <ChoiceBox>
                   <Choice>
                     <AB>A</AB>
-                    <div>{`: ${item.choices[0].content}`}</div>
+                    <div>{`: ${question.choices[0].content}`}</div>
                   </Choice>
                   <Choice>
                     <AB>B</AB>
-                    <div>{`: ${item.choices[1].content}`}</div>
+                    <div>{`: ${question.choices[1].content}`}</div>
                   </Choice>
                 </ChoiceBox>
               </Content>
               <ProgressBarContainer>
-                {item.choices[0].percent >= item.choices[1].percent ? (
+                {question.choices[0].percent >= question.choices[1].percent ? (
                   <Div>
                     <ProgressBar
-                      ratio={`${item.choices[0].percent}%`}
+                      ratio={`${question.choices[0].percent}%`}
                       direction='left'
                     >
                       <LeftLabel>
                         <LabelWrap direction='left'>
                           <div>
-                            A <Span>{`${item.choices[0].percent}%`}</Span>
+                            A <Span>{`${question.choices[0].percent}%`}</Span>
                           </div>
                         </LabelWrap>
                       </LeftLabel>
                     </ProgressBar>
                     <RightLabel $small={true}>
-                      {item.choices[1].percent === 0 ? '' : 'B'}
+                      {question.choices[1].percent === 0 ? '' : 'B'}
                     </RightLabel>
                   </Div>
                 ) : (
                   <Div>
                     <LeftLabel $small={true}>
-                      {item.choices[0].percent === 0 ? '' : 'A'}
+                      {question.choices[0].percent === 0 ? '' : 'A'}
                     </LeftLabel>
                     <ProgressBar
-                      ratio={`${item.choices[1].percent}%`}
+                      ratio={`${question.choices[1].percent}%`}
                       direction='right'
                     >
                       <RightLabel>
                         <LabelWrap direction='right'>
                           <div>
-                            <Span>{`${item.choices[1].percent}%`}</Span>B
+                            <Span>{`${question.choices[1].percent}%`}</Span>B
                           </div>
                         </LabelWrap>
                       </RightLabel>
@@ -149,7 +157,7 @@ export default function MyQuestions() {
                   alt='ai'
                 />
               </AiIcon>
-              {item.aiAnswer === null ? (
+              {question.aiAnswer === null ? (
                 <AIButtonContainer>
                   <AIMiddle>AI 답변도 궁금한가요?</AIMiddle>
                   <AIButton onClick={handleClickButton}>AI답변보기</AIButton>
@@ -157,10 +165,11 @@ export default function MyQuestions() {
               ) : (
                 <AIRight>
                   <AITop>
-                    AI도 {item.aiAnswer.choiceId === 1 ? 'A' : 'B'}를 선택했어요
+                    AI도 {question.aiAnswer.choiceId === 1 ? 'A' : 'B'}를
+                    선택했어요
                   </AITop>
                   <AIBottom>
-                    왜냐면 {item.aiAnswer.reason}는 맛있으니까!
+                    왜냐면 {question.aiAnswer.reason}는 맛있으니까!
                   </AIBottom>
                 </AIRight>
               )}

@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 
 import plus from '@/assets/PlusIcon.svg';
 import Button from '@/components/common/Button';
@@ -48,7 +48,11 @@ const validationRules = {
       : null,
 };
 
-export default function NewReview() {
+interface NewReviewProps {
+  params: { id: string };
+}
+
+export default function NewReview({ params }: NewReviewProps) {
   const router = useRouter();
   const { formData, errors, onChange, validateForm } = useForm<FormData>(
     {
@@ -60,6 +64,10 @@ export default function NewReview() {
   );
 
   const [images, setImages] = useState<File[]>([]);
+
+  useEffect(() => {
+    console.log(params.id);
+  }, []);
 
   const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
@@ -88,7 +96,7 @@ export default function NewReview() {
       //   });
       // };
       // postData();
-      router.push(ROUTE_PATHS.home);
+      router.push(`${ROUTE_PATHS.reviews}/${params.id}`);
     }
   };
 
