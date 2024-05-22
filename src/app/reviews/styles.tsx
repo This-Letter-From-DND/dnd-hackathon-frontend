@@ -13,11 +13,12 @@ export const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-export const ImageContainer = styled.div`
+export const ReviewContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  padding: 0rem 1.5rem;
   overflow-y: scroll;
 
   &::-webkit-scrollbar {
@@ -29,4 +30,11 @@ export const ImageContainer = styled.div`
     background-color: rgba(0, 0, 0, 0.4);
     border-radius: 10px;
   }
+`;
+
+export const ListContainer = styled.ul`
+  width: 100%;
+  height: 100%;
+  margin-top: 0.75rem;
+  list-style: none;
 `;
