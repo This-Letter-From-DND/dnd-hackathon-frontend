@@ -9,6 +9,7 @@ import Button from '@/components/common/Button';
 import Header from '@/components/common/Header';
 import Select from '@/components/common/Select';
 import FormInputTemplate from '@/components/question/FormInputTemplate';
+import { ROUTE_PATHS } from '@/constants/config';
 import useForm from '@/hooks/useForm';
 import { getCategoryApi } from '@/services/category';
 import { postQuestionApi } from '@/services/question';
@@ -122,7 +123,7 @@ export default function NewQuestion() {
         });
       };
       postData();
-      router.push('/');
+      router.push(ROUTE_PATHS.home);
     }
   };
 
