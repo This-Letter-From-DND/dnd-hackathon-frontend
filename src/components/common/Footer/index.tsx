@@ -9,6 +9,7 @@ import FooterMyQuestion from '@/assets/FooterMyQuestion.svg';
 import FooterMyQuestionActive from '@/assets/FooterMyQuestionActive.svg';
 import FooterReview from '@/assets/FooterReview.svg';
 import FooterReviewActive from '@/assets/FooterReviewActive.svg';
+import { ROUTE_PATHS } from '@/constants/config';
 
 import { FooterStyled } from './styles';
 
@@ -17,10 +18,10 @@ export default function Footer() {
   const router = useRouter();
 
   const PATHNAME_IS_ACTIVE = {
-    HOME: pathname === '/',
-    ALLQUESTION: pathname === '/lists',
-    REVIEW: pathname === '/reviews',
-    MYQUESTION: pathname === '/lists/user',
+    HOME: pathname === ROUTE_PATHS.home,
+    ALLQUESTION: pathname === ROUTE_PATHS.questions,
+    REVIEW: pathname === ROUTE_PATHS.reviews,
+    MYQUESTION: pathname === ROUTE_PATHS.myQuestions,
   };
 
   const handleClickFooter = (url: string) => {
@@ -32,7 +33,7 @@ export default function Footer() {
 
   return (
     <FooterStyled>
-      <div onClick={() => handleClickFooter('/')}>
+      <div onClick={() => handleClickFooter(ROUTE_PATHS.home)}>
         <Image
           src={PATHNAME_IS_ACTIVE.HOME ? FooterHomeActive : FooterHome}
           alt='home'
@@ -43,7 +44,7 @@ export default function Footer() {
           {'홈'}
         </span>
       </div>
-      <div onClick={() => handleClickFooter('/lists')}>
+      <div onClick={() => handleClickFooter(ROUTE_PATHS.questions)}>
         <Image
           src={
             PATHNAME_IS_ACTIVE.ALLQUESTION
@@ -60,7 +61,7 @@ export default function Footer() {
           {'전체질문'}
         </span>
       </div>
-      <div onClick={() => handleClickFooter('/reviews')}>
+      <div onClick={() => handleClickFooter(ROUTE_PATHS.reviews)}>
         <Image
           src={
             PATHNAME_IS_ACTIVE.REVIEW ? FooterReviewActive : FooterAllQuestion
@@ -75,7 +76,7 @@ export default function Footer() {
           {'전체후기'}
         </span>
       </div>
-      <div onClick={() => handleClickFooter('/lists/user')}>
+      <div onClick={() => handleClickFooter(ROUTE_PATHS.myQuestions)}>
         <Image
           src={
             PATHNAME_IS_ACTIVE.MYQUESTION

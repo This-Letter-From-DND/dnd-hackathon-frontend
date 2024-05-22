@@ -11,3 +11,8 @@ export const Title = styled.div`
   font-weight: ${(props) => props.theme.font.fontStyle.bold};
   color: ${(props) => props.theme.colors.neutral[900]};
 `;
+
+export const Error = styled.div`
+  color: #ff6347;
+  margin-top: 0.5rem;
+`;

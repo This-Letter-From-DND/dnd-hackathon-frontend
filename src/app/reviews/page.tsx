@@ -16,7 +16,7 @@ interface Category {
   content: string;
 }
 
-export default function Page() {
+export default function Reviews() {
   const [category, setCategory] = useState('전체');
   const [list, setList] = useState<Category[]>([]);
 

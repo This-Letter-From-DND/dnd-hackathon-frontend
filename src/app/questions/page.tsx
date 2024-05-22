@@ -45,7 +45,7 @@ interface AiAnswerResponse {
   content: string;
 }
 
-export default function Lists() {
+export default function Questions() {
   const [list, setList] = useState<Question[]>([]);
   const [sort, setSort] = useState<string>('recent');
   const [agree, setAgree] = useState<boolean>(false);

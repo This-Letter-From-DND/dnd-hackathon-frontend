@@ -15,6 +15,7 @@ import EmptyCard from '@/assets/EmptyCard.svg';
 import HomeLogo from '@/assets/HomeLogo.svg';
 import SkipXIcon from '@/assets/SkipXIcon.svg';
 import Footer from '@/components/common/Footer';
+import { ROUTE_PATHS } from '@/constants/config';
 import { postAnswerApi } from '@/services/answer';
 import { getQuestionListReceiveApi } from '@/services/question';
 
@@ -256,7 +257,7 @@ export default function Home() {
         <Footer />
       </FooterContainer>
       <div style={{ position: 'relative', width: 0, height: 0 }}>
-        <AddQuestion onClick={() => router.push('/question')}>
+        <AddQuestion onClick={() => router.push(ROUTE_PATHS.newQuestion)}>
           <Image
             src={AddQuestionIcon}
             alt='add question'

@@ -6,16 +6,6 @@ export const Wrapper = styled.form`
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
-
-  &::-webkit-scrollbar {
-    width: 6px;
-    margin-right: 5rem;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.4);
-    border-radius: 10px;
-  }
 `;
 
 export const Point = styled.div`
@@ -24,7 +14,6 @@ export const Point = styled.div`
   display: flex;
   justify-content: space-between;
   background-color: rgba(255, 202, 12, 0.12);
-  margin-bottom: 1.5rem;
 `;
 
 export const PointTitle = styled.span`
@@ -35,6 +24,16 @@ export const ContentContainer = styled.div`
   margin: 0rem 1.5rem;
   flex-grow: 1;
   overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    margin-right: 5rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+  }
 `;
 
 export const CountContainer = styled.div`
@@ -59,8 +58,15 @@ export const InputTitle = styled.input`
   color: #212529;
 `;
 
+export const TextareaWrapper = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+`;
+
 export const Textarea = styled.textarea`
   width: 100%;
+  height: 8.75rem;
   margin-top: 0.75rem;
   height: 8.7rem;
   border: none;
@@ -70,12 +76,22 @@ export const Textarea = styled.textarea`
   color: #212529;
 `;
 
+export const CharacterCount = styled.div<{ $isLimitExceeded: boolean }>`
+  text-align: right;
+  font-size: 14px;
+  color: ${(props) => (props.$isLimitExceeded ? 'red' : '#ADB5BD')};
+  margin-top: 5px;
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+`;
+
 export const TitleStyled = styled.span`
   color: ${(props) => props.theme.colors.neutral[900]};
   font-weight: ${(props) => props.theme.font.fontStyle.bold};
 `;
 
 export const ButtonContainer = styled.div`
-  margin: 1rem 0 0;
+  margin: 1.5rem;
   flex-shrink: 0;
 `;
