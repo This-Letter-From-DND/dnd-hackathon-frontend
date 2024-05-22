@@ -58,8 +58,15 @@ export const InputTitle = styled.input`
   color: #212529;
 `;
 
+export const TextareaWrapper = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+`;
+
 export const Textarea = styled.textarea`
   width: 100%;
+  height: 8.75rem;
   margin-top: 0.75rem;
   height: 8.7rem;
   border: none;
@@ -67,6 +74,16 @@ export const Textarea = styled.textarea`
   border-radius: 0.5rem;
   background-color: #f1f3f5;
   color: #212529;
+`;
+
+export const CharacterCount = styled.div<{ $isLimitExceeded: boolean }>`
+  text-align: right;
+  font-size: 14px;
+  color: ${(props) => (props.$isLimitExceeded ? 'red' : '#ADB5BD')};
+  margin-top: 5px;
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
 `;
 
 export const TitleStyled = styled.span`

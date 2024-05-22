@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState, ChangeEvent, FormEvent } from 'react';
 
+import point from '@/assets/point.svg';
 import Button from '@/components/common/Button';
 import Header from '@/components/common/Header';
 import Select from '@/components/common/Select';
@@ -15,6 +16,7 @@ import { getUserApi } from '@/services/user';
 
 import {
   ButtonContainer,
+  CharacterCount,
   ContentContainer,
   Count,
   CountContainer,
@@ -22,11 +24,10 @@ import {
   Point,
   PointTitle,
   Textarea,
+  TextareaWrapper,
   TitleStyled,
   Wrapper,
 } from './styles';
-
-import point from '../../assets/point.svg';
 
 interface Category {
   id: number;
@@ -43,6 +44,8 @@ interface FormData {
   choiceB: string;
   closedAt: string;
 }
+
+const CHARACTER_LIMIT = 80;
 
 const validationRules = {
   title: (value: string) =>
@@ -65,7 +68,7 @@ const validationRules = {
       : null,
 };
 
-export default function Question() {
+export default function NewQuestion() {
   const router = useRouter();
   const [categoryList, setCategoryList] = useState<Category[]>([]);
   const [reward, setReward] = useState<number>(0);
@@ -186,19 +189,26 @@ export default function Question() {
           name='내용을 적어주세요(5자 이상~80자 이하)*'
           error={errors.content}
         >
-          <Textarea
-            name='content'
-            value={formData.content}
-            onChange={onChange}
-            placeholder={
-              formData.categoryId
-                ? categoryList.find(
-                    (category) => category.id === formData.categoryId,
-                  )?.content || ''
-                : `어떤 음식을 먹고 싶어?
+          <TextareaWrapper>
+            <Textarea
+              name='content'
+              value={formData.content}
+              onChange={onChange}
+              placeholder={
+                formData.categoryId
+                  ? categoryList.find(
+                      (category) => category.id === formData.categoryId,
+                    )?.content || ''
+                  : `어떤 음식을 먹고 싶어?
 음식 종류를 적어주면 결정에 도움이 됩니다.`
-            }
-          />
+              }
+            />
+            <CharacterCount
+              $isLimitExceeded={formData.content.length > CHARACTER_LIMIT}
+            >
+              {formData.content.length}/{CHARACTER_LIMIT}
+            </CharacterCount>
+          </TextareaWrapper>
         </FormInputTemplate>
         <FormInputTemplate
           name='A 선택지*'

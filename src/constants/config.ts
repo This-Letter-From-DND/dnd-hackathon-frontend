@@ -9,6 +9,12 @@ export const API_URLS = {
 };
 
 export const ROUTE_PATHS = {
+  home: '/',
   login: '/user/login',
   signUp: '/user/signup',
+  questions: '/questions',
+  newQuestion: '/questions/new',
+  reviews: '/reviews',
+  newReview: '/reviews/new',
+  myQuestions: 'mypage/questions',
 };
