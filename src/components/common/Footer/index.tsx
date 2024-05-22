@@ -19,7 +19,7 @@ export default function Footer() {
   const PATHNAME_IS_ACTIVE = {
     HOME: pathname === '/',
     ALLQUESTION: pathname === '/lists',
-    REVIEW: pathname === '/review',
+    REVIEW: pathname === '/reviews',
     MYQUESTION: pathname === '/lists/user',
   };
 
@@ -60,7 +60,7 @@ export default function Footer() {
           {'전체질문'}
         </span>
       </div>
-      <div onClick={() => handleClickFooter('/review')}>
+      <div onClick={() => handleClickFooter('/reviews')}>
         <Image
           src={
             PATHNAME_IS_ACTIVE.REVIEW ? FooterReviewActive : FooterAllQuestion
