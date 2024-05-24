@@ -38,3 +38,22 @@ export const ListContainer = styled.ul`
   margin-top: 0.75rem;
   list-style: none;
 `;
+
+export const ReviewItemContainer = styled.li`
+  width: 100%;
+  height: 97px;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fa;
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+`;
+
+export const CategoryContainer = styled.div`
+  margin-left: 1.5rem;
+`;
