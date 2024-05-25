@@ -1,16 +1,10 @@
 import user from '@/assets/user.svg';
 
-import {
-  ReviewItemStyle,
-  Title,
-  Profile,
-  ImageContainer,
-  Text,
-} from './styles';
+import { Title, Profile, ImageContainer, Text, Container } from './styles';
 export default function ReviewItem() {
   return (
-    <ReviewItemStyle>
-      <Title>바나나</Title>
+    <Container>
+      <Title>바나나 맛있냐고 후기쓴 사람임</Title>
       <Profile>
         <ImageContainer
           src={user}
@@ -21,6 +15,6 @@ export default function ReviewItem() {
           조회수 <strong>98</strong>
         </Text>
       </Profile>
-    </ReviewItemStyle>
+    </Container>
   );
 }

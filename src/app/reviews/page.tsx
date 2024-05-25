@@ -8,7 +8,14 @@ import RadioButtonGroup from '@/components/review/RadioButtonGroup';
 import ReviewItem from '@/components/review/ReviewItem';
 import { getCategoryApi } from '@/services/category';
 
-import { ListContainer, ReviewContainer, TitleStyled, Wrapper } from './styles';
+import {
+  CategoryContainer,
+  ListContainer,
+  ReviewContainer,
+  ReviewItemContainer,
+  TitleStyled,
+  Wrapper,
+} from './styles';
 
 interface Category {
   id: number;
@@ -35,15 +42,19 @@ export default function Reviews() {
         canGoBack={true}
         canDone={false}
       />
-      <ReviewContainer>
+      <CategoryContainer>
         <RadioButtonGroup
           setRadioButtonItem={setCategory}
           radioButtonlist={list}
           radioButtonItem={category}
           label='gender'
         />
+      </CategoryContainer>
+      <ReviewContainer>
         <ListContainer>
-          <ReviewItem />
+          <ReviewItemContainer>
+            <ReviewItem />
+          </ReviewItemContainer>
         </ListContainer>
       </ReviewContainer>
       <Footer />
