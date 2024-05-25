@@ -1,19 +1,9 @@
 import Image from 'next/image';
 import styled from 'styled-components';
 
-export const ReviewItemStyle = styled.li`
-  width: 100%;
-  height: 97px;
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #f8f9fa;
-  border-radius: 0.75rem;
-  padding: 1.25rem;
-  cursor: pointer;
-
-  &:hover {
-    opacity: 0.8;
-  }
 `;
 
 export const Title = styled.h1`
