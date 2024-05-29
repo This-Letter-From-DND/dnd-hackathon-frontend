@@ -5,8 +5,8 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 
-import ai from '@/assets/aiai.svg';
-import user from '@/assets/user.svg';
+import AIProfileIcon from '@/assets/AIProfileIcon.svg';
+import ProfileIcon from '@/assets/ProfileIcon.svg';
 import Font from '@/components/common/Font';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
@@ -86,12 +86,12 @@ export default function MyQuestions() {
                 </Font>
                 <CardProfileBox>
                   <ProfileBox>
-                    <ProfileIcon>
+                    <ProfileIconContainer>
                       <Image
-                        src={user}
-                        alt='user'
+                        src={ProfileIcon}
+                        alt='profile icon'
                       />
-                    </ProfileIcon>
+                    </ProfileIconContainer>
                     <Font
                       color={700}
                       fontSize='small'
@@ -186,8 +186,8 @@ export default function MyQuestions() {
             <AICard>
               <AiIcon>
                 <Image
-                  src={ai}
-                  alt='ai'
+                  src={AIProfileIcon}
+                  alt='ai profile icon'
                 />
               </AiIcon>
               {question.aiAnswer !== null ? (
@@ -361,7 +361,7 @@ const CardTop = styled.div`
   gap: 8px;
 `;
 
-const ProfileIcon = styled.div`
+const ProfileIconContainer = styled.div`
   width: 32px;
   height: 32px;
   border-radius: 999px;

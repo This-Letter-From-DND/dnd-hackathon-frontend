@@ -5,9 +5,9 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 
-import ai from '@/assets/aiai.svg';
-import allow from '@/assets/allow.svg';
-import user from '@/assets/user.svg';
+import AIProfileIcon from '@/assets/AIProfileIcon.svg';
+import AllowIcon from '@/assets/AllowIcon.svg';
+import ProfileIcon from '@/assets/ProfileIcon.svg';
 import Font from '@/components/common/Font';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
@@ -133,8 +133,8 @@ export default function Questions() {
           }}
         >
           <Image
-            src={allow}
-            alt='allow'
+            src={AllowIcon}
+            alt='allow icon'
           />
           {sort === 'recent' ? <Font>최신순</Font> : <Font>인기순</Font>}
         </AllowContainer>
@@ -166,12 +166,12 @@ export default function Questions() {
                 </Font>
                 <CardProfileBox>
                   <ProfileBox>
-                    <ProfileIcon>
+                    <ProfileIconContainer>
                       <Image
-                        src={user}
-                        alt='user'
+                        src={ProfileIcon}
+                        alt='profile icon'
                       />
-                    </ProfileIcon>
+                    </ProfileIconContainer>
                     <Font
                       color={700}
                       fontSize='small'
@@ -266,8 +266,8 @@ export default function Questions() {
             <AICard>
               <AiIcon>
                 <Image
-                  src={ai}
-                  alt='ai'
+                  src={AIProfileIcon}
+                  alt='ai profile icon'
                 />
               </AiIcon>
               {item.reason ? (
@@ -438,7 +438,7 @@ const CardTop = styled.div`
   gap: 8px;
 `;
 
-const ProfileIcon = styled.div`
+const ProfileIconContainer = styled.div`
   width: 32px;
   height: 32px;
   border-radius: 999px;

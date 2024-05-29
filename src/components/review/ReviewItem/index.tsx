@@ -1,4 +1,4 @@
-import user from '@/assets/user.svg';
+import ProfileIcon from '@/assets/ProfileIcon.svg';
 import Font from '@/components/common/Font';
 
 import {
@@ -22,8 +22,8 @@ export default function ReviewItem() {
       </Title>
       <Profile>
         <ImageContainer
-          src={user}
-          alt='user'
+          src={ProfileIcon}
+          alt='profile icon'
         />
         <Text>
           <Font
