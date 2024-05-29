@@ -5,11 +5,15 @@ export const HeaderStyled = styled.header`
   height: 52px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   padding: 12px 24px;
   > * {
     flex-basis: calc(100% / 3);
   }
+`;
+
+export const HeaderLeftStyled = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 export const HeaderTitleStyled = styled.div`

@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import banana from '@/assets/Banana.svg';
 import more from '@/assets/More.svg';
 import user from '@/assets/user.svg';
+import Font from '@/components/common/Font';
 import Header from '@/components/common/Header';
 import CommentInput from '@/components/review/CommentInput';
 import ReviewItem from '@/components/review/ReviewItem';
@@ -14,17 +15,14 @@ import {
   Comment,
   CommentContainer,
   CommentContent,
-  CommentCount,
   Comments,
-  Content,
   ContentContainer,
   ImageContainer,
   Line,
   Name,
-  OriginalQuestionButton,
   Time,
   TitleContainer,
-  TitleStyled,
+  Top,
   UserInfo,
   UserInfoContainer,
   Wrapper,
@@ -42,7 +40,7 @@ export default function ReviewDetails({ params }: ReviewDetailsProps) {
   return (
     <Wrapper>
       <Header
-        title={<TitleStyled>{'후기 상세'}</TitleStyled>}
+        title='후기 상세'
         canGoBack={true}
         canDone={false}
       />
@@ -55,19 +53,28 @@ export default function ReviewDetails({ params }: ReviewDetailsProps) {
           />
         </TitleContainer>
         <Line />
-        <Content>
+        <Font color={700}>
           회사 미쳤어 회사싸이코임 직장내 괴롭힘 딴지검 꼰대같음 말걸지 않았음
           좋겠어
-        </Content>
+        </Font>
         <ImageContainer
           src={banana}
           alt='banana'
         />
-        <OriginalQuestionButton>{`원래 질문 보기 >`}</OriginalQuestionButton>
+        <Font
+          color='secondary'
+          fontWeight='bold'
+        >{`원래 질문 보기 >`}</Font>
         <CommentContainer>
-          <CommentCount>
-            댓글 <strong>3</strong>
-          </CommentCount>
+          <Top>
+            <Font color={700}>댓글</Font>
+            <Font
+              color={700}
+              fontWeight='bold'
+            >
+              3
+            </Font>
+          </Top>
           <Line />
           <Comments>
             <Comment>
@@ -77,8 +84,22 @@ export default function ReviewDetails({ params }: ReviewDetailsProps) {
                     src={user}
                     alt='user'
                   ></Image>
-                  <Name>닉네임은커피</Name>
-                  <Time>2024.04.04</Time>
+                  <Name>
+                    <Font
+                      color={700}
+                      fontSize='xsmall'
+                    >
+                      닉네임은커피
+                    </Font>
+                  </Name>
+                  <Time>
+                    <Font
+                      color={700}
+                      fontSize='xsmall'
+                    >
+                      2024.04.04
+                    </Font>
+                  </Time>
                 </UserInfo>
                 <Image
                   src={more}
@@ -86,40 +107,6 @@ export default function ReviewDetails({ params }: ReviewDetailsProps) {
                 />
               </UserInfoContainer>
               <CommentContent>피자헛 좋다</CommentContent>
-            </Comment>
-            <Comment>
-              <UserInfoContainer>
-                <UserInfo>
-                  <Image
-                    src={user}
-                    alt='user'
-                  ></Image>
-                  <Name>닉네임은커피</Name>
-                  <Time>2024.04.04</Time>
-                </UserInfo>
-                <Image
-                  src={more}
-                  alt='more'
-                />
-              </UserInfoContainer>
-              <CommentContent>누가 먹냐 피자헛</CommentContent>
-            </Comment>
-            <Comment>
-              <UserInfoContainer>
-                <UserInfo>
-                  <Image
-                    src={user}
-                    alt='user'
-                  ></Image>
-                  <Name>닉네임은커피</Name>
-                  <Time>2024.04.04</Time>
-                </UserInfo>
-                <Image
-                  src={more}
-                  alt='more'
-                />
-              </UserInfoContainer>
-              <CommentContent>내가 먹음!!!!</CommentContent>
             </Comment>
           </Comments>
         </CommentContainer>

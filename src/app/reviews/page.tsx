@@ -13,7 +13,6 @@ import {
   ListContainer,
   ReviewContainer,
   ReviewItemContainer,
-  TitleStyled,
   Wrapper,
 } from './styles';
 
@@ -38,7 +37,7 @@ export default function Reviews() {
   return (
     <Wrapper>
       <Header
-        title={<TitleStyled>{'전체후기'}</TitleStyled>}
+        title='전체후기'
         canGoBack={true}
         canDone={false}
       />

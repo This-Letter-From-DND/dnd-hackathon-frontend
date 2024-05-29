@@ -1,5 +1,4 @@
 import Provider from '@/components/common/Provider';
-import './globals.css';
 
 interface RootLayoutProps {
   children: React.ReactNode;

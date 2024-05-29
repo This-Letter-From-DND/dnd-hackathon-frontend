@@ -8,6 +8,7 @@ import { styled } from 'styled-components';
 import ai from '@/assets/aiai.svg';
 import allow from '@/assets/allow.svg';
 import user from '@/assets/user.svg';
+import Font from '@/components/common/Font';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import { postAIAnswer } from '@/services/ai';
@@ -121,7 +122,7 @@ export default function Questions() {
   return (
     <Wrapper>
       <Header
-        title={<TitleStyled>{'질문하기'}</TitleStyled>}
+        title='전체 질문 목록'
         canGoBack={true}
         canDone={false}
       />
@@ -135,7 +136,7 @@ export default function Questions() {
             src={allow}
             alt='allow'
           />
-          {sort === 'recent' ? '최신순' : '인기순'}
+          {sort === 'recent' ? <Font>최신순</Font> : <Font>인기순</Font>}
         </AllowContainer>
         <CheckContainer>
           <label htmlFor='agree'>
@@ -148,7 +149,7 @@ export default function Questions() {
                 setAgree(!agree);
               }}
             />
-            내가 답한 것만 보기
+            <Font>내가 답한 것만 보기</Font>
           </label>
         </CheckContainer>
       </SortContainer>
@@ -157,7 +158,12 @@ export default function Questions() {
           <QuestionCardContainer key={index}>
             <QuestionCard>
               <CardTop>
-                <CardTitle>{item.title}</CardTitle>
+                <Font
+                  fontSize='large'
+                  fontWeight='bold'
+                >
+                  {item.title}
+                </Font>
                 <CardProfileBox>
                   <ProfileBox>
                     <ProfileIcon>
@@ -166,25 +172,46 @@ export default function Questions() {
                         alt='user'
                       />
                     </ProfileIcon>
-                    <ProfileText>{item.userNickname}</ProfileText>
+                    <Font
+                      color={700}
+                      fontSize='small'
+                    >
+                      {item.userNickname}
+                    </Font>
                   </ProfileBox>
                   <Circle />
                   <ProfileBox>
-                    <ProfileText>{`답변수 ${item.answerCount}`}</ProfileText>
+                    <Font
+                      color={700}
+                      fontSize='small'
+                    >
+                      답변수
+                    </Font>
+                    <Font
+                      color={700}
+                      fontSize='small'
+                      fontWeight='bold'
+                    >
+                      {item.answerCount}
+                    </Font>
                   </ProfileBox>
                 </CardProfileBox>
               </CardTop>
-              <Hr></Hr>
+              <Hr />
               <Content>
-                <Description>{item.content}</Description>
+                <Font color={700}>{item.content}</Font>
                 <ChoiceBox>
                   <Choice>
-                    <AB>A</AB>
-                    <div>{`: ${item.choices[0].content}`}</div>
+                    <Font
+                      color={700}
+                      fontWeight='bold'
+                    >{`A : ${item.choices[0].content}`}</Font>
                   </Choice>
                   <Choice>
-                    <AB>B</AB>
-                    <div>{`: ${item.choices[1].content}`}</div>
+                    <Font
+                      color={700}
+                      fontWeight='bold'
+                    >{`B : ${item.choices[1].content}`}</Font>
                   </Choice>
                 </ChoiceBox>
               </Content>
@@ -197,9 +224,13 @@ export default function Questions() {
                     >
                       <LeftLabel>
                         <LabelWrap direction='left'>
-                          <div>
-                            A <Span>{`${item.choices[0].percent}%`}</Span>
-                          </div>
+                          <Font
+                            fontWeight='bold'
+                            fontSize='large'
+                          >
+                            A
+                          </Font>
+                          <Font fontSize='large'>{`${item.choices[0].percent}%`}</Font>
                         </LabelWrap>
                       </LeftLabel>
                     </ProgressBar>
@@ -218,9 +249,13 @@ export default function Questions() {
                     >
                       <RightLabel>
                         <LabelWrap direction='right'>
-                          <div>
-                            <Span>{`${item.choices[1].percent}%`}</Span>B
-                          </div>
+                          <Font
+                            fontWeight='bold'
+                            fontSize='large'
+                          >
+                            B
+                          </Font>
+                          <Font fontSize='large'>{`${item.choices[1].percent}%`}</Font>
                         </LabelWrap>
                       </RightLabel>
                     </ProgressBar>
@@ -238,15 +273,30 @@ export default function Questions() {
               {item.reason ? (
                 <>
                   <AIRight>
-                    <AITop>AI도 {item.choice}를 선택했어요</AITop>
-                    <AIBottom>왜냐면 {item.reason}</AIBottom>
+                    <AITop>
+                      <Font fontSize='small'>
+                        AI도 {item.choice}를 선택했어요
+                      </Font>
+                    </AITop>
+                    <AIBottom>
+                      <Font fontSize='small'>
+                        왜냐면 <strong>{item.reason}</strong>
+                      </Font>
+                    </AIBottom>
                   </AIRight>
                 </>
               ) : (
                 <AIButtonContainer>
-                  <AIMiddle>AI 답변도 궁금한가요?</AIMiddle>
+                  <AIMiddle>
+                    <Font fontSize='small'>AI 답변도 궁금한가요? </Font>
+                  </AIMiddle>
                   <AIButton onClick={() => handleClickButton(item)}>
-                    {'AI답변보기'}
+                    <Font
+                      color='white'
+                      fontSize='small'
+                    >
+                      AI답변보기
+                    </Font>
                   </AIButton>
                 </AIButtonContainer>
               )}
@@ -264,8 +314,9 @@ const AICard = styled.div`
   padding: 14px 20px;
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: left;
-  background-color: ${(props) => props.theme.colors.neutral[300]};
+  background-color: ${(props) => props.theme.colors[300]};
   border-radius: 0 0 20px 20px;
 `;
 const AIRight = styled.div`
@@ -290,9 +341,9 @@ const ProgressBarContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  border-color: ${(props) => props.theme.colors.neutral[300]};
+  border-color: ${(props) => props.theme.colors[300]};
   justify-content: space-between;
-  background-color: #ddd; /* 배경색 */
+  background-color: ${(props) => props.theme.colors[200]}; /* 배경색 */
   border-radius: 8px; /* 테두리 둥글게 */
 `;
 interface ProgressBarProps {
@@ -307,29 +358,24 @@ const ProgressBar = styled.div<ProgressBarProps>`
   align-items: center;
   height: 100%;
   width: ${(props) => props.ratio};
-  background-color: ${(props) => props.theme.colors.main.primary};
+  background-color: ${(props) => props.theme.colors.primary};
 
   border-radius: 8px; /* 테두리 둥글게 */
 `;
 
 const Hr = styled.hr`
-  color: ${(props) => props.theme.colors.neutral[300]};
+  color: ${(props) => props.theme.colors[200]};
   margin: 12px 0px;
-`;
-const Span = styled.span`
-  font-weight: ${(props) => props.theme.font.fontStyle.medium};
 `;
 
 const ChoiceBox = styled.div`
   border-left: 3px solid;
-  border-color: ${(props) => props.theme.colors.neutral[300]};
+  border-color: ${(props) => props.theme.colors[300]};
 `;
 const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: left;
-  color: ${(props) => props.theme.colors.neutral[700]};
-  font-size: ${(props) => props.theme.font.fontSize.medium};
   gap: 8px;
   margin-bottom: 16px;
 `;
@@ -338,46 +384,37 @@ const Choice = styled.div`
   flex-direction: row;
   justify-content: left;
   margin-left: 9px;
-
-  font-weight: ${(props) => props.theme.font.fontStyle.bold};
 `;
 const LabelWrap = styled.div<{ direction: string }>`
   display: flex;
-  font-weight: ${(props) => props.theme.font.fontStyle.bold};
+  align-items: center;
   justify-content: ${(props) => props.direction};
-`;
-const AB = styled.div`
-  width: 16px;
+
+  > :first-child {
+    margin-right: 0.5rem;
+  }
 `;
 
 const Label = styled.div`
-  color: #333;
-  font-size: ${(props) => props.theme.font.fontSize.large};
+  color: ${(props) => props.theme.colors[700]};
+  font-size: ${(props) => props.theme.font.fontSizes.large};
 `;
 const LeftLabel = styled(Label)<{ $small?: boolean }>`
   left: 0;
-  color: ${(props) => (props.$small ? props.theme.colors.neutral[500] : '')};
+  color: ${(props) => (props.$small ? props.theme.colors[500] : '')};
   margin-left: 10px; /* 좌측 라벨 패딩 */
 `;
 const RightLabel = styled(Label)<{ $small?: boolean }>`
   right: 0; /* 오른쪽에서 시작 */
   padding-right: 10px; /* 우측 패딩 */
-  color: ${(props) => (props.$small ? props.theme.colors.neutral[500] : '')};
+  color: ${(props) => (props.$small ? props.theme.colors[500] : '')};
 `;
-
-const Description = styled.div``;
 
 const QuestionCard = styled.div`
   border-radius: 20px 20px 0 0;
   padding: 20px;
   width: 100%;
-  background-color: ${(props) => props.theme.colors.neutral[50]};
-`;
-
-const CardTitle = styled.div`
-  color: ${(props) => props.theme.font.colors.black};
-  font-weight: ${(props) => props.theme.font.fontStyle.bold};
-  font-size: ${(props) => props.theme.font.fontSize.large};
+  background-color: ${(props) => props.theme.colors[50]};
 `;
 
 const CardProfileBox = styled.div`
@@ -385,7 +422,7 @@ const CardProfileBox = styled.div`
   gap: 8px;
   justify-content: left;
   align-items: center;
-  color: ${(props) => props.theme.colors.neutral[700]};
+  color: ${(props) => props.theme.colors[700]};
 `;
 const ProfileBox = styled.div`
   display: flex;
@@ -406,14 +443,11 @@ const ProfileIcon = styled.div`
   height: 32px;
   border-radius: 999px;
 `;
-const ProfileText = styled.div`
-  font-size: 0.875rem;
-`;
 
 const Circle = styled.div`
   width: 3px;
   height: 3px;
-  background-color: ${(props) => props.theme.colors.neutral[300]};
+  background-color: ${(props) => props.theme.colors[300]};
 `;
 
 const Wrapper = styled.div`
@@ -421,7 +455,7 @@ const Wrapper = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #ffffff;
+  background-color: ${(props) => props.theme.colors.white};
 `;
 
 const AiIcon = styled.div`
@@ -434,11 +468,6 @@ const AiIcon = styled.div`
 const Div = styled.div`
   width: 100%;
   height: 40px;
-`;
-
-const TitleStyled = styled.span`
-  color: ${(props) => props.theme.colors.neutral[900]};
-  font-weight: ${(props) => props.theme.font.fontStyle.bold};
 `;
 
 const ListContainer = styled.div`
@@ -472,8 +501,8 @@ const AIMiddle = styled.div`
 `;
 
 const AIButton = styled.button`
-  background-color: #868e96;
-  color: #ffffff;
+  background-color: ${(props) => props.theme.colors[600]};
+  color: ${(props) => props.theme.colors.white};
   border: none;
   border-radius: 8px;
   padding: 1rem;

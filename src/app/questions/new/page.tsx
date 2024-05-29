@@ -6,6 +6,7 @@ import { useEffect, useState, ChangeEvent, FormEvent } from 'react';
 
 import point from '@/assets/point.svg';
 import Button from '@/components/common/Button';
+import Font from '@/components/common/Font';
 import Header from '@/components/common/Header';
 import Select from '@/components/common/Select';
 import FormInputTemplate from '@/components/question/FormInputTemplate';
@@ -23,10 +24,8 @@ import {
   CountContainer,
   InputTitle,
   Point,
-  PointTitle,
   Textarea,
   TextareaWrapper,
-  TitleStyled,
   Wrapper,
 } from './styles';
 
@@ -141,18 +140,25 @@ export default function NewQuestion() {
   return (
     <Wrapper onSubmit={handleSubmit}>
       <Header
-        title={<TitleStyled>{'질문하기'}</TitleStyled>}
+        title='질문하기'
         canGoBack={true}
         canDone={false}
       />
       <Point>
-        <PointTitle>보유 중인 바나나</PointTitle>
+          <Font color='point'>보유 중인 바나나</Font>
         <CountContainer>
           <Image
             src={point}
             alt='point'
           />
-          <Count>{reward}</Count>
+          <Count>
+            <Font
+              color='point'
+              fontWeight='bold'
+            >
+              {reward}
+            </Font>
+          </Count>
         </CountContainer>
       </Point>
       <ContentContainer>

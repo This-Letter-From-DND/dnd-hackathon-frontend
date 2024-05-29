@@ -21,15 +21,15 @@ export const Input = styled.input`
   }
 
   &::placeholder {
-    color: #adb5bd;
+    color: ${(props) => props.theme.colors[500]};
   }
 `;
 
 export const Button = styled.button`
   width: 65px;
   height: 38px;
-  background-color: #adb5bd;
+  background-color: ${(props) => props.theme.colors[500]};
   border-radius: 0.5rem;
-  color: #ffffff;
+  color: ${(props) => props.theme.colors.white};
   border: none;
 `;

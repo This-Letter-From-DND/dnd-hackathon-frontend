@@ -16,5 +16,5 @@ export const ROUTE_PATHS = {
   newQuestion: '/questions/new',
   reviews: '/reviews',
   newReview: '/reviews/new',
-  myQuestions: 'mypage/questions',
+  myQuestions: '/mypage/questions',
 };

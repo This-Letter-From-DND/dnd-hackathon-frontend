@@ -1,5 +1,7 @@
 import React, { ReactNode } from 'react';
 
+import Font from '@/components/common/Font';
+
 import { Error, Title, Wrapper } from './styles';
 
 interface FormInputTemplateProps {
@@ -13,11 +15,39 @@ export default function FormInputTemplate({
   error,
   children,
 }: FormInputTemplateProps) {
+  const parts = name.split('*').map((part, index) =>
+    index === 1 ? (
+      <Font
+        key={index}
+        color='error'
+        fontWeight='bold'
+      >
+        *
+      </Font>
+    ) : (
+      <Font
+        key={index}
+        fontWeight='bold'
+      >
+        {part}
+      </Font>
+    ),
+  );
+
   return (
     <Wrapper>
-      <Title>{name}</Title>
+      <Title>{parts}</Title>
       {children}
-      {error && <Error>{error}</Error>}
+      {error && (
+        <Error>
+          <Font
+            color='error'
+            fontSize='small'
+          >
+            {error}
+          </Font>
+        </Error>
+      )}
     </Wrapper>
   );
 }

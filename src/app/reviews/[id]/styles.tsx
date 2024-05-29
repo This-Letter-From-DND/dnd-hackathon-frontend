@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const Wrapper = styled.form`
   width: 100%;
   height: 100vh;
-  background-color: #ffffff;
+  background-color: ${(props) => props.theme.colors.white};
   display: flex;
   flex-direction: column;
 `;
@@ -25,11 +25,6 @@ export const ContentContainer = styled.div`
   }
 `;
 
-export const TitleStyled = styled.span`
-  color: ${(props) => props.theme.colors.neutral[900]};
-  font-weight: ${(props) => props.theme.font.fontStyle.bold};
-`;
-
 export const TitleContainer = styled.div`
   height: 61px;
   display: flex;
@@ -39,22 +34,13 @@ export const TitleContainer = styled.div`
 
 export const Line = styled.div`
   margin: 0.75rem 0rem;
-  border: 1px solid #e9ecef;
-`;
-
-export const Content = styled.div`
-  color: #495057;
+  border: 1px solid ${(props) => props.theme.colors[200]};
 `;
 
 export const ImageContainer = styled(Image)`
   width: 100%;
   height: 17.5rem;
   margin: 0.75rem 0rem 1.25rem 0rem;
-`;
-
-export const OriginalQuestionButton = styled.span`
-  color: #2f80ed;
-  font-weight: 600;
 `;
 
 export const CommentContainer = styled.div`
@@ -67,10 +53,6 @@ export const CommentContainer = styled.div`
 export const Comments = styled.div`
   display: flex;
   flex-direction: column;
-`;
-
-export const CommentCount = styled.span`
-  color: #495057;
 `;
 
 export const Comment = styled.div`
@@ -101,16 +83,18 @@ export const UserInfo = styled.span`
 
 export const Name = styled.span`
   margin: 0rem 0.75rem 0rem 0.25rem;
-  font-size: 0.875rem;
-  color: #495057;
 `;
 
 export const Time = styled.span`
   font-size: 0.875rem;
-  color: #495057;
 `;
 
 export const CommentContent = styled.div`
-  color: #212529;
   margin: 0.5rem 0rem 1rem 0rem;
+`;
+
+export const Top = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
 `;

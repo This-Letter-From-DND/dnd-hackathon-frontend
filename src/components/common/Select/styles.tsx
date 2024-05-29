@@ -7,6 +7,5 @@ export const SelectStyle = styled.select`
   height: 3.25rem;
   padding: 0.5rem 0.5rem;
   border-radius: 0.5rem;
-  background-color: #f1f3f5;
-  color: #212529;
+  background-color: ${(props) => props.theme.colors[100]};
 `;

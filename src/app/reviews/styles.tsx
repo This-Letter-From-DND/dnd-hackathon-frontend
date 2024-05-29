@@ -1,14 +1,9 @@
 import styled from 'styled-components';
 
-export const TitleStyled = styled.span`
-  color: ${(props) => props.theme.colors.neutral[900]};
-  font-weight: ${(props) => props.theme.font.fontStyle.bold};
-`;
-
 export const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
-  background-color: #ffffff;
+  background-color: ${(props) => props.theme.colors.white};
   display: flex;
   flex-direction: column;
 `;
@@ -42,7 +37,7 @@ export const ListContainer = styled.ul`
 export const ReviewItemContainer = styled.li`
   width: 100%;
   height: 97px;
-  background-color: #f8f9fa;
+  background-color: ${(props) => props.theme.colors[50]};
   border-radius: 0.75rem;
   padding: 1.25rem;
   cursor: pointer;

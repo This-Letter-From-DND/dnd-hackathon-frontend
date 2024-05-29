@@ -18,7 +18,6 @@ import {
   InputTitle,
   Textarea,
   TextareaWrapper,
-  TitleStyled,
   Wrapper,
   ImagePreview,
   ImagePreviewContainer,
@@ -103,7 +102,7 @@ export default function NewReview({ params }: NewReviewProps) {
   return (
     <Wrapper onSubmit={handleSubmit}>
       <Header
-        title={<TitleStyled>{'후기쓰기'}</TitleStyled>}
+        title='후기쓰기'
         canGoBack={true}
         canDone={false}
       />

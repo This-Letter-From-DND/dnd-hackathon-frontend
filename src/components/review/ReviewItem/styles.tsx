@@ -6,10 +6,7 @@ export const Container = styled.div`
   flex-direction: column;
 `;
 
-export const Title = styled.h1`
-  color: #212529;
-  font-size: 1.25rem;
-  font-weight: bold;
+export const Title = styled.span`
   margin-bottom: 0.5rem;
 `;
 
@@ -25,7 +22,11 @@ export const ImageContainer = styled(Image)`
 `;
 
 export const Text = styled.span`
-  color: #495057;
-  font-size: 14px;
   margin-right: 18px;
+`;
+
+export const Hits = styled.span`
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
 `;

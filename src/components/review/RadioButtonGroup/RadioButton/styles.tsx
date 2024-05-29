@@ -14,14 +14,14 @@ export const RadioButtonStyle = styled.li`
     padding: 0.8rem 1rem;
     margin: 0.5rem 0.5rem 0.5rem 0rem;
     border-radius: 5rem;
-    background-color: #e9ecef;
-    color: #adb5bd;
+    background-color: ${(props) => props.theme.colors[200]};
+    color: ${(props) => props.theme.colors[500]};
     white-space: nowrap;
     cursor: pointer;
   }
 
   input[type='radio']:checked + label {
-    background-color: #212529;
-    color: #ffffff;
+    background-color: ${(props) => props.theme.colors[900]};
+    color: ${(props) => props.theme.colors.white};
   }
 `;
