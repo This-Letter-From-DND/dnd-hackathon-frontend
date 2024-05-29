@@ -18,8 +18,6 @@ export default function Login() {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    console.log('Email:', email.value);
-    console.log('Password:', password.value);
   };
 
   const handleClickButton = () => {

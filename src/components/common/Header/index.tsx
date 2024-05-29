@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-import back from '@/assets/back.svg';
+import BackIcon from '@/assets/BackIcon.svg';
 
 import {
   HeaderDoneStyled,
@@ -26,8 +26,8 @@ export default function Header({ title, canGoBack, canDone }: HeaderProps) {
       <HeaderLeftStyled onClick={router.back}>
         {canGoBack ? (
           <Image
-            src={back}
-            alt='back'
+            src={BackIcon}
+            alt='back icon'
           />
         ) : null}
       </HeaderLeftStyled>

@@ -3,9 +3,9 @@
 import Image from 'next/image';
 import { useEffect } from 'react';
 
-import banana from '@/assets/Banana.svg';
-import more from '@/assets/More.svg';
-import user from '@/assets/user.svg';
+import MoreIcon from '@/assets/MoreIcon.svg';
+import ProfileIcon from '@/assets/ProfileIcon.svg';
+import ReviewDetailsExample from '@/assets/ReviewDetailsExample.svg';
 import Font from '@/components/common/Font';
 import Header from '@/components/common/Header';
 import CommentInput from '@/components/review/CommentInput';
@@ -48,8 +48,8 @@ export default function ReviewDetails({ params }: ReviewDetailsProps) {
         <TitleContainer>
           <ReviewItem />
           <Image
-            src={more}
-            alt='more'
+            src={MoreIcon}
+            alt='more icon'
           />
         </TitleContainer>
         <Line />
@@ -58,8 +58,8 @@ export default function ReviewDetails({ params }: ReviewDetailsProps) {
           좋겠어
         </Font>
         <ImageContainer
-          src={banana}
-          alt='banana'
+          src={ReviewDetailsExample}
+          alt='review details example'
         />
         <Font
           color='secondary'
@@ -81,8 +81,8 @@ export default function ReviewDetails({ params }: ReviewDetailsProps) {
               <UserInfoContainer>
                 <UserInfo>
                   <Image
-                    src={user}
-                    alt='user'
+                    src={ProfileIcon}
+                    alt='profile icon'
                   ></Image>
                   <Name>
                     <Font
@@ -102,8 +102,8 @@ export default function ReviewDetails({ params }: ReviewDetailsProps) {
                   </Time>
                 </UserInfo>
                 <Image
-                  src={more}
-                  alt='more'
+                  src={MoreIcon}
+                  alt='more icon'
                 />
               </UserInfoContainer>
               <CommentContent>피자헛 좋다</CommentContent>

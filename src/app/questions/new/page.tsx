@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState, ChangeEvent, FormEvent } from 'react';
 
-import point from '@/assets/point.svg';
+import BananaIcon from '@/assets/BananaIcon.svg';
 import Button from '@/components/common/Button';
 import Font from '@/components/common/Font';
 import Header from '@/components/common/Header';
@@ -145,11 +145,11 @@ export default function NewQuestion() {
         canDone={false}
       />
       <Point>
-          <Font color='point'>보유 중인 바나나</Font>
+        <Font color='point'>보유 중인 바나나</Font>
         <CountContainer>
           <Image
-            src={point}
-            alt='point'
+            src={BananaIcon}
+            alt='banana icon'
           />
           <Count>
             <Font
