@@ -42,21 +42,21 @@ export const ButtonStyle = styled.button<ButtonStyleProps>`
         return '1rem';
     }
   }};
-  color: ${(props) => props.theme.colors.neutral[900]};
+  color: ${(props) => props.theme.colors[900]};
   background-color: ${({ $bgColor }) => $bgColor || '#FFCA0C'};
   border: none;
   border-radius: ${({ $borderRadius }) => $borderRadius || '5px'};
   cursor: pointer;
   text-align: center;
   transition: background-color 0.3s;
-  font-weight: ${(props) => props.theme.font.fontStyle.bold};
+  font-weight: ${(props) => props.theme.font.fontWeights.bold};
 
   &:hover {
     opacity: 0.8;
   }
 
   &:disabled {
-    background-color: #e0e0e0;
+    background-color: ${(props) => props.theme.colors[200]};
     cursor: not-allowed;
   }
 `;

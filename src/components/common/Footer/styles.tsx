@@ -6,7 +6,8 @@ export const FooterStyled = styled.footer`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #e9ecef;
+  background-color: ${(props) => props.theme.colors[200]};
+
   > * {
     flex-basis: calc(100% / 4);
     display: flex;
@@ -15,7 +16,7 @@ export const FooterStyled = styled.footer`
     align-items: center;
     font-size: 14px;
     gap: 4px;
-    color: #adb5bd;
+
     &:hover {
       cursor: pointer;
     }

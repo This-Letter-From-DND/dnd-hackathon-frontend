@@ -4,21 +4,9 @@ import styled from 'styled-components';
 export const Wrapper = styled.form`
   width: 100%;
   height: 100vh;
-  background-color: #ffffff;
+  background-color: ${(props) => props.theme.colors.white};
   display: flex;
   flex-direction: column;
-`;
-
-export const Point = styled.div`
-  height: 3rem;
-  padding: 0.75rem 1.5rem;
-  display: flex;
-  justify-content: space-between;
-  background-color: rgba(255, 202, 12, 0.12);
-`;
-
-export const PointTitle = styled.span`
-  color: #db9900;
 `;
 
 export const ContentContainer = styled.div`
@@ -45,8 +33,8 @@ export const CountContainer = styled.div`
 
 export const Count = styled.span`
   margin-left: 0.5rem;
-  color: #db9900;
-  font-weight: ${(props) => props.theme.font.fontStyle.bold};
+  color: ${(props) => props.theme.colors.point};
+  font-weight: ${(props) => props.theme.font.fontWeights.bold};
 `;
 
 export const InputTitle = styled.input`
@@ -55,8 +43,7 @@ export const InputTitle = styled.input`
   border: none;
   padding: 0.5rem 0.5rem;
   border-radius: 0.5rem;
-  background-color: #f1f3f5;
-  color: #212529;
+  background-color: ${(props) => props.theme.colors[100]};
 `;
 
 export const TextareaWrapper = styled.div`
@@ -73,23 +60,20 @@ export const Textarea = styled.textarea`
   border: none;
   padding: 0.5rem 0.5rem;
   border-radius: 0.5rem;
-  background-color: #f1f3f5;
-  color: #212529;
+  background-color: ${(props) => props.theme.colors[100]};
 `;
 
 export const CharacterCount = styled.div<{ $isLimitExceeded: boolean }>`
   text-align: right;
   font-size: 14px;
-  color: ${(props) => (props.$isLimitExceeded ? 'red' : '#ADB5BD')};
+  color: ${(props) =>
+    props.$isLimitExceeded
+      ? props.theme.colors.error
+      : props.theme.colors[500]};
   margin-top: 5px;
   position: absolute;
   bottom: 0.5rem;
   right: 0.5rem;
-`;
-
-export const TitleStyled = styled.span`
-  color: ${(props) => props.theme.colors.neutral[900]};
-  font-weight: ${(props) => props.theme.font.fontStyle.bold};
 `;
 
 export const ButtonContainer = styled.div`
@@ -108,7 +92,7 @@ export const ImagePreview = styled.div`
   width: 5rem;
   height: 5rem;
   overflow: hidden;
-  border: 1px solid #ccc;
+  border: 1px solid ${(props) => props.theme.colors[300]};
   border-radius: 4px;
 
   img {
@@ -125,7 +109,7 @@ export const CloseButton = styled.button`
   width: 16px;
   height: 16px;
   background: rgba(0, 0, 0, 0.5);
-  color: white;
+  color: ${(props) => props.theme.colors.white};
   border: none;
   border-radius: 50%;
   cursor: pointer;
@@ -142,14 +126,14 @@ export const FileInputLabel = styled.label`
   height: 5rem;
   padding: 1rem;
   cursor: pointer;
-  background-color: #f1f3f5;
-  color: #adb5bd;
+  background-color: ${(props) => props.theme.colors[100]};
+  color: ${(props) => props.theme.colors[500]};
   border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 2px dashed #dee2e6;
+  border: 2px dashed ${(props) => props.theme.colors[300]};
 
   &:hover {
     opacity: 0.8;
@@ -165,7 +149,7 @@ export const ImageCount = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #adb5bd;
+  color: ${(props) => props.theme.colors[500]};
 `;
 
 export const ImageContainer = styled(Image)`

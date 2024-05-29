@@ -14,6 +14,7 @@ import CardProfile3 from '@/assets/CardProfile3.svg';
 import EmptyCard from '@/assets/EmptyCard.svg';
 import HomeLogo from '@/assets/HomeLogo.svg';
 import SkipXIcon from '@/assets/SkipXIcon.svg';
+import Font from '@/components/common/Font';
 import Footer from '@/components/common/Footer';
 import { ROUTE_PATHS } from '@/constants/config';
 import { postAnswerApi } from '@/services/answer';
@@ -132,12 +133,17 @@ export default function Home() {
     <>
       <ContainerStyled $marginTop={`90px`}>
         <BananaCountStyled>
-          <span className='mgr_4'>{'보유 바나나'}</span>
+          <Font color='white'>보유 바나나</Font>
           <Image
             src={BananaIcon}
             alt='banana count'
           />
-          <span className='count'>{rewardCount}</span>
+          <Font
+            color='point'
+            fontWeight='bold'
+          >
+            {rewardCount}
+          </Font>
         </BananaCountStyled>
       </ContainerStyled>
       <div style={{ position: 'relative', width: 0, height: 0 }}>
@@ -199,17 +205,32 @@ export default function Home() {
                   src={getCardProfile()}
                   alt='profile'
                 />
-                <div className='card-title'>{title}</div>
-                <div className='card-description'>{content}</div>
+                <Font
+                  fontSize='large'
+                  fontWeight='bold'
+                >
+                  {title}
+                </Font>
+                <Font color={700}>{content}</Font>
               </QuestionContainer>
               <AnswerContainer>
                 <div className='left'>
-                  <div className='card-title'>{'A'}</div>
-                  <div className='card-description'>{choices[0].content}</div>
+                  <Font
+                    fontSize='xlarge'
+                    fontWeight='heavy'
+                  >
+                    A
+                  </Font>
+                  <Font>{choices[0].content}</Font>
                 </div>
                 <div className='right'>
-                  <div className='card-title'>{'B'}</div>
-                  <div className='card-description'>{choices[1].content}</div>
+                  <Font
+                    fontSize='xlarge'
+                    fontWeight='heavy'
+                  >
+                    B
+                  </Font>
+                  <Font>{choices[1].content}</Font>
                 </div>
               </AnswerContainer>
             </Card>
@@ -225,7 +246,7 @@ export default function Home() {
         style={{ position: 'relative', right: '138px' }}
       >
         <SkipStyled onClick={handleClickSwapDown}>
-          {'질문넘기기 '}
+          <Font color={700}>질문넘기기</Font>
           <Image
             src={SkipXIcon}
             alt='skip'
@@ -262,7 +283,12 @@ export default function Home() {
             src={AddQuestionIcon}
             alt='add question'
           />
-          <span>질문하기</span>
+          <Font
+            fontSize='large'
+            fontWeight='bold'
+          >
+            질문하기
+          </Font>
         </AddQuestion>
       </div>
     </MainStyled>

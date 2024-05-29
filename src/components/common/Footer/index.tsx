@@ -13,6 +13,8 @@ import { ROUTE_PATHS } from '@/constants/config';
 
 import { FooterStyled } from './styles';
 
+import Font from '../Font';
+
 export default function Footer() {
   const pathname = usePathname();
   const router = useRouter();
@@ -38,11 +40,12 @@ export default function Footer() {
           src={PATHNAME_IS_ACTIVE.HOME ? FooterHomeActive : FooterHome}
           alt='home'
         />
-        <span
-          style={{ color: PATHNAME_IS_ACTIVE.HOME ? ACTIVE_COLOR : undefined }}
+        <Font
+          color={PATHNAME_IS_ACTIVE.HOME ? 700 : 500}
+          fontSize='xsmall'
         >
-          {'홈'}
-        </span>
+          홈
+        </Font>
       </div>
       <div onClick={() => handleClickFooter(ROUTE_PATHS.questions)}>
         <Image
@@ -53,28 +56,25 @@ export default function Footer() {
           }
           alt='all question'
         />
-        <span
-          style={{
-            color: PATHNAME_IS_ACTIVE.ALLQUESTION ? ACTIVE_COLOR : FooterReview,
-          }}
+
+        <Font
+          color={PATHNAME_IS_ACTIVE.ALLQUESTION ? 700 : 500}
+          fontSize='xsmall'
         >
-          {'전체질문'}
-        </span>
+          전체질문
+        </Font>
       </div>
       <div onClick={() => handleClickFooter(ROUTE_PATHS.reviews)}>
         <Image
-          src={
-            PATHNAME_IS_ACTIVE.REVIEW ? FooterReviewActive : FooterAllQuestion
-          }
+          src={PATHNAME_IS_ACTIVE.REVIEW ? FooterReviewActive : FooterReview}
           alt='all review'
         />
-        <span
-          style={{
-            color: PATHNAME_IS_ACTIVE.REVIEW ? ACTIVE_COLOR : undefined,
-          }}
+        <Font
+          color={PATHNAME_IS_ACTIVE.REVIEW ? 700 : 500}
+          fontSize='xsmall'
         >
-          {'전체후기'}
-        </span>
+          전체후기
+        </Font>
       </div>
       <div onClick={() => handleClickFooter(ROUTE_PATHS.myQuestions)}>
         <Image
@@ -85,16 +85,13 @@ export default function Footer() {
           }
           alt='my question'
         />
-        <span
-          style={{
-            color: PATHNAME_IS_ACTIVE.MYQUESTION ? ACTIVE_COLOR : undefined,
-          }}
+        <Font
+          color={PATHNAME_IS_ACTIVE.MYQUESTION ? 700 : 500}
+          fontSize='xsmall'
         >
-          {'내가쓴질문'}
-        </span>
+          내가쓴질문
+        </Font>
       </div>
     </FooterStyled>
   );
 }
-
-const ACTIVE_COLOR = '#212529';

@@ -53,7 +53,7 @@ export const LabelStyle = styled.div<LabelStyleProps>`
   }
 
   &:disabled {
-    background-color: #e0e0e0;
+    background-color: ${(props) => props.theme.colors[200]};
     cursor: not-allowed;
   }
 `;

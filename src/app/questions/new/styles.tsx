@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Wrapper = styled.form`
   width: 100%;
   height: 100vh;
-  background-color: #ffffff;
+  background-color: ${(props) => props.theme.colors.white};
   display: flex;
   flex-direction: column;
 `;
@@ -14,10 +14,6 @@ export const Point = styled.div`
   display: flex;
   justify-content: space-between;
   background-color: rgba(255, 202, 12, 0.12);
-`;
-
-export const PointTitle = styled.span`
-  color: #db9900;
 `;
 
 export const ContentContainer = styled.div`
@@ -44,8 +40,6 @@ export const CountContainer = styled.div`
 
 export const Count = styled.span`
   margin-left: 0.5rem;
-  color: #db9900;
-  font-weight: ${(props) => props.theme.font.fontStyle.bold};
 `;
 
 export const InputTitle = styled.input`
@@ -54,8 +48,7 @@ export const InputTitle = styled.input`
   border: none;
   padding: 0.5rem 0.5rem;
   border-radius: 0.5rem;
-  background-color: #f1f3f5;
-  color: #212529;
+  background-color: ${(props) => props.theme.colors[100]};
 `;
 
 export const TextareaWrapper = styled.div`
@@ -72,23 +65,20 @@ export const Textarea = styled.textarea`
   border: none;
   padding: 0.5rem 0.5rem;
   border-radius: 0.5rem;
-  background-color: #f1f3f5;
-  color: #212529;
+  background-color: ${(props) => props.theme.colors[100]};
 `;
 
 export const CharacterCount = styled.div<{ $isLimitExceeded: boolean }>`
   text-align: right;
   font-size: 14px;
-  color: ${(props) => (props.$isLimitExceeded ? 'red' : '#ADB5BD')};
+  color: ${(props) =>
+    props.$isLimitExceeded
+      ? props.theme.colors.error
+      : props.theme.colors[500]};
   margin-top: 5px;
   position: absolute;
   bottom: 0.5rem;
   right: 0.5rem;
-`;
-
-export const TitleStyled = styled.span`
-  color: ${(props) => props.theme.colors.neutral[900]};
-  font-weight: ${(props) => props.theme.font.fontStyle.bold};
 `;
 
 export const ButtonContainer = styled.div`
