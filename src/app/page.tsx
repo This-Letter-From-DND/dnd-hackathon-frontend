@@ -59,16 +59,11 @@ export default function Home() {
   const [questionList, setQuestionList] = useState<Question[]>([]);
 
   const getQuestionListReceive = async () => {
-    try {
-      const response = await getQuestionListReceiveApi(1);
-      setRewardCount(response.rewardCount);
-      setQuestionList(response.questions);
-      if (response.questions.length > 0) {
-        setIsEmpty(false);
-      }
-      console.log(response);
-    } catch (error) {
-      console.log(error);
+    const response = await getQuestionListReceiveApi(1);
+    setRewardCount(response.rewardCount);
+    setQuestionList(response.questions);
+    if (response.questions.length > 0) {
+      setIsEmpty(false);
     }
   };
 
@@ -77,12 +72,8 @@ export default function Home() {
     questionId: number;
     choiceId: number;
   }) => {
-    try {
-      const response = await postAnswerApi(body);
-      setRewardCount(response.rewardCount);
-    } catch (error) {
-      console.log(error);
-    }
+    const response = await postAnswerApi(body);
+    setRewardCount(response.rewardCount);
   };
 
   useEffect(() => {
@@ -175,7 +166,6 @@ export default function Home() {
           direction={direction}
           duration={400}
           ref={(node) => {
-            console.log(node);
             if (
               node &&
               node.state.list

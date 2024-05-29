@@ -65,12 +65,8 @@ export default function Questions() {
   });
 
   useEffect(() => {
-    console.log(listWithResponse);
-  }, [listWithResponse]);
-  useEffect(() => {
     const getData = async () => {
       const data = await getAllQuestionApi(1, sort, agree);
-      console.log(data);
       setList(data);
     };
     getData();
@@ -83,18 +79,13 @@ export default function Questions() {
       choiceA: item.choices[0].content,
       choiceB: item.choices[1].content,
     });
-    console.log(await res);
     const answer: AiAnswerResponse = await JSON.parse(
       res.content.replace('\n', ''),
     );
 
-    console.log(answer);
-
     //const answer = await JSON.parse(response);
     setList((prevList) =>
       prevList.map((prevItem) => {
-        console.log(prevItem);
-        console.log(item);
         if (prevItem.questionId === item.questionId && answer.response.reason) {
           return {
             ...prevItem,
@@ -114,9 +105,7 @@ export default function Questions() {
       choiceId: answer.response.choice === 'A' ? 1 : 2,
       reason: answer?.response?.reason,
     };
-    const res2 = await postAIAnswer(req);
-
-    console.log('final', res2);
+    await postAIAnswer(req);
   };
 
   return (
