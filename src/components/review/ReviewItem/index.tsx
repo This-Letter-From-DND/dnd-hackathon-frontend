@@ -1,5 +1,8 @@
+import { useRouter } from 'next/navigation';
+
 import ProfileIcon from '@/assets/ProfileIcon.svg';
 import Font from '@/components/common/Font';
+import { ROUTE_PATHS } from '@/constants/config';
 
 import {
   Title,
@@ -9,9 +12,16 @@ import {
   Container,
   Hits,
 } from './styles';
+
 export default function ReviewItem() {
+  const router = useRouter();
+
+  const handleClickButton = () => {
+    router.push(`${ROUTE_PATHS.reviews}/1`);
+  };
+
   return (
-    <Container>
+    <Container onClick={handleClickButton}>
       <Title>
         <Font
           fontSize='large'
