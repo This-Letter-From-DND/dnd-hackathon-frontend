@@ -6,8 +6,8 @@ import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 
 import plus from '@/assets/PlusIcon.svg';
 import Button from '@/components/common/Button';
+import FormInputTemplate from '@/components/common/FormInputTemplate';
 import Header from '@/components/common/Header';
-import FormInputTemplate from '@/components/question/FormInputTemplate';
 import { ROUTE_PATHS } from '@/constants/config';
 import useForm from '@/hooks/useForm';
 
@@ -83,7 +83,7 @@ export default function NewReview({ params }: NewReviewProps) {
     setImages((prevImages) => prevImages.filter((_, i) => i !== index));
   };
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmitForm = (event: FormEvent) => {
     event.preventDefault();
     if (validateForm()) {
       // const postData = async () => {
@@ -100,7 +100,7 @@ export default function NewReview({ params }: NewReviewProps) {
   };
 
   return (
-    <Wrapper onSubmit={handleSubmit}>
+    <Wrapper onSubmit={handleSubmitForm}>
       <Header
         title='후기쓰기'
         canGoBack={true}

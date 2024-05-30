@@ -7,10 +7,10 @@ import { useEffect, useState, ChangeEvent, FormEvent } from 'react';
 import BananaIcon from '@/assets/BananaIcon.svg';
 import Button from '@/components/common/Button';
 import Font from '@/components/common/Font';
+import FormInputTemplate from '@/components/common/FormInputTemplate';
 import Header from '@/components/common/Header';
 import Input from '@/components/common/Input';
 import Select from '@/components/common/Select';
-import FormInputTemplate from '@/components/question/FormInputTemplate';
 import { ROUTE_PATHS } from '@/constants/config';
 import useForm from '@/hooks/useForm';
 import { getCategoryApi } from '@/services/category';
@@ -101,7 +101,7 @@ export default function NewQuestion() {
     fetchCategories();
   }, []);
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmitForm = (event: FormEvent) => {
     event.preventDefault();
     if (validateForm()) {
       const postData = async () => {
@@ -138,7 +138,7 @@ export default function NewQuestion() {
   };
 
   return (
-    <Wrapper onSubmit={handleSubmit}>
+    <Wrapper onSubmit={handleSubmitForm}>
       <Header
         title='질문하기'
         canGoBack={true}
