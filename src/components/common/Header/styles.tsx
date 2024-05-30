@@ -14,6 +14,10 @@ export const HeaderStyled = styled.header`
 export const HeaderLeftStyled = styled.div`
   display: flex;
   align-items: center;
+
+  > img {
+    cursor: pointer;
+  }
 `;
 
 export const HeaderTitleStyled = styled.div`

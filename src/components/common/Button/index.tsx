@@ -4,7 +4,7 @@ import { ButtonStyle } from './styles';
 
 interface ButtonProps {
   width?: string;
-  size?: 'small' | 'medium' | 'large';
+  height?: string;
   color?: string;
   bgColor?: string;
   hoverBgColor?: string;
@@ -15,7 +15,7 @@ interface ButtonProps {
 
 export default function Button({
   width,
-  size,
+  height,
   color,
   bgColor,
   hoverBgColor,
@@ -26,7 +26,7 @@ export default function Button({
   return (
     <ButtonStyle
       $width={width}
-      $size={size}
+      $height={height}
       $color={color}
       $bgColor={bgColor}
       $hoverBgColor={hoverBgColor}

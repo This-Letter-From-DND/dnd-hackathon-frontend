@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import styled from 'styled-components';
 
 export const Wrapper = styled.form`
@@ -37,10 +36,15 @@ export const Line = styled.div`
   border: 1px solid ${(props) => props.theme.colors[200]};
 `;
 
-export const ImageContainer = styled(Image)`
+export const ImageContainer = styled.div`
   width: 100%;
   height: 17.5rem;
   margin: 0.75rem 0rem 1.25rem 0rem;
+
+  > img {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 export const CommentContainer = styled.div`
@@ -55,45 +59,7 @@ export const Comments = styled.div`
   flex-direction: column;
 `;
 
-export const Comment = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-export const UserInfoContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  > img {
-    width: 1.25rem;
-    height: 1.25rem;
-  }
-`;
-
-export const UserInfo = styled.span`
-  display: flex;
-  align-items: center;
-
-  > img {
-    width: 1.5rem;
-    height: 1.5rem;
-  }
-`;
-
-export const Name = styled.span`
-  margin: 0rem 0.75rem 0rem 0.25rem;
-`;
-
-export const Time = styled.span`
-  font-size: 0.875rem;
-`;
-
-export const CommentContent = styled.div`
-  margin: 0.5rem 0rem 1rem 0rem;
-`;
-
-export const Top = styled.div`
+export const CommentHeader = styled.div`
   display: flex;
   align-items: center;
   gap: 0.25rem;

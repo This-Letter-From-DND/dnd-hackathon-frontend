@@ -1,8 +1,8 @@
 import { InputStyle } from './styles';
 
 interface InputProps {
-  width?: string;
-  size?: 'small' | 'medium' | 'large';
+  width?: 'full' | string;
+  height?: string;
   color?: string;
   bgColor?: string;
   borderColor?: string;
@@ -11,26 +11,30 @@ interface InputProps {
   placeholder?: string;
   type?: string;
   value?: string;
+  name?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  disabled?: boolean;
 }
 
 export default function Input({
   width,
-  size = 'medium', // default value
+  height,
   color,
   bgColor,
   borderColor,
   focusBorderColor,
   borderRadius,
   placeholder,
-  type = 'text', // default value
+  type = 'text',
   value,
+  name,
   onChange,
+  disabled,
 }: InputProps) {
   return (
     <InputStyle
       $width={width}
-      $size={size}
+      $height={height}
       $color={color}
       $bgColor={bgColor}
       $borderColor={borderColor}
@@ -39,7 +43,9 @@ export default function Input({
       placeholder={placeholder}
       type={type}
       value={value}
+      name={name}
       onChange={onChange}
+      disabled={disabled}
     />
   );
 }

@@ -40,8 +40,8 @@ export const CardHeader = styled.div`
   gap: 8px;
 `;
 
-export const Line = styled.hr`
-  color: ${(props) => props.theme.colors[200]};
+export const Line = styled.div`
+  border: 1px solid ${(props) => props.theme.colors[200]};
   margin: 12px 0px;
 `;
 

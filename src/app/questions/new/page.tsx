@@ -8,6 +8,7 @@ import BananaIcon from '@/assets/BananaIcon.svg';
 import Button from '@/components/common/Button';
 import Font from '@/components/common/Font';
 import Header from '@/components/common/Header';
+import Input from '@/components/common/Input';
 import Select from '@/components/common/Select';
 import FormInputTemplate from '@/components/question/FormInputTemplate';
 import { ROUTE_PATHS } from '@/constants/config';
@@ -22,7 +23,6 @@ import {
   ContentContainer,
   Count,
   CountContainer,
-  InputTitle,
   Point,
   Textarea,
   TextareaWrapper,
@@ -185,7 +185,7 @@ export default function NewQuestion() {
           name='제목을 적어주세요*'
           error={errors.title}
         >
-          <InputTitle
+          <Input
             placeholder='30자 이내'
             name='title'
             value={formData.title}
@@ -221,7 +221,7 @@ export default function NewQuestion() {
           name='A 선택지*'
           error={errors.choiceA}
         >
-          <InputTitle
+          <Input
             placeholder='1자이상 ~ 20자이하'
             name='choiceA'
             value={formData.choiceA}
@@ -232,7 +232,7 @@ export default function NewQuestion() {
           name='B 선택지*'
           error={errors.choiceB}
         >
-          <InputTitle
+          <Input
             placeholder='1자이상 ~ 20자이하'
             name='choiceB'
             value={formData.choiceB}
@@ -252,7 +252,9 @@ export default function NewQuestion() {
         </FormInputTemplate>
       </ContentContainer>
       <ButtonContainer>
-        <Button width='full'>작성완료</Button>
+        <Button>
+          <Font fontWeight='bold'>작성완료</Font>
+        </Button>
       </ButtonContainer>
     </Wrapper>
   );

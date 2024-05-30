@@ -1,10 +1,9 @@
 'use client';
 
 import styled from 'styled-components';
-
 interface ButtonStyleProps {
   $width?: string;
-  $size?: 'small' | 'medium' | 'large';
+  $height?: string;
   $color?: string;
   $bgColor?: string;
   $hoverBgColor?: string;
@@ -12,51 +11,24 @@ interface ButtonStyleProps {
 }
 
 export const ButtonStyle = styled.button<ButtonStyleProps>`
-  display: inline-block;
-  width: ${({ $width }) => {
-    switch ($width) {
-      case 'full':
-        return '100%';
-      default:
-        return '';
-    }
-  }};
-  height: 4rem;
-  padding: ${({ $size }) => {
-    switch ($size) {
-      case 'small':
-        return '0.5rem 1rem';
-      case 'large':
-        return '1rem 2rem';
-      default:
-        return '0.75rem 1.5rem';
-    }
-  }};
-  font-size: ${({ $size }) => {
-    switch ($size) {
-      case 'small':
-        return '0.875rem';
-      case 'large':
-        return '1.25rem';
-      default:
-        return '1rem';
-    }
-  }};
-  color: ${(props) => props.theme.colors[900]};
-  background-color: ${({ $bgColor }) => $bgColor || '#FFCA0C'};
+  width: ${({ $width }) => $width || '100%'};
+  height: ${({ $height }) => $height || '3.875rem'};
+  background: ${({ $bgColor, theme }) => $bgColor || theme.colors.primary};
+  color: ${({ $color, theme }) => $color || theme.colors[900]};
+  border-radius: ${({ $borderRadius }) => $borderRadius || '0.5rem'};
   border: none;
-  border-radius: ${({ $borderRadius }) => $borderRadius || '5px'};
   cursor: pointer;
-  text-align: center;
-  transition: background-color 0.3s;
-  font-weight: ${(props) => props.theme.font.fontWeights.bold};
 
   &:hover {
     opacity: 0.8;
   }
 
+  &:focus {
+    outline: none;
+  }
+
   &:disabled {
-    background-color: ${(props) => props.theme.colors[200]};
+    background-color: ${({ theme }) => theme.colors[200]};
     cursor: not-allowed;
   }
 `;
