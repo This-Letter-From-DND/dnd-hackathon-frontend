@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 
 type ValidationRules<T> = {
-  [K in keyof T]?: (value: T[K]) => string | null;
+  [K in keyof T]?: (value: T[K], allValues?: T) => string | null;
 };
 
 function useForm<T>(initialForm: T, validationRules?: ValidationRules<T>) {
@@ -11,11 +11,11 @@ function useForm<T>(initialForm: T, validationRules?: ValidationRules<T>) {
   const validateField = useCallback(
     (name: keyof T, value: T[keyof T]) => {
       if (validationRules && validationRules[name]) {
-        const error = validationRules[name]?.(value) ?? null;
+        const error = validationRules[name]?.(value, formData) ?? null;
         setErrors((prevState) => ({ ...prevState, [name]: error }));
       }
     },
-    [validationRules],
+    [validationRules, formData],
   );
 
   const onReset = useCallback(
@@ -47,7 +47,10 @@ function useForm<T>(initialForm: T, validationRules?: ValidationRules<T>) {
       for (const key in formData) {
         if (Object.prototype.hasOwnProperty.call(formData, key)) {
           const error =
-            validationRules[key as keyof T]?.(formData[key as keyof T]) ?? null;
+            validationRules[key as keyof T]?.(
+              formData[key as keyof T],
+              formData,
+            ) ?? null;
           if (error) {
             isValid = false;
             newErrors[key as keyof T] = error;
