@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 interface InputStyleProps {
   $width?: string;
-  $size?: 'small' | 'medium' | 'large';
+  $height?: string;
   $color?: string;
   $bgColor?: string;
   $borderColor?: string;
@@ -13,47 +13,23 @@ interface InputStyleProps {
 }
 
 export const InputStyle = styled.input<InputStyleProps>`
-  width: ${({ $width }) => {
-    switch ($width) {
-      case 'full':
-        return '100%';
-      default:
-        return '';
-    }
-  }};
-  padding: ${({ $size }) => {
-    switch ($size) {
-      case 'small':
-        return '0.5rem';
-      case 'large':
-        return '1rem';
-      default:
-        return '0.75rem';
-    }
-  }};
-  font-size: ${({ $size }) => {
-    switch ($size) {
-      case 'small':
-        return '0.875rem';
-      case 'large':
-        return '1.25rem';
-      default:
-        return '1rem';
-    }
-  }};
-  color: ${({ $color }) => $color || '#000'};
-  background-color: ${({ $bgColor }) => $bgColor || '#fff'};
-  border: 1px solid ${({ $borderColor }) => $borderColor || '#ccc'};
-  border-radius: ${({ $borderRadius }) => $borderRadius || '5px'};
-  box-sizing: border-box;
+  width: ${({ $width }) => $width || '100%'};
+  height: ${({ $height }) => $height || '3.25rem'};
+  border: 1px solid
+    ${({ $borderColor, theme }) => $borderColor || theme.colors[300]};
+  padding: 0.875rem;
+  border-radius: ${({ $borderRadius }) => $borderRadius || '0.5rem'};
+  background-color: ${({ $bgColor, theme }) => $bgColor || theme.colors[100]};
+  color: ${({ $color, theme }) => $color || theme.colors[900]};
 
   &:focus {
-    border-color: ${({ $focusBorderColor }) => $focusBorderColor || '#0070f3'};
+    border-color: ${({ $focusBorderColor, theme }) =>
+      $focusBorderColor || theme.colors.primary};
     outline: none;
   }
 
   &:disabled {
-    background-color: ${(props) => props.theme.colors[200]};
+    background-color: ${({ theme }) => theme.colors[200]};
     cursor: not-allowed;
   }
 `;

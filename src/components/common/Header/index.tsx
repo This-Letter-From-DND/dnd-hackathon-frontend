@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { ReactNode } from 'react';
 
 import BackIcon from '@/assets/BackIcon.svg';
 
@@ -10,10 +11,8 @@ import {
   HeaderTitleStyled,
 } from './styles';
 
-import Font from '../Font';
-
 interface HeaderProps {
-  title: string;
+  title: ReactNode;
   canGoBack: boolean;
   canDone: boolean;
 }
@@ -35,16 +34,7 @@ export default function Header({ title, canGoBack, canDone }: HeaderProps) {
   };
 
   const HeaderTitleComponent = () => {
-    return (
-      <HeaderTitleStyled>
-        <Font
-          fontSize='large'
-          fontWeight='bold'
-        >
-          {title}
-        </Font>
-      </HeaderTitleStyled>
-    );
+    return <HeaderTitleStyled>{title}</HeaderTitleStyled>;
   };
 
   const HeaderRightComponent = () => {

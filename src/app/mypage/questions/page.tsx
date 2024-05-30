@@ -36,7 +36,14 @@ export default function MyQuestions() {
   return (
     <Wrapper>
       <Header
-        title='내가 쓴 질문'
+        title={
+          <Font
+            fontSize='large'
+            fontWeight='bold'
+          >
+            내가 쓴 질문
+          </Font>
+        }
         canGoBack={true}
         canDone={false}
       />

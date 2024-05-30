@@ -119,13 +119,13 @@ export const AddQuestion = styled.div`
   bottom: 108px;
   width: 136px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   background-color: ${(props) => props.theme.colors.primary};
   padding: 10px;
   border-radius: 100px;
 
-  > span{
+  > span {
     padding-bottom: 0.25rem;
   }
 

@@ -42,15 +42,6 @@ export const Count = styled.span`
   margin-left: 0.5rem;
 `;
 
-export const InputTitle = styled.input`
-  width: 100%;
-  height: 3.25rem;
-  border: none;
-  padding: 0.5rem 0.5rem;
-  border-radius: 0.5rem;
-  background-color: ${(props) => props.theme.colors[100]};
-`;
-
 export const TextareaWrapper = styled.div`
   position: relative;
   display: flex;
@@ -62,10 +53,15 @@ export const Textarea = styled.textarea`
   height: 8.75rem;
   margin-top: 0.75rem;
   height: 8.7rem;
-  border: none;
-  padding: 0.5rem 0.5rem;
+  padding: 0.875rem;
   border-radius: 0.5rem;
   background-color: ${(props) => props.theme.colors[100]};
+  border: 1px solid ${(props) => props.theme.colors[300]};
+
+  &:focus {
+    border-color: ${(props) => props.theme.colors.primary};
+    outline: none;
+  }
 `;
 
 export const CharacterCount = styled.div<{ $isLimitExceeded: boolean }>`

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
+import Font from '@/components/common/Font';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
 import RadioButtonGroup from '@/components/review/RadioButtonGroup';
@@ -37,7 +38,14 @@ export default function Reviews() {
   return (
     <Wrapper>
       <Header
-        title='전체후기'
+        title={
+          <Font
+            fontSize='large'
+            fontWeight='bold'
+          >
+            전체후기
+          </Font>
+        }
         canGoBack={true}
         canDone={false}
       />
