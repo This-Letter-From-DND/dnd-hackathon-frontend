@@ -4,12 +4,17 @@ interface ContainerStyledProps {
   $marginTop: string;
 }
 
-export const MainStyled = styled.main`
+interface MainStyledProps {
+  $isEmpty: boolean;
+}
+
+export const MainStyled = styled.main<MainStyledProps>`
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-image: url(${(props) => !props.$isEmpty && '/MainBackground.svg'});
 `;
 
 export const ContainerStyled = styled.div<ContainerStyledProps>`
@@ -34,7 +39,7 @@ export const SkipStyled = styled.div`
 
 export const Card = styled.div`
   width: 380px;
-  min-height: 315px;
+  min-height: 250px;
   border-radius: 24px;
   border: 1px solid ${(props) => props.theme.colors[300]};
   background-color: ${(props) => props.theme.colors.white};
@@ -50,12 +55,19 @@ export const QuestionContainer = styled.div`
   align-items: center;
   gap: 8px;
   width: 100%;
-  height: 200px;
+  height: 150px;
   border-bottom: 1px solid ${(props) => props.theme.colors[300]};
   background-color: ${(props) => props.theme.colors.white};
   border-top-left-radius: 24px;
   border-top-right-radius: 24px;
   padding: 24px;
+  position: relative;
+`;
+
+export const ImageContainer = styled.div`
+  position: absolute;
+  top: -6px;
+  right: 0;
 `;
 
 export const AnswerContainer = styled.div`
@@ -90,7 +102,6 @@ export const AnswerContainer = styled.div`
 export const TransparentButtonContainer = styled.div`
   position: relative;
   z-index: 1;
-  margin-top: 50px;
   width: 380px;
   display: flex;
 

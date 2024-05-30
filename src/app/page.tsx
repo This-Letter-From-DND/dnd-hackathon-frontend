@@ -13,6 +13,7 @@ import CardProfile2 from '@/assets/CardProfile2.svg';
 import CardProfile3 from '@/assets/CardProfile3.svg';
 import EmptyCard from '@/assets/EmptyCard.svg';
 import HomeLogo from '@/assets/HomeLogo.svg';
+import MainBackgroundFront from '@/assets/MainBackgroundFront.svg';
 import SkipXIcon from '@/assets/SkipXIcon.svg';
 import Font from '@/components/common/Font';
 import Footer from '@/components/common/Footer';
@@ -27,6 +28,7 @@ import {
   Card,
   ContainerStyled,
   FooterContainer,
+  ImageContainer,
   MainStyled,
   QuestionContainer,
   SkipStyled,
@@ -191,6 +193,12 @@ export default function Home() {
           ).map(({ questionId, title, content, choices }) => (
             <Card key={questionId}>
               <QuestionContainer>
+                <ImageContainer>
+                  <Image
+                    src={MainBackgroundFront}
+                    alt='main background front'
+                  />
+                </ImageContainer>
                 <Image
                   src={getCardProfile()}
                   alt='profile'
@@ -247,7 +255,7 @@ export default function Home() {
   );
 
   return (
-    <MainStyled>
+    <MainStyled $isEmpty={isEmpty}>
       <ContainerStyled $marginTop={`36px`}>
         <Image
           src={HomeLogo}
