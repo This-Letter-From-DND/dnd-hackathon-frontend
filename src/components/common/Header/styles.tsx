@@ -6,14 +6,12 @@ export const HeaderStyled = styled.header`
   display: flex;
   justify-content: space-between;
   padding: 12px 24px;
-  > * {
-    flex-basis: calc(100% / 3);
-  }
 `;
 
 export const HeaderLeftStyled = styled.div`
   display: flex;
   align-items: center;
+  flex-basis: calc(100% / 4);
 
   > img {
     cursor: pointer;
@@ -24,10 +22,12 @@ export const HeaderTitleStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-grow: 1;
 `;
 
 export const HeaderDoneStyled = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  flex-basis: calc(100% / 4);
 `;

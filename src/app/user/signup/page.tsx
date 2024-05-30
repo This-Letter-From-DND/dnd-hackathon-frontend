@@ -78,17 +78,17 @@ export default function Signup() {
         canGoBack={true}
         canDone={false}
       />
-      <TitleContainer>
-        <Font
-          fontSize='large'
-          fontWeight='bold'
-        >{`어서오세요 :)`}</Font>
-        <Font
-          fontSize='large'
-          fontWeight='bold'
-        >{`간단하게 가입하고 즐겨주세요!`}</Font>
-      </TitleContainer>
       <FormContainer onSubmit={handleSubmitForm}>
+        <TitleContainer>
+          <Font
+            fontSize='large'
+            fontWeight='bold'
+          >{`어서오세요 :)`}</Font>
+          <Font
+            fontSize='large'
+            fontWeight='bold'
+          >{`간단하게 가입하고 즐겨주세요!`}</Font>
+        </TitleContainer>
         <Form>
           <FormInputTemplate
             name='아이디 입력(이메일)*'
@@ -137,12 +137,12 @@ export default function Signup() {
             />
           </FormInputTemplate>
         </Form>
-        <ButtonContainer>
-          <Button>
-            <Font fontWeight='bold'>작성완료</Font>
-          </Button>
-        </ButtonContainer>
       </FormContainer>
+      <ButtonContainer>
+        <Button>
+          <Font fontWeight='bold'>작성완료</Font>
+        </Button>
+      </ButtonContainer>
     </Wrapper>
   );
 }
