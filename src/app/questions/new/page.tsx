@@ -140,7 +140,14 @@ export default function NewQuestion() {
   return (
     <Wrapper onSubmit={handleSubmitForm}>
       <Header
-        title='질문하기'
+        title={
+          <Font
+            fontSize='large'
+            fontWeight='bold'
+          >
+            질문하기
+          </Font>
+        }
         canGoBack={true}
         canDone={false}
       />

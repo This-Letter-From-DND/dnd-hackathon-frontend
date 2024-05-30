@@ -34,7 +34,14 @@ export default function ReviewDetails({ params }: ReviewDetailsProps) {
   return (
     <Wrapper>
       <Header
-        title='후기 상세'
+        title={
+          <Font
+            fontSize='large'
+            fontWeight='bold'
+          >
+            후기 상세
+          </Font>
+        }
         canGoBack={true}
         canDone={false}
       />

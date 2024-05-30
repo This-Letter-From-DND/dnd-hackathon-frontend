@@ -38,7 +38,14 @@ export default function Questions() {
   return (
     <Wrapper>
       <Header
-        title='전체 질문 목록'
+        title={
+          <Font
+            fontSize='large'
+            fontWeight='bold'
+          >
+            전체 질문 목록
+          </Font>
+        }
         canGoBack={true}
         canDone={false}
       />

@@ -6,6 +6,7 @@ import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 
 import plus from '@/assets/PlusIcon.svg';
 import Button from '@/components/common/Button';
+import Font from '@/components/common/Font';
 import FormInputTemplate from '@/components/common/FormInputTemplate';
 import Header from '@/components/common/Header';
 import { ROUTE_PATHS } from '@/constants/config';
@@ -102,7 +103,14 @@ export default function NewReview({ params }: NewReviewProps) {
   return (
     <Wrapper onSubmit={handleSubmitForm}>
       <Header
-        title='후기쓰기'
+        title={
+          <Font
+            fontSize='large'
+            fontWeight='bold'
+          >
+            후기쓰기
+          </Font>
+        }
         canGoBack={true}
         canDone={false}
       />
