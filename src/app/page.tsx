@@ -126,7 +126,7 @@ export default function Home() {
     <>
       <ContainerStyled $marginTop={`90px`}>
         <BananaCountStyled>
-          <Font color='white'>보유 바나나</Font>
+          <Font color='white'>보유바나나</Font>
           <Image
             src={BananaIcon}
             alt='banana count'

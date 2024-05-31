@@ -1,12 +1,17 @@
 import { API_URLS } from '@/constants/config';
 
-import { getFetch, postFetch } from './common';
+import { getFetch, postFetch, putFetch } from './common';
 
 interface Data {
   email: string;
   password: string;
   nickname: string;
   categories: string;
+}
+
+interface LoginData {
+  email: string;
+  password: string;
 }
 
 export const getUserApi = async (userId: number) => {
@@ -17,6 +22,6 @@ export const postUserApi = async (data: Data) => {
   return postFetch(API_URLS.user, data);
 };
 
-// export const putUserApi = async (data) => {
-//   return putFetch(API_URLS.user, data);
-// };
+export const putUserApi = async (data: LoginData) => {
+  return putFetch(API_URLS.user, data);
+};
