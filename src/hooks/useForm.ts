@@ -5,7 +5,7 @@ type ValidationRules<T> = {
 };
 
 function useForm<T>(initialForm: T, validationRules?: ValidationRules<T>) {
-  const [formData, setForm] = useState<T>(initialForm);
+  const [formData, setFormData] = useState<T>(initialForm);
   const [errors, setErrors] = useState<{ [K in keyof T]?: string | null }>({});
 
   const validateField = useCallback(
@@ -20,7 +20,7 @@ function useForm<T>(initialForm: T, validationRules?: ValidationRules<T>) {
 
   const onReset = useCallback(
     (name: keyof T) => {
-      setForm((prevState) => ({ ...prevState, [name]: initialForm[name] }));
+      setFormData((prevState) => ({ ...prevState, [name]: initialForm[name] }));
       setErrors((prevState) => ({ ...prevState, [name]: null }));
     },
     [initialForm],
@@ -33,7 +33,7 @@ function useForm<T>(initialForm: T, validationRules?: ValidationRules<T>) {
       >,
     ) => {
       const { name, value } = event.target;
-      setForm((prevState) => ({ ...prevState, [name]: value }));
+      setFormData((prevState) => ({ ...prevState, [name]: value }));
       validateField(name as keyof T, value as T[keyof T]);
     },
     [validateField],
@@ -68,6 +68,7 @@ function useForm<T>(initialForm: T, validationRules?: ValidationRules<T>) {
     errors,
     onChange,
     onReset,
+    setFormData,
     validateForm,
   };
 }

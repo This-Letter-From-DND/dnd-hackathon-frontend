@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.form`
   width: 100%;
   height: 100%;
   display: flex;
@@ -17,7 +17,7 @@ export const TitleContainer = styled.div`
   margin: 1.25rem 0rem 2rem 0rem;
 `;
 
-export const FormContainer = styled.form`
+export const FormContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
