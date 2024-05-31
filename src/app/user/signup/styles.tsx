@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.form`
   width: 100%;
   height: 100%;
   display: flex;
@@ -17,17 +17,13 @@ export const TitleContainer = styled.div`
   margin: 1.25rem 0rem 2rem 0rem;
 `;
 
-export const FormContainer = styled.form`
+export const FormContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   padding: 0rem 1.5rem 0rem 1.5rem;
-`;
-export const Form = styled.div`
-  width: 100%;
   overflow-y: scroll;
 
   &::-webkit-scrollbar {
@@ -41,7 +37,11 @@ export const Form = styled.div`
   }
 `;
 
+export const Form = styled.div`
+  width: 100%;
+`;
+
 export const ButtonContainer = styled.div`
   width: 100%;
-  padding-bottom: 1rem;
+  padding: 0rem 1.5rem 1rem 1.5rem;
 `;

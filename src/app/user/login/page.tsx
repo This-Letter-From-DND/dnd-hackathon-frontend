@@ -12,6 +12,7 @@ import FormInputTemplate from '@/components/common/FormInputTemplate';
 import Input from '@/components/common/Input';
 import { ROUTE_PATHS } from '@/constants/config';
 import useForm from '@/hooks/useForm';
+import { putUserApi } from '@/services/user';
 
 import {
   ButtonContainer,
@@ -42,13 +43,14 @@ const validationRules = {
 
 export default function Login() {
   const router = useRouter();
-  const { formData, errors, onChange, validateForm } = useForm<FormData>(
-    {
-      email: '',
-      password: '',
-    },
-    validationRules,
-  );
+  const { formData, errors, onChange, onReset, validateForm } =
+    useForm<FormData>(
+      {
+        email: '',
+        password: '',
+      },
+      validationRules,
+    );
 
   const handleClickButton = () => {
     router.push(ROUTE_PATHS.signUp);
@@ -57,7 +59,18 @@ export default function Login() {
   const handleSubmitForm = (event: FormEvent) => {
     event.preventDefault();
     if (validateForm()) {
-      console.log('보내기');
+      const putData = async () => {
+        try {
+          await putUserApi({
+            email: formData.email,
+            password: formData.password,
+          });
+          router.push(ROUTE_PATHS.home);
+        } catch (err) {
+          onReset('email'), onReset('password');
+        }
+      };
+      putData();
     }
   };
 

@@ -1,13 +1,18 @@
 'use client';
 
-import { FormEvent } from 'react';
+import { useRouter } from 'next/navigation';
+import { FormEvent, useEffect, useState } from 'react';
 
 import Button from '@/components/common/Button';
 import Font from '@/components/common/Font';
 import FormInputTemplate from '@/components/common/FormInputTemplate';
 import Header from '@/components/common/Header';
 import Input from '@/components/common/Input';
+import Checkboxes from '@/components/user/Checkboxes';
+import { ROUTE_PATHS } from '@/constants/config';
 import useForm from '@/hooks/useForm';
+import { getCategoryApi } from '@/services/category';
+import { postUserApi } from '@/services/user';
 
 import {
   ButtonContainer,
@@ -17,11 +22,18 @@ import {
   Wrapper,
 } from './styles';
 
+interface Category {
+  id: number;
+  title: string;
+  content: string;
+}
+
 interface FormData {
   email: string;
   password: string;
   confirmPassword: string;
   nickName: string;
+  categories: Category[];
 }
 
 const validationRules = {
@@ -44,105 +56,190 @@ const validationRules = {
     value.length < 2 || value.length > 8
       ? '닉네임은 2자 이상 8자 이내여야 합니다.'
       : null,
+  categories: (value: Category[]) =>
+    value.length > 3 ? '최대 3개까지 선택할 수 있습니다.' : null,
 };
 
 export default function Signup() {
-  const { formData, errors, onChange, validateForm } = useForm<FormData>(
-    {
-      email: '',
-      password: '',
-      confirmPassword: '',
-      nickName: '',
-    },
-    validationRules,
-  );
+  const router = useRouter();
+  const [pageNumber, setPageNumber] = useState(false);
+  const [categoryList, setCategoryList] = useState<Category[]>([]);
+  const { formData, errors, onChange, setFormData, onReset, validateForm } =
+    useForm<FormData>(
+      {
+        email: '',
+        password: '',
+        confirmPassword: '',
+        nickName: '',
+        categories: [],
+      },
+      validationRules,
+    );
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const data = await getCategoryApi();
+      setCategoryList(data);
+    };
+    fetchCategories();
+  }, []);
 
   const handleSubmitForm = (event: FormEvent) => {
     event.preventDefault();
     if (validateForm()) {
-      console.log('보내기');
+      if (pageNumber) {
+        const postData = async () => {
+          try {
+            await postUserApi({
+              email: formData.email,
+              password: formData.password,
+              nickname: formData.nickName,
+              categories: formData.categories
+                .map((category) => category.id)
+                .join(),
+            });
+            router.push(ROUTE_PATHS.login);
+          } catch (err) {
+            onReset('email');
+            onReset('password');
+            onReset('confirmPassword');
+            onReset('nickName');
+            onReset('categories');
+          }
+        };
+        postData();
+      }
+      setPageNumber(!pageNumber);
     }
   };
 
+  const handleChangeCategory = (selected: Category[]) => {
+    setFormData({
+      ...formData,
+      categories: selected,
+    });
+  };
+
   return (
-    <Wrapper>
-      <Header
-        title={
-          <Font
-            fontSize='mediumLarge'
-            fontWeight='bold'
-          >
-            회원가입
-          </Font>
-        }
-        canGoBack={true}
-        canDone={false}
-      />
-      <TitleContainer>
-        <Font
-          fontSize='large'
-          fontWeight='bold'
-        >{`어서오세요 :)`}</Font>
-        <Font
-          fontSize='large'
-          fontWeight='bold'
-        >{`간단하게 가입하고 즐겨주세요!`}</Font>
-      </TitleContainer>
-      <FormContainer onSubmit={handleSubmitForm}>
-        <Form>
-          <FormInputTemplate
-            name='아이디 입력(이메일)*'
-            error={errors.email}
-          >
-            <Input
-              placeholder='gorilla@example.com'
-              name='email'
-              value={formData.email}
-              onChange={onChange}
-            />
-          </FormInputTemplate>
-          <FormInputTemplate
-            name='비밀번호 입력*'
-            error={errors.password}
-          >
-            <Input
-              placeholder='8~16자, 영문대소문자, 숫자, 특수문자 조합'
-              name='password'
-              type='password'
-              value={formData.password}
-              onChange={onChange}
-            />
-          </FormInputTemplate>
-          <FormInputTemplate
-            name='비밀번호 확인*'
-            error={errors.confirmPassword}
-          >
-            <Input
-              placeholder='8~16자, 영문대소문자, 숫자, 특수문자 조합'
-              name='confirmPassword'
-              type='password'
-              value={formData.confirmPassword}
-              onChange={onChange}
-            />
-          </FormInputTemplate>
-          <FormInputTemplate
-            name='닉네임*'
-            error={errors.nickName}
-          >
-            <Input
-              placeholder='2~8자'
-              name='nickName'
-              value={formData.nickName}
-              onChange={onChange}
-            />
-          </FormInputTemplate>
-        </Form>
-        <ButtonContainer>
-          <Button>
-            <Font fontWeight='bold'>작성완료</Font>
-          </Button>
-        </ButtonContainer>
-      </FormContainer>
+    <Wrapper onSubmit={handleSubmitForm}>
+      {pageNumber === false ? (
+        <>
+          <Header
+            title={
+              <Font
+                fontSize='mediumLarge'
+                fontWeight='bold'
+              >
+                회원가입
+              </Font>
+            }
+            canGoBack={true}
+            canDone={false}
+          />
+          <FormContainer>
+            <TitleContainer>
+              <Font
+                fontSize='large'
+                fontWeight='bold'
+              >{`어서오세요 :)`}</Font>
+              <Font
+                fontSize='large'
+                fontWeight='bold'
+              >{`간단하게 가입하고 즐겨주세요!`}</Font>
+            </TitleContainer>
+            <Form>
+              <FormInputTemplate
+                name='아이디 입력(이메일)*'
+                error={errors.email}
+              >
+                <Input
+                  placeholder='gorilla@example.com'
+                  name='email'
+                  value={formData.email}
+                  onChange={onChange}
+                />
+              </FormInputTemplate>
+              <FormInputTemplate
+                name='비밀번호 입력*'
+                error={errors.password}
+              >
+                <Input
+                  placeholder='8~16자, 영문대소문자, 숫자, 특수문자 조합'
+                  name='password'
+                  type='password'
+                  value={formData.password}
+                  onChange={onChange}
+                />
+              </FormInputTemplate>
+              <FormInputTemplate
+                name='비밀번호 확인*'
+                error={errors.confirmPassword}
+              >
+                <Input
+                  placeholder='8~16자, 영문대소문자, 숫자, 특수문자 조합'
+                  name='confirmPassword'
+                  type='password'
+                  value={formData.confirmPassword}
+                  onChange={onChange}
+                />
+              </FormInputTemplate>
+              <FormInputTemplate
+                name='닉네임*'
+                error={errors.nickName}
+              >
+                <Input
+                  placeholder='2~8자'
+                  name='nickName'
+                  value={formData.nickName}
+                  onChange={onChange}
+                />
+              </FormInputTemplate>
+            </Form>
+          </FormContainer>
+        </>
+      ) : (
+        <>
+          <Header
+            title={
+              <Font
+                fontSize='mediumLarge'
+                fontWeight='bold'
+              >
+                취향입력
+              </Font>
+            }
+            canGoBack={false}
+            canDone={false}
+          />
+          <FormContainer>
+            <TitleContainer>
+              <Font
+                fontSize='large'
+                fontWeight='bold'
+              >
+                관심사를 알려주세요!
+              </Font>
+            </TitleContainer>
+            <Form>
+              <FormInputTemplate
+                name='중복선택 3개까지 가능합니다.'
+                error={errors.categories}
+              >
+                <Checkboxes
+                  categories={categoryList}
+                  selectedCategories={formData.categories}
+                  onChange={handleChangeCategory}
+                />
+              </FormInputTemplate>
+            </Form>
+          </FormContainer>
+        </>
+      )}
+      <ButtonContainer>
+        <Button>
+          <Font fontWeight='bold'>작성완료</Font>
+        </Button>
+      </ButtonContainer>
     </Wrapper>
   );
 }
