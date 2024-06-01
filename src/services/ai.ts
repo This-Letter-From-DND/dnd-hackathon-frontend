@@ -2,13 +2,13 @@ import { API_URLS } from '@/constants/config';
 
 import { postFetch } from './common';
 
-interface Data {
+interface AIAnswerData {
   userId: number;
   questionId: number;
   choiceId: number;
-  reason?: string; // This is optional based on the usage of `?`
+  reason?: string;
 }
 
-export const postAIAnswer = async (data: Data): Promise<any> => {
+export const postAIAnswer = async (data: AIAnswerData): Promise<any> => {
   return postFetch(API_URLS.ai, data);
 };

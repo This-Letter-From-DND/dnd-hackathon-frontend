@@ -2,7 +2,7 @@ import { API_URLS } from '@/constants/config';
 
 import { getFetch, postFetch, putFetch } from './common';
 
-interface Data {
+interface SignUpData {
   email: string;
   password: string;
   nickname: string;
@@ -18,7 +18,7 @@ export const getUserApi = async (userId: number) => {
   return getFetch(`${API_URLS.user}?userId=${userId}`);
 };
 
-export const postUserApi = async (data: Data) => {
+export const postUserApi = async (data: SignUpData) => {
   return postFetch(API_URLS.user, data);
 };
 

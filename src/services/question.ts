@@ -6,7 +6,7 @@ interface Choice {
   content: string;
 }
 
-interface PostQuestionData {
+interface QuestionData {
   userId: number;
   categoryId: number;
   title: string;
@@ -29,7 +29,7 @@ export const getQuestionApi = async (userId: number) => {
   return getFetch(`${API_URLS.question}/list/my?userId=${userId}`);
 };
 
-export const postQuestionApi = async (data: PostQuestionData) => {
+export const postQuestionApi = async (data: QuestionData) => {
   return postFetch(API_URLS.question, data);
 };
 
