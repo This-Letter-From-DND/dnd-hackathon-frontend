@@ -32,7 +32,7 @@ export default function AIResultCard({ question, onClick }: AIResultCardProps) {
         <AIRightContainer>
           <AITextTop>
             <Font fontSize='small'>
-              AI도
+              AI는 &thinsp;
               <strong>{question.aiAnswer.choiceId === 1 ? 'A' : 'B'}</strong>를
               선택했어요
             </Font>

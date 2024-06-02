@@ -56,8 +56,6 @@ const validationRules = {
     value.length < 2 || value.length > 8
       ? '닉네임은 2자 이상 8자 이내여야 합니다.'
       : null,
-  categories: (value: Category[]) =>
-    value.length > 3 ? '최대 3개까지 선택할 수 있습니다.' : null,
 };
 
 export default function Signup() {
@@ -221,10 +219,7 @@ export default function Signup() {
               </Font>
             </TitleContainer>
             <Form>
-              <FormInputTemplate
-                name='중복선택 3개까지 가능합니다.'
-                error={errors.categories}
-              >
+              <FormInputTemplate name='중복선택 3개까지 가능합니다.'>
                 <Checkboxes
                   categories={categoryList}
                   selectedCategories={formData.categories}
