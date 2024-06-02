@@ -21,6 +21,11 @@ export default function Checkboxes({
     const isSelected = selectedCategories.some(
       (selected) => selected.id === category.id,
     );
+
+    if (!isSelected && selectedCategories.length >= 3) {
+      return;
+    }
+
     const updatedSelection = isSelected
       ? selectedCategories.filter((selected) => selected.id !== category.id)
       : [...selectedCategories, category];
