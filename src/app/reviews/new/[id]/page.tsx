@@ -177,7 +177,9 @@ export default function NewReview({ params }: NewReviewProps) {
         </FormInputTemplate>
       </ContentContainer>
       <ButtonContainer>
-        <Button width='full'>후기작성</Button>
+        <Button>
+          <Font fontWeight='bold'>후기작성</Font>
+        </Button>
       </ButtonContainer>
     </Wrapper>
   );
