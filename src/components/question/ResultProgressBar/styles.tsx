@@ -9,6 +9,7 @@ export const ProgressBarContainer = styled.div`
   border-color: ${(props) => props.theme.colors[300]};
   justify-content: space-between;
   background-color: ${(props) => props.theme.colors[200]};
+  border-radius: 8px;
 `;
 
 export const ProgressBarSection = styled.div`
@@ -16,6 +17,8 @@ export const ProgressBarSection = styled.div`
   height: 40px;
   display: flex;
   position: relative;
+  display: flex;
+  align-items: center;
 `;
 
 interface ProgressBarDetailsProps {
@@ -42,27 +45,18 @@ export const LabelWrap = styled.div<{ direction: string }>`
   align-items: center;
   justify-content: ${(props) =>
     props.direction === 'left' ? 'flex-start' : 'flex-end'};
-  margin: ${(props) =>
-    props.direction === 'left' ? '0 0 0 10px' : '0 10px 0 0'};
 
   > :first-child {
     margin-right: 0.5rem;
   }
 `;
 
-export const Label = styled.div`
-  color: ${(props) => props.theme.colors[700]};
-  font-size: ${(props) => props.theme.font.fontSizes.large};
-`;
-
-export const LabelLeft = styled(Label)<{ $small?: boolean }>`
-  left: 0;
-  color: ${(props) => (props.$small ? props.theme.colors[500] : '')};
+export const LabelLeft = styled.div`
+  left: 10px;
   position: absolute;
 `;
 
-export const LabelRight = styled(Label)<{ $small?: boolean }>`
-  right: 0;
-  color: ${(props) => (props.$small ? props.theme.colors[500] : '')};
+export const LabelRight = styled.div`
+  right: 10px;
   position: absolute;
 `;

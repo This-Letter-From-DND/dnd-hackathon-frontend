@@ -34,14 +34,30 @@ export default function ResultProgressBar({ choices }: ResultProgressBarProps) {
               </LabelWrap>
             </LabelLeft>
           </ProgressBarDetails>
-          <LabelRight $small={true}>
-            {choices[1].percent === 0 ? '' : ''}
+          <LabelRight>
+            {choices[0].percent !== 100 && (
+              <Font
+                color={500}
+                fontWeight='bold'
+                fontSize='large'
+              >
+                B
+              </Font>
+            )}
           </LabelRight>
         </ProgressBarSection>
       ) : (
         <ProgressBarSection>
-          <LabelLeft $small={true}>
-            {choices[0].percent === 0 ? '' : 'A'}
+          <LabelLeft>
+            {choices[1].percent !== 100 && (
+              <Font
+                color={500}
+                fontWeight='bold'
+                fontSize='large'
+              >
+                A
+              </Font>
+            )}
           </LabelLeft>
           <ProgressBarDetails
             ratio={`${choices[1].percent}%`}
