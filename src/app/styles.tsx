@@ -21,6 +21,18 @@ export const ContainerStyled = styled.div<ContainerStyledProps>`
   margin-top: calc(${(props) => props.$marginTop});
 `;
 
+export const LogoContainerStyled = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 36px 24px 0px 24px;
+
+  > span {
+    cursor: pointer;
+  }
+`;
+
 export const BananaCountStyled = styled.div`
   background-color: ${(props) => props.theme.colors[900]};
   padding: 10px;

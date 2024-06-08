@@ -14,6 +14,7 @@ export const ROUTE_PATHS = {
   signUp: '/user/signup',
   questions: '/questions',
   newQuestion: '/questions/new',
+  shareQuestion: '/questions/share',
   reviews: '/reviews',
   newReview: '/reviews/new',
   myQuestions: '/mypage/questions',

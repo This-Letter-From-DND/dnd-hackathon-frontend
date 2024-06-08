@@ -39,17 +39,7 @@ export const TimeContainer = styled.div`
   margin-bottom: 16px;
 `;
 
-export const Button = styled.div`
-  background-color: ${(props) => props.theme.colors.secondary};
-  color: ${(props) => props.theme.colors.white};
-  font-size: 14px;
-  width: 89px;
-  height: 38px;
-  border: none;
-  border-radius: 8px;
-  padding: 1rem;
-  cursor: pointer;
+export const ButtonContainer = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
+  gap: 0.5rem;
 `;

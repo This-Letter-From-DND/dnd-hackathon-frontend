@@ -29,6 +29,7 @@ import {
   ContainerStyled,
   FooterContainer,
   ImageContainer,
+  LogoContainerStyled,
   MainStyled,
   QuestionContainer,
   SkipStyled,
@@ -112,6 +113,10 @@ export default function Home() {
   const getCardProfile = () => {
     const RANDOM = Math.random() * 10;
     return RANDOM > 6 ? CardProfile1 : RANDOM > 3 ? CardProfile2 : CardProfile3;
+  };
+
+  const handleClickLoginButton = () => {
+    router.push(ROUTE_PATHS.login);
   };
 
   const convertQuestionsToStrings = (questions: Question[]): string[] => {
@@ -256,12 +261,18 @@ export default function Home() {
 
   return (
     <MainStyled $isEmpty={isEmpty}>
-      <ContainerStyled $marginTop={`36px`}>
+      <LogoContainerStyled>
         <Image
           src={HomeLogo}
           alt='Logo'
         />
-      </ContainerStyled>
+        <Font
+          color='secondary'
+          onClick={handleClickLoginButton}
+        >
+          로그인
+        </Font>
+      </LogoContainerStyled>
       {isEmpty ? (
         <ContainerStyled $marginTop={`48px`}>
           <Image

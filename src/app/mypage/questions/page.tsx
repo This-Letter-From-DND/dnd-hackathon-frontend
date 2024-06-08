@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
+import Button from '@/components/common/Button';
 import Font from '@/components/common/Font';
 import Footer from '@/components/common/Footer';
 import Header from '@/components/common/Header';
@@ -14,7 +15,7 @@ import { getQuestionApi } from '@/services/question';
 import { formatDate } from '@/utils/fomatDate';
 
 import {
-  Button,
+  ButtonContainer,
   ListContainer,
   QuestionCardContainer,
   TimeContainer,
@@ -53,20 +54,42 @@ export default function MyQuestions() {
             <QuestionResultCard question={question}>
               <TimeContainer>
                 <Font color={700}>{formatDate(question.createdAt || '')}</Font>
-                <Button
-                  onClick={() =>
-                    router.push(
-                      `${ROUTE_PATHS.newReview}/${question.questionId}`,
-                    )
-                  }
-                >
-                  <Font
-                    color='white'
-                    fontSize='small'
+                <ButtonContainer>
+                  <Button
+                    width='81px'
+                    height='36px'
+                    bgColor='#ADB5BD'
+                    onClick={() =>
+                      router.push(
+                        `${ROUTE_PATHS.shareQuestion}/${question.questionId}`,
+                      )
+                    }
                   >
-                    후기작성
-                  </Font>
-                </Button>
+                    <Font
+                      color='white'
+                      fontSize='small'
+                    >
+                      공유하기
+                    </Font>
+                  </Button>
+                  <Button
+                    width='81px'
+                    height='36px'
+                    bgColor='#2F80ED'
+                    onClick={() =>
+                      router.push(
+                        `${ROUTE_PATHS.newReview}/${question.questionId}`,
+                      )
+                    }
+                  >
+                    <Font
+                      color='white'
+                      fontSize='small'
+                    >
+                      후기작성
+                    </Font>
+                  </Button>
+                </ButtonContainer>
               </TimeContainer>
             </QuestionResultCard>
             <AIResultCard
