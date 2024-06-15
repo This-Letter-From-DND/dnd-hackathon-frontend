@@ -17,5 +17,6 @@ export const ROUTE_PATHS = {
   shareQuestion: '/questions/share',
   reviews: '/reviews',
   newReview: '/reviews/new',
+  myPage: '/mypage',
   myQuestions: '/mypage/questions',
 };

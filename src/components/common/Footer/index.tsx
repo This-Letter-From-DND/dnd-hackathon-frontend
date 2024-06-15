@@ -5,8 +5,8 @@ import FooterAllQuestion from '@/assets/FooterAllQuestion.svg';
 import FooterAllQuestionActive from '@/assets/FooterAllQuestionActive.svg';
 import FooterHome from '@/assets/FooterHome.svg';
 import FooterHomeActive from '@/assets/FooterHomeActive.svg';
-import FooterMyQuestion from '@/assets/FooterMyQuestion.svg';
-import FooterMyQuestionActive from '@/assets/FooterMyQuestionActive.svg';
+import FooterMyPage from '@/assets/FooterMyPage.svg';
+import FooterMyPageActive from '@/assets/FooterMyPageActive.svg';
 import FooterReview from '@/assets/FooterReview.svg';
 import FooterReviewActive from '@/assets/FooterReviewActive.svg';
 import { ROUTE_PATHS } from '@/constants/config';
@@ -23,7 +23,7 @@ export default function Footer() {
     HOME: pathname === ROUTE_PATHS.home,
     ALLQUESTION: pathname === ROUTE_PATHS.questions,
     REVIEW: pathname === ROUTE_PATHS.reviews,
-    MYQUESTION: pathname === ROUTE_PATHS.myQuestions,
+    MYPAGE: pathname === ROUTE_PATHS.myPage,
   };
 
   const handleClickFooter = (url: string) => {
@@ -41,7 +41,7 @@ export default function Footer() {
           alt='home'
         />
         <Font
-          color={PATHNAME_IS_ACTIVE.HOME ? 700 : 500}
+          color={PATHNAME_IS_ACTIVE.HOME ? 900 : 500}
           fontSize='xsmall'
         >
           홈
@@ -58,7 +58,7 @@ export default function Footer() {
         />
 
         <Font
-          color={PATHNAME_IS_ACTIVE.ALLQUESTION ? 700 : 500}
+          color={PATHNAME_IS_ACTIVE.ALLQUESTION ? 900 : 500}
           fontSize='xsmall'
         >
           전체질문
@@ -70,26 +70,22 @@ export default function Footer() {
           alt='all review'
         />
         <Font
-          color={PATHNAME_IS_ACTIVE.REVIEW ? 700 : 500}
+          color={PATHNAME_IS_ACTIVE.REVIEW ? 900 : 500}
           fontSize='xsmall'
         >
           전체후기
         </Font>
       </div>
-      <div onClick={() => handleClickFooter(ROUTE_PATHS.myQuestions)}>
+      <div onClick={() => handleClickFooter(ROUTE_PATHS.myPage)}>
         <Image
-          src={
-            PATHNAME_IS_ACTIVE.MYQUESTION
-              ? FooterMyQuestionActive
-              : FooterMyQuestion
-          }
-          alt='my question'
+          src={PATHNAME_IS_ACTIVE.MYPAGE ? FooterMyPageActive : FooterMyPage}
+          alt='my page'
         />
         <Font
-          color={PATHNAME_IS_ACTIVE.MYQUESTION ? 700 : 500}
+          color={PATHNAME_IS_ACTIVE.MYPAGE ? 900 : 500}
           fontSize='xsmall'
         >
-          내가쓴질문
+          마이페이지
         </Font>
       </div>
     </FooterStyled>
