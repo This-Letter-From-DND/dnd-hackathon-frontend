@@ -8,22 +8,27 @@ export const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-export const ListContainer = styled.div`
+export const ListContainer = styled.ul`
   width: 100%;
   height: 100vh;
-  padding: 0 25px;
   display: flex;
   flex-direction: column;
   background-color: ${(props) => props.theme.colors[100]};
-  overflow-y: scroll;
+  padding-top: 10px;
+`;
 
-  &::-webkit-scrollbar {
-    width: 6px;
-    margin-right: 5rem;
-  }
+export const List = styled.li`
+  width: 100%;
+  height: 58px;
+  background-color: ${(props) => props.theme.colors.white};
+  padding: 1.5rem;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
 
-  &::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.4);
-    border-radius: 10px;
+  &:hover {
+    opacity: 0.8;
   }
 `;

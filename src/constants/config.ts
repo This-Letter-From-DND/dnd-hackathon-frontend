@@ -18,5 +18,6 @@ export const ROUTE_PATHS = {
   reviews: '/reviews',
   newReview: '/reviews/new',
   myPage: '/mypage',
+  myProfile: '/mypage/profile',
   myQuestions: '/mypage/questions',
 };
