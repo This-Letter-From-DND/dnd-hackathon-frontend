@@ -56,11 +56,13 @@ export const putFetch = (
 
 export const deleteFetch = (
   url: string,
+  param: { [key: string]: any },
   options?: RequestInit,
 ): Promise<any> => {
   return commonFetch(url, {
     ...options,
     method: 'DELETE',
     headers: options?.headers,
+    body: JSON.stringify(param),
   });
 };
