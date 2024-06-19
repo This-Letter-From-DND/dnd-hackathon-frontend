@@ -24,13 +24,13 @@ export const getUserApi = async (userId: number) => {
 };
 
 export const postUserApi = async (data: SignUpData) => {
-  return postFetch(API_URLS.user, data);
+  return postFetch(`${API_URLS.user}/join`, data);
 };
 
 export const putUserApi = async (data: LoginData) => {
-  return putFetch(API_URLS.user, data);
+  return putFetch(`${API_URLS.user}/login`, data);
 };
 
 export const deleteUserApi = async (data: UserData) => {
-  return deleteFetch(API_URLS.user, data);
+  return deleteFetch(`${API_URLS.user}/withdraw`, data);
 };
