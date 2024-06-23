@@ -19,6 +19,11 @@ interface UserData {
   password: string;
 }
 
+interface CheckData {
+  email: string;
+  nickname: string;
+}
+
 export const getUserApi = async (userId: number) => {
   return getFetch(`${API_URLS.user}?userId=${userId}`);
 };
@@ -33,4 +38,8 @@ export const putUserApi = async (data: LoginData) => {
 
 export const deleteUserApi = async (data: UserData) => {
   return deleteFetch(`${API_URLS.user}/withdraw`, data);
+};
+
+export const checkUserInfoApi = async (data: CheckData) => {
+  return postFetch(`${API_URLS.user}/check`, data);
 };
