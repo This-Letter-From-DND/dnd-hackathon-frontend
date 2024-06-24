@@ -61,10 +61,11 @@ export default function Login() {
     if (validateForm()) {
       const putData = async () => {
         try {
-          await putUserApi({
+          const data = await putUserApi({
             email: formData.email,
             password: formData.password,
           });
+          sessionStorage.setItem('user', JSON.stringify(data));
           router.push(ROUTE_PATHS.home);
         } catch (err) {
           onReset('email'), onReset('password');
