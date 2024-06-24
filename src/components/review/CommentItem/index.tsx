@@ -12,8 +12,13 @@ import {
   UserInfo,
   UserInfoContainer,
 } from './styles';
+import { formatDate } from '@/utils/fomatDate';
 
-export default function CommentItem() {
+interface CommentItemProps {
+  comment: Comment;
+}
+
+export default function CommentItem({ comment }: CommentItemProps) {
   return (
     <CommentContainer>
       <UserInfoContainer>
@@ -27,7 +32,7 @@ export default function CommentItem() {
               color={700}
               fontSize='xsmall'
             >
-              닉네임은커피
+              {comment.nickname}
             </Font>
           </Name>
           <Time>
@@ -35,7 +40,7 @@ export default function CommentItem() {
               color={700}
               fontSize='xsmall'
             >
-              2024.04.04
+              {formatDate(comment.createdAt || '')}
             </Font>
           </Time>
         </UserInfo>
@@ -44,7 +49,7 @@ export default function CommentItem() {
           alt='more icon'
         />
       </UserInfoContainer>
-      <CommentContent>피자헛 좋다</CommentContent>
+      <CommentContent> {comment.content}</CommentContent>
     </CommentContainer>
   );
 }

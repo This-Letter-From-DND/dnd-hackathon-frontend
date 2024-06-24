@@ -28,9 +28,9 @@ import {
   ImageCount,
   ImageContainer,
 } from './styles';
+import { createReviewAPI } from '@/services/review';
 
 interface FormData {
-  userId: number;
   title: string;
   content: string;
 }
@@ -56,7 +56,6 @@ export default function NewReview({ params }: NewReviewProps) {
   const router = useRouter();
   const { formData, errors, onChange, validateForm } = useForm<FormData>(
     {
-      userId: 1,
       title: '',
       content: '',
     },
@@ -64,10 +63,6 @@ export default function NewReview({ params }: NewReviewProps) {
   );
 
   const [images, setImages] = useState<File[]>([]);
-
-  useEffect(() => {
-    console.log(params.id);
-  }, []);
 
   const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
@@ -87,15 +82,14 @@ export default function NewReview({ params }: NewReviewProps) {
   const handleSubmitForm = (event: FormEvent) => {
     event.preventDefault();
     if (validateForm()) {
-      // const postData = async () => {
-      //   await postReviewApi({
-      //     userId: formData.userId,
-      //     title: formData.title,
-      //     content: formData.content,
-      //     images,
-      //   });
-      // };
-      // postData();
+      const postData = async () => {
+        const data = await createReviewAPI({
+          questionId: +params.id,
+          title: formData.title,
+          content: formData.content,
+        });
+      };
+      postData();
       router.push(`${ROUTE_PATHS.reviews}/${params.id}`);
     }
   };

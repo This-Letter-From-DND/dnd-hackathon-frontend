@@ -13,11 +13,15 @@ import {
   Hits,
 } from './styles';
 
-export default function ReviewItem() {
+interface ReviewItemProps {
+  review: Review;
+}
+
+export default function ReviewItem({ review }: ReviewItemProps) {
   const router = useRouter();
 
   const handleClickButton = () => {
-    router.push(`${ROUTE_PATHS.reviews}/1`);
+    router.push(`${ROUTE_PATHS.reviews}/${review.reviewId}`);
   };
 
   return (
@@ -27,7 +31,7 @@ export default function ReviewItem() {
           fontSize='large'
           fontWeight='bold'
         >
-          바나나 맛있냐고 후기쓴 사람임
+          {review.title}
         </Font>
       </Title>
       <Profile>
@@ -40,7 +44,7 @@ export default function ReviewItem() {
             color={700}
             fontSize='small'
           >
-            닉네임은 커피
+            {review.nickname}
           </Font>
         </Text>
         <Hits>
@@ -55,7 +59,7 @@ export default function ReviewItem() {
             fontSize='small'
             fontWeight='bold'
           >
-            98
+            {review.viewCount}
           </Font>
         </Hits>
       </Profile>

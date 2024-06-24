@@ -7,7 +7,11 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.span`
+  height: 32px;
   margin-bottom: 0.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const Profile = styled.div`

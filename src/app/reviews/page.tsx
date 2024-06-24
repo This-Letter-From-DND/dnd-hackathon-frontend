@@ -16,6 +16,7 @@ import {
   ReviewItemContainer,
   Wrapper,
 } from './styles';
+import { getReviewListlAPI } from '@/services/review';
 
 interface Category {
   id: number;
@@ -26,6 +27,7 @@ interface Category {
 export default function Reviews() {
   const [category, setCategory] = useState('전체');
   const [list, setList] = useState<Category[]>([]);
+  const [reviews, setReviews] = useState<Review[]>([]);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -33,6 +35,14 @@ export default function Reviews() {
       setList([{ id: 0, title: '전체', content: '전체' }, ...data]);
     };
     fetchCategories();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getReviewListlAPI();
+      setReviews(data.content);
+    };
+    fetchData();
   }, []);
 
   return (
@@ -59,9 +69,14 @@ export default function Reviews() {
       </CategoryContainer>
       <ReviewContainer>
         <ListContainer>
-          <ReviewItemContainer>
-            <ReviewItem />
-          </ReviewItemContainer>
+          {reviews.map((review, index) => (
+            <ReviewItemContainer>
+              <ReviewItem
+                key={index}
+                review={review}
+              />
+            </ReviewItemContainer>
+          ))}
         </ListContainer>
       </ReviewContainer>
       <Footer />

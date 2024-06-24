@@ -1,35 +1,70 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import MoreIcon from '@/assets/MoreIcon.svg';
-import ReviewDetailsExample from '@/assets/ReviewDetailsExample.svg';
 import Font from '@/components/common/Font';
 import Header from '@/components/common/Header';
-import CommentInput from '@/components/review/CommentInput';
 import CommentItem from '@/components/review/CommentItem';
 import ReviewItem from '@/components/review/ReviewItem';
 
 import {
+  Button,
   CommentContainer,
   CommentHeader,
+  CommentInputStyle,
   Comments,
   ContentContainer,
-  ImageContainer,
   Line,
   TitleContainer,
   Wrapper,
+  Input,
 } from './styles';
+import { getReviewDetailAPI } from '@/services/review';
+import {
+  createReviewCommentAPI,
+  getReviewCommentAPI,
+} from '@/services/comment';
 
 interface ReviewDetailsProps {
   params: { id: string };
 }
 
 export default function ReviewDetails({ params }: ReviewDetailsProps) {
+  const [review, setReview] = useState<Review>();
+  const [comments, setComments] = useState<Comment[]>();
+  const [newComment, setNewComment] = useState<string>('');
+  const [isNewComment, setIsNewComment] = useState(false);
+
   useEffect(() => {
-    console.log(params.id);
-  }, []);
+    const fetchData = async () => {
+      const data = await getReviewDetailAPI(+params.id);
+      setReview(data);
+    };
+    fetchData();
+  }, [params.id]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getReviewCommentAPI(+params.id);
+      setComments(data);
+    };
+    fetchData();
+  }, [params.id, isNewComment]);
+
+  const handleClickButton = async () => {
+    if (newComment.trim()) {
+      const addedComment = await createReviewCommentAPI({
+        reviewId: +params.id,
+        userId: 2,
+        content: newComment,
+      });
+      setIsNewComment(true);
+      setNewComment('');
+      setIsNewComment(false);
+    }
+  };
 
   return (
     <Wrapper>
@@ -47,27 +82,14 @@ export default function ReviewDetails({ params }: ReviewDetailsProps) {
       />
       <ContentContainer>
         <TitleContainer>
-          <ReviewItem />
+          {review && <ReviewItem review={review} />}
           <Image
             src={MoreIcon}
             alt='more icon'
           />
         </TitleContainer>
         <Line />
-        <Font color={700}>
-          회사 미쳤어 회사싸이코임 직장내 괴롭힘 딴지검 꼰대같음 말걸지 않았음
-          좋겠어
-        </Font>
-        <ImageContainer>
-          <Image
-            src={ReviewDetailsExample}
-            alt='review details example'
-          />
-        </ImageContainer>
-        <Font
-          color='secondary'
-          fontWeight='bold'
-        >{`원래 질문 보기 >`}</Font>
+        <Font color={700}>{review?.content}</Font>
         <CommentContainer>
           <CommentHeader>
             <Font color={700}>댓글</Font>
@@ -75,16 +97,33 @@ export default function ReviewDetails({ params }: ReviewDetailsProps) {
               color={700}
               fontWeight='bold'
             >
-              1
+              {comments?.length}
             </Font>
           </CommentHeader>
           <Line />
           <Comments>
-            <CommentItem />
+            {comments?.map((comment, index) => (
+              <CommentItem
+                key={index}
+                comment={comment}
+              />
+            ))}
           </Comments>
         </CommentContainer>
       </ContentContainer>
-      <CommentInput />
+      <CommentInputStyle>
+        <Input
+          placeholder='댓글을 입력해주세요.'
+          value={newComment}
+          onChange={(event) => setNewComment(event.target.value)}
+        />
+        <Button
+          $visible={newComment}
+          onClick={handleClickButton}
+        >
+          등록
+        </Button>
+      </CommentInputStyle>
     </Wrapper>
   );
 }

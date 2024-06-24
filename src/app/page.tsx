@@ -95,7 +95,7 @@ export default function Home() {
     }
 
     postAnswer({
-      userId: 1,
+      userId: 2,
       questionId: CurrentQuestion.current.questionId,
       choiceId:
         newChoiceId > 0
