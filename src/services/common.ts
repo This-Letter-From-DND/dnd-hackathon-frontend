@@ -56,7 +56,7 @@ export const putFetch = (
 
 export const deleteFetch = (
   url: string,
-  param: { [key: string]: any },
+  param?: { [key: string]: any },
   options?: RequestInit,
 ): Promise<any> => {
   return commonFetch(url, {
