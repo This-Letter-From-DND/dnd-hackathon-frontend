@@ -8,6 +8,7 @@ import Header from '@/components/common/Header';
 import RadioButtonGroup from '@/components/review/RadioButtonGroup';
 import ReviewItem from '@/components/review/ReviewItem';
 import { getCategoryApi } from '@/services/category';
+import { getReviewListlAPI } from '@/services/review';
 
 import {
   CategoryContainer,
@@ -16,7 +17,6 @@ import {
   ReviewItemContainer,
   Wrapper,
 } from './styles';
-import { getReviewListlAPI } from '@/services/review';
 
 interface Category {
   id: number;
@@ -69,14 +69,14 @@ export default function Reviews() {
       </CategoryContainer>
       <ReviewContainer>
         <ListContainer>
-          {reviews.map((review, index) => (
-            <ReviewItemContainer>
+          <ReviewItemContainer>
+            {reviews.map((review, index) => (
               <ReviewItem
                 key={index}
                 review={review}
               />
-            </ReviewItemContainer>
-          ))}
+            ))}
+          </ReviewItemContainer>
         </ListContainer>
       </ReviewContainer>
       <Footer />

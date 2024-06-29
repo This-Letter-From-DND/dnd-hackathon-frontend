@@ -3,6 +3,7 @@ import Image from 'next/image';
 import MoreIcon from '@/assets/MoreIcon.svg';
 import ProfileIcon from '@/assets/ProfileIcon.svg';
 import Font from '@/components/common/Font';
+import { formatDate } from '@/utils/fomatDate';
 
 import {
   CommentContainer,
@@ -12,7 +13,6 @@ import {
   UserInfo,
   UserInfoContainer,
 } from './styles';
-import { formatDate } from '@/utils/fomatDate';
 
 interface CommentItemProps {
   comment: Comment;

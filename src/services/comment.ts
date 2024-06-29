@@ -1,4 +1,5 @@
 import { API_URLS } from '@/constants/config';
+
 import { deleteFetch, getFetch, postFetch, putFetch } from './common';
 
 interface CommentData {

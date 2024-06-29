@@ -8,6 +8,11 @@ import Font from '@/components/common/Font';
 import Header from '@/components/common/Header';
 import CommentItem from '@/components/review/CommentItem';
 import ReviewItem from '@/components/review/ReviewItem';
+import {
+  createReviewCommentAPI,
+  getReviewCommentAPI,
+} from '@/services/comment';
+import { getReviewDetailAPI } from '@/services/review';
 
 import {
   Button,
@@ -21,11 +26,6 @@ import {
   Wrapper,
   Input,
 } from './styles';
-import { getReviewDetailAPI } from '@/services/review';
-import {
-  createReviewCommentAPI,
-  getReviewCommentAPI,
-} from '@/services/comment';
 
 interface ReviewDetailsProps {
   params: { id: string };
@@ -55,7 +55,7 @@ export default function ReviewDetails({ params }: ReviewDetailsProps) {
 
   const handleClickButton = async () => {
     if (newComment.trim()) {
-      const addedComment = await createReviewCommentAPI({
+      await createReviewCommentAPI({
         reviewId: +params.id,
         userId: 2,
         content: newComment,

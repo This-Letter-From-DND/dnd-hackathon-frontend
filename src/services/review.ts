@@ -1,4 +1,5 @@
 import { API_URLS } from '@/constants/config';
+
 import { getFetch, putFetch } from './common';
 
 interface ReviewData {

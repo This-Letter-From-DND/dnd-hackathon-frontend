@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 
 import plus from '@/assets/PlusIcon.svg';
 import Button from '@/components/common/Button';
@@ -11,6 +11,7 @@ import FormInputTemplate from '@/components/common/FormInputTemplate';
 import Header from '@/components/common/Header';
 import { ROUTE_PATHS } from '@/constants/config';
 import useForm from '@/hooks/useForm';
+import { createReviewAPI } from '@/services/review';
 
 import {
   ButtonContainer,
@@ -28,7 +29,6 @@ import {
   ImageCount,
   ImageContainer,
 } from './styles';
-import { createReviewAPI } from '@/services/review';
 
 interface FormData {
   title: string;
@@ -83,7 +83,7 @@ export default function NewReview({ params }: NewReviewProps) {
     event.preventDefault();
     if (validateForm()) {
       const postData = async () => {
-        const data = await createReviewAPI({
+        await createReviewAPI({
           questionId: +params.id,
           title: formData.title,
           content: formData.content,
