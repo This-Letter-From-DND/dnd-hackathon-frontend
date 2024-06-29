@@ -40,6 +40,7 @@ export const ReviewItemContainer = styled.li`
   background-color: ${(props) => props.theme.colors[50]};
   border-radius: 0.75rem;
   padding: 1.25rem;
+  margin-bottom: 0.75rem;
   cursor: pointer;
 
   &:hover {

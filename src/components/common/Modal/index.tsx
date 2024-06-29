@@ -25,11 +25,11 @@ export default function Modal({ isModalOpen, onClick, children }: ModalProps) {
 
   return (
     <ModalWrapper
-      isOpen={isOpen}
+      $isOpen={isOpen}
       onClick={onClick}
     >
       <ModalContainer onClick={handleClickInsideModal}>
-        <ModalSection isOpen={isModalOpen}>
+        <ModalSection $isOpen={isModalOpen}>
           <ModalMain>{children}</ModalMain>
         </ModalSection>
       </ModalContainer>

@@ -36,3 +36,7 @@ export const postQuestionApi = async (data: QuestionData) => {
 export const getQuestionListReceiveApi = async (userId: number) => {
   return getFetch(`${API_URLS.question}/list/receive?userId=${userId}`);
 };
+
+export const getQuestionDetailReceiveApi = async (questionId: number) => {
+  return getFetch(`${API_URLS.question}/detail/${questionId}`);
+};

@@ -5,6 +5,8 @@ export const API_URLS = {
   question: '/v1/question',
   category: '/v1/category',
   answer: '/v1/answer',
+  review: '/v1/review',
+  comment: '/v1/review/comment',
   ai: '/v1/answer/ai',
 };
 
@@ -17,5 +19,7 @@ export const ROUTE_PATHS = {
   shareQuestion: '/questions/share',
   reviews: '/reviews',
   newReview: '/reviews/new',
+  myPage: '/mypage',
+  myProfile: '/mypage/profile',
   myQuestions: '/mypage/questions',
 };

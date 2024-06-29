@@ -8,6 +8,7 @@ import Header from '@/components/common/Header';
 import RadioButtonGroup from '@/components/review/RadioButtonGroup';
 import ReviewItem from '@/components/review/ReviewItem';
 import { getCategoryApi } from '@/services/category';
+import { getReviewListlAPI } from '@/services/review';
 
 import {
   CategoryContainer,
@@ -26,6 +27,7 @@ interface Category {
 export default function Reviews() {
   const [category, setCategory] = useState('전체');
   const [list, setList] = useState<Category[]>([]);
+  const [reviews, setReviews] = useState<Review[]>([]);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -33,6 +35,14 @@ export default function Reviews() {
       setList([{ id: 0, title: '전체', content: '전체' }, ...data]);
     };
     fetchCategories();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getReviewListlAPI();
+      setReviews(data.content);
+    };
+    fetchData();
   }, []);
 
   return (
@@ -60,7 +70,12 @@ export default function Reviews() {
       <ReviewContainer>
         <ListContainer>
           <ReviewItemContainer>
-            <ReviewItem />
+            {reviews.map((review, index) => (
+              <ReviewItem
+                key={index}
+                review={review}
+              />
+            ))}
           </ReviewItemContainer>
         </ListContainer>
       </ReviewContainer>

@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 
 import plus from '@/assets/PlusIcon.svg';
 import Button from '@/components/common/Button';
@@ -11,6 +11,7 @@ import FormInputTemplate from '@/components/common/FormInputTemplate';
 import Header from '@/components/common/Header';
 import { ROUTE_PATHS } from '@/constants/config';
 import useForm from '@/hooks/useForm';
+import { createReviewAPI } from '@/services/review';
 
 import {
   ButtonContainer,
@@ -30,7 +31,6 @@ import {
 } from './styles';
 
 interface FormData {
-  userId: number;
   title: string;
   content: string;
 }
@@ -56,7 +56,6 @@ export default function NewReview({ params }: NewReviewProps) {
   const router = useRouter();
   const { formData, errors, onChange, validateForm } = useForm<FormData>(
     {
-      userId: 1,
       title: '',
       content: '',
     },
@@ -64,10 +63,6 @@ export default function NewReview({ params }: NewReviewProps) {
   );
 
   const [images, setImages] = useState<File[]>([]);
-
-  useEffect(() => {
-    console.log(params.id);
-  }, []);
 
   const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
@@ -87,15 +82,14 @@ export default function NewReview({ params }: NewReviewProps) {
   const handleSubmitForm = (event: FormEvent) => {
     event.preventDefault();
     if (validateForm()) {
-      // const postData = async () => {
-      //   await postReviewApi({
-      //     userId: formData.userId,
-      //     title: formData.title,
-      //     content: formData.content,
-      //     images,
-      //   });
-      // };
-      // postData();
+      const postData = async () => {
+        await createReviewAPI({
+          questionId: +params.id,
+          title: formData.title,
+          content: formData.content,
+        });
+      };
+      postData();
       router.push(`${ROUTE_PATHS.reviews}/${params.id}`);
     }
   };

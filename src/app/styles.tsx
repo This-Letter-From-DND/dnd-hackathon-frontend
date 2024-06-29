@@ -142,17 +142,17 @@ export const AddQuestion = styled.div`
   bottom: 108px;
   width: 136px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   background-color: ${(props) => props.theme.colors.primary};
-  padding: 10px;
+  padding: 10px 10px 14px 10px;
   border-radius: 100px;
-
-  > span {
-    padding-bottom: 0.25rem;
-  }
 
   &:hover {
     cursor: pointer;
+  }
+
+  > img {
+    margin-top: 0.25rem;
   }
 `;

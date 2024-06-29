@@ -1,6 +1,6 @@
 import { API_URLS } from '@/constants/config';
 
-import { getFetch, postFetch, putFetch } from './common';
+import { deleteFetch, getFetch, postFetch, putFetch } from './common';
 
 interface SignUpData {
   email: string;
@@ -14,14 +14,32 @@ interface LoginData {
   password: string;
 }
 
+interface UserData {
+  userId: number;
+  password: string;
+}
+
+interface CheckData {
+  email: string;
+  nickname: string;
+}
+
 export const getUserApi = async (userId: number) => {
   return getFetch(`${API_URLS.user}?userId=${userId}`);
 };
 
 export const postUserApi = async (data: SignUpData) => {
-  return postFetch(API_URLS.user, data);
+  return postFetch(`${API_URLS.user}/join`, data);
 };
 
 export const putUserApi = async (data: LoginData) => {
-  return putFetch(API_URLS.user, data);
+  return putFetch(`${API_URLS.user}/login`, data);
+};
+
+export const deleteUserApi = async (data: UserData) => {
+  return deleteFetch(`${API_URLS.user}/withdraw`, data);
+};
+
+export const checkUserInfoApi = async (data: CheckData) => {
+  return postFetch(`${API_URLS.user}/check`, data);
 };

@@ -38,7 +38,7 @@ const modalClosed = keyframes`
   }
 `;
 
-export const ModalWrapper = styled.div<{ isOpen: boolean }>`
+export const ModalWrapper = styled.div<{ $isOpen: boolean }>`
   position: fixed;
   display: flex;
   justify-content: center;
@@ -49,7 +49,7 @@ export const ModalWrapper = styled.div<{ isOpen: boolean }>`
   left: 0;
   z-index: 99;
   background-color: rgba(0, 0, 0, 0.6);
-  animation: ${({ isOpen }) => (isOpen ? modalBgOpened : modalBgClosed)} 0.1s;
+  animation: ${({ $isOpen }) => ($isOpen ? modalBgOpened : modalBgClosed)} 0.1s;
 `;
 
 export const ModalContainer = styled.div`
@@ -60,7 +60,7 @@ export const ModalContainer = styled.div`
   border-radius: ${(props) => props.theme.layout.minWidth.mobile};
 `;
 
-export const ModalSection = styled.section<{ isOpen: boolean }>`
+export const ModalSection = styled.section<{ $isOpen: boolean }>`
   width: 260px;
   height: 164px;
   margin: 0 1rem;
@@ -70,7 +70,7 @@ export const ModalSection = styled.section<{ isOpen: boolean }>`
   overflow: hidden;
   border-radius: 20px;
   background-color: ${(props) => props.theme.colors.white};
-  animation: ${({ isOpen }) => (isOpen ? modalOpened : modalClosed)} 0.1s;
+  animation: ${({ $isOpen }) => ($isOpen ? modalOpened : modalClosed)} 0.1s;
 `;
 
 export const ModalMain = styled.main`
