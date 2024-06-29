@@ -82,7 +82,10 @@ export default function MyPage() {
         <ConfirmModal
           isModalOpen={isModalOpenLogout}
           onCancel={() => setIsModalOpenLogout(false)}
-          onConfirm={() => setIsModalOpenLogout(false)}
+          onConfirm={() => {
+            setIsModalOpenLogout(false);
+            sessionStorage.removeItem('user');
+          }}
           message='로그아웃하시겠어요?'
         />
       )}

@@ -69,14 +69,11 @@ export default function Reviews() {
       </CategoryContainer>
       <ReviewContainer>
         <ListContainer>
-          <ReviewItemContainer>
-            {reviews.map((review, index) => (
-              <ReviewItem
-                key={index}
-                review={review}
-              />
-            ))}
-          </ReviewItemContainer>
+          {reviews.map((review, index) => (
+            <ReviewItemContainer key={index}>
+              <ReviewItem review={review} />
+            </ReviewItemContainer>
+          ))}
         </ListContainer>
       </ReviewContainer>
       <Footer />

@@ -112,7 +112,6 @@ export const AnswerContainer = styled.div`
 `;
 
 export const TransparentButtonContainer = styled.div`
-  position: relative;
   z-index: 1;
   width: 380px;
   display: flex;
@@ -138,21 +137,16 @@ export const FooterContainer = styled.div`
 
 export const AddQuestion = styled.div`
   position: absolute;
-  left: 54px;
+  right: 16px;
   bottom: 108px;
-  width: 136px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: ${(props) => props.theme.colors.primary};
-  padding: 10px 10px 14px 10px;
+  padding: 10px;
   border-radius: 100px;
 
   &:hover {
     cursor: pointer;
-  }
-
-  > img {
-    margin-top: 0.25rem;
   }
 `;
