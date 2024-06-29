@@ -62,7 +62,7 @@ export default function Home() {
   const [questionList, setQuestionList] = useState<Question[]>([]);
 
   const getQuestionListReceive = async () => {
-    const response = await getQuestionListReceiveApi(1);
+    const response = await getQuestionListReceiveApi(2);
     setRewardCount(response.rewardCount);
     setQuestionList(response.questions);
     if (response.questions.length > 0) {
@@ -286,18 +286,12 @@ export default function Home() {
       <FooterContainer>
         <Footer />
       </FooterContainer>
-      <div style={{ position: 'relative', width: 0, height: 0 }}>
+      <div style={{ position: 'relative', width: `100%`, height: 0 }}>
         <AddQuestion onClick={() => router.push(ROUTE_PATHS.newQuestion)}>
           <Image
             src={AddQuestionIcon}
             alt='add question'
           />
-          <Font
-            fontSize='large'
-            fontWeight='bold'
-          >
-            질문하기
-          </Font>
         </AddQuestion>
       </div>
     </MainStyled>
